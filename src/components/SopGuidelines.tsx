@@ -73,13 +73,13 @@ export default function SopGuidelines() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {guidelines.map((item) => {
           const Icon = item.icon;
           return (
             <Card
               key={item.id}
-              className="p-6 shadow-sm flex flex-col justify-between"
+              className="p-6 sm:p-7 shadow-sm flex flex-col justify-between rounded-2xl transition-all hover:border-primary/40"
             >
               <div>
                 <CardHeader className="p-0 mb-4 flex flex-row items-center justify-between space-y-0">

@@ -34,8 +34,8 @@ export default function Navbar({ currentPath = "/" }: NavbarProps) {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/80 bg-background/95 backdrop-blur-md transition-colors">
-      {/* Futuristic Telemetry HUD Strip */}
-      <div className="hidden sm:block border-b border-border/60 bg-muted/40 px-4 py-1.5 text-[11px] text-muted-foreground font-mono">
+      {/* Futuristic Telemetry HUD Strip with comfortable padding */}
+      <div className="hidden sm:block border-b border-border/60 bg-muted/40 px-4 sm:px-6 lg:px-8 py-2 text-[11px] text-muted-foreground font-mono">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <div className="flex items-center gap-3">
             <span className="flex items-center gap-1.5 font-bold text-foreground">
@@ -51,7 +51,7 @@ export default function Navbar({ currentPath = "/" }: NavbarProps) {
             <span className="tabular-nums">Atap Tertinggi Jawa Barat</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-amber-700 dark:text-amber-300 font-semibold flex items-center gap-1">
+            <span className="text-amber-700 dark:text-amber-300 font-semibold flex items-center gap-1.5">
               <Activity className="h-3 w-3" aria-hidden="true" />
               <span>SIAGA KEMARAU LERENG</span>
             </span>
@@ -59,21 +59,21 @@ export default function Navbar({ currentPath = "/" }: NavbarProps) {
         </div>
       </div>
 
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-16 sm:h-18 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand & Elevation */}
         <Link
           href="/"
           className="flex items-center gap-3 transition-opacity hover:opacity-90 focus:outline-none"
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-sm ring-1 ring-primary/20">
-            <ShieldCheck className="h-5 w-5 text-primary-foreground" aria-hidden="true" />
+          <div className="flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-sm ring-1 ring-primary/20">
+            <ShieldCheck className="h-5 w-5 sm:h-6 sm:w-6 text-primary-foreground" aria-hidden="true" />
           </div>
           <div className="flex flex-col">
             <span className="text-base font-black tracking-tight text-foreground sm:text-lg">
               CIREMAI GUARD
             </span>
             <div className="flex items-center gap-1.5">
-              <Badge variant="outline" className="h-4 border-primary/30 px-1 py-0 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground tabular-nums font-mono">
+              <Badge variant="outline" className="h-4 border-primary/30 px-1.5 py-0 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground tabular-nums font-mono">
                 Puncak 3.078 mdpl : TNGC
               </Badge>
             </div>
@@ -81,7 +81,7 @@ export default function Navbar({ currentPath = "/" }: NavbarProps) {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-1 md:flex" aria-label="Navigasi Utama">
+        <nav className="hidden items-center gap-1.5 md:flex" aria-label="Navigasi Utama">
           {NAV_ITEMS.map((item) => {
             const Icon = item.icon;
             const isActive = currentPath === item.href;
@@ -91,7 +91,7 @@ export default function Navbar({ currentPath = "/" }: NavbarProps) {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`ml-2 inline-flex items-center gap-2 rounded-lg px-3.5 py-2 text-xs font-bold uppercase tracking-wider transition-all focus-visible:ring-2 ${
+                  className={`ml-2 inline-flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-bold uppercase tracking-wider transition-all focus-visible:ring-2 ${
                     isActive
                       ? "bg-destructive text-destructive-foreground shadow-sm"
                       : "bg-destructive/10 text-destructive hover:bg-destructive/20 dark:bg-destructive/20 dark:text-red-300 dark:hover:bg-destructive/30"

@@ -2,10 +2,15 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Geist } from "next/font/google";
+import { Poppins } from "next/font/google";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-poppins",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "CIREMAI GUARD : Digital Forest Protection & Environmental Awareness Platform",
@@ -31,8 +36,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className={cn("scroll-smooth", "font-sans", geist.variable)}>
-      <body className="antialiased flex flex-col min-h-screen">
+    <html lang="id" className={cn("scroll-smooth", poppins.variable, "font-sans")}>
+      <body className="antialiased flex flex-col min-h-screen font-sans bg-background text-foreground">
         <a href="#main-content" className="skip-link">
           Lewati ke konten utama
         </a>
