@@ -5,6 +5,13 @@ import { FireReport, TrailId, IncidentType, ReportSeverity } from "@/types";
 import { validateReportInput, generateReportId } from "@/lib/reportUtils";
 import { TRAIL_SEEDS } from "@/lib/constants";
 import { Flame, MapPin, AlertCircle, CheckCircle2, Loader2, Navigation, Copy, Check } from "lucide-react";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { cn } from "@/lib/utils";
 
 interface ReportFormProps {
   initialTrail?: TrailId;
@@ -144,7 +151,7 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
 
   if (submittedReport) {
     return (
-      <div className="rounded-2xl border border-emerald-300 bg-emerald-50/80 p-6 sm:p-8 dark:border-emerald-900/60 dark:bg-emerald-950/30 text-foreground">
+      <Card className="border-emerald-300 bg-emerald-50/80 p-6 sm:p-8 dark:border-emerald-900/60 dark:bg-emerald-950/30 text-foreground shadow-sm">
         <div className="flex items-center gap-3 mb-4">
           <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-600 text-white">
             <CheckCircle2 className="h-7 w-7" aria-hidden="true" />
@@ -159,7 +166,7 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
           </div>
         </div>
 
-        <div className="my-6 rounded-xl border border-emerald-200 bg-white p-5 dark:border-emerald-900 dark:bg-card">
+        <Card className="my-6 border-emerald-200 bg-white p-5 dark:border-emerald-900 dark:bg-card">
           <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground block mb-1">
             Nomor Tiket Pelaporan
           </span>
@@ -167,10 +174,12 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
             <span className="text-2xl sm:text-3xl font-black text-foreground tabular-nums tracking-wider">
               {submittedReport.id}
             </span>
-            <button
+            <Button
               type="button"
+              variant="outline"
+              size="sm"
               onClick={handleCopyTicket}
-              className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-border bg-muted px-3 text-xs font-bold text-foreground hover:bg-muted/80 focus:outline-none"
+              className="gap-1.5 text-xs font-bold"
             >
               {copiedTicket ? (
                 <>
@@ -183,7 +192,7 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
                   <span>Salin Tiket</span>
                 </>
               )}
-            </button>
+            </Button>
           </div>
 
           <div className="mt-4 pt-4 border-t border-border grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
@@ -204,62 +213,62 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
               <span className="font-bold text-amber-600 dark:text-amber-400">Menunggu Verifikasi Posko</span>
             </div>
           </div>
-        </div>
+        </Card>
 
         <div className="flex flex-col sm:flex-row gap-3">
-          <button
+          <Button
             type="button"
             onClick={handleResetForm}
-            className="inline-flex h-11 items-center justify-center rounded-lg bg-primary px-5 text-sm font-bold text-white shadow-sm hover:opacity-95"
+            className="h-11 px-5 text-sm font-bold shadow-sm"
           >
             Buat Laporan Baru
-          </button>
+          </Button>
           <a
             href="tel:0232613158"
-            className="inline-flex h-11 items-center justify-center rounded-lg border border-border bg-card px-5 text-sm font-bold text-foreground hover:bg-muted"
+            className={cn(buttonVariants({ variant: "outline" }), "h-11 px-5 text-sm font-bold")}
           >
             Konfirmasi Telepon Posko (0232-613158)
           </a>
         </div>
-      </div>
+      </Card>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-2xl border border-border bg-card p-6 sm:p-8 shadow-sm">
-      <div className="mb-6 pb-4 border-b border-border">
-        <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-red-100 text-red-800 dark:bg-red-950/60 dark:text-red-300 text-xs font-bold uppercase tracking-wider mb-2">
-          <Flame className="h-3.5 w-3.5" aria-hidden="true" />
-          <span>Formulir Cepat Siaga Karhutla</span>
+    <Card className="p-6 sm:p-8 shadow-sm">
+      <CardHeader className="p-0 mb-6 pb-4 border-b border-border space-y-1">
+        <div className="mb-1">
+          <Badge variant="destructive" className="gap-1.5 px-2.5 py-1 text-xs font-bold uppercase tracking-wider">
+            <Flame className="h-3.5 w-3.5" aria-hidden="true" />
+            <span>Formulir Cepat Siaga Karhutla</span>
+          </Badge>
         </div>
-        <h2 className="text-xl sm:text-2xl font-black text-foreground">
+        <CardTitle className="text-xl sm:text-2xl font-black text-foreground">
           Kirimkan Laporan Indikasi Asap atau Bahaya Hutan
-        </h2>
-        <p className="text-xs sm:text-sm text-muted-foreground mt-1">
+        </CardTitle>
+        <CardDescription className="text-xs sm:text-sm text-muted-foreground">
           Laporan Anda langsung diteruskan ke regu Masyarakat Peduli Api (MPA) dan petugas piket Balai TNGC terdekat.
-        </p>
-      </div>
+        </CardDescription>
+      </CardHeader>
 
-      <div className="space-y-5">
+      <form onSubmit={handleSubmit} className="space-y-5">
         {/* Row 1: Reporter Info */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label htmlFor="reporterName" className="block text-xs font-bold uppercase tracking-wider text-foreground mb-1.5">
-              Nama Pelapor <span className="text-red-600">*</span>
+              Nama Pelapor <span className="text-destructive">*</span>
             </label>
-            <input
+            <Input
               id="reporterName"
               type="text"
               value={formData.reporterName}
               onChange={(e) => setFormData({ ...formData, reporterName: e.target.value })}
               placeholder="Contoh: Rian Anggara (Pendaki)"
               aria-invalid={!!errors.reporterName}
-              className={`w-full h-11 rounded-lg border bg-background px-3.5 text-sm text-foreground transition-colors focus:outline-none ${
-                errors.reporterName ? "border-red-500 focus:ring-1 focus:ring-red-500" : "border-border"
-              }`}
+              className={`h-11 ${errors.reporterName ? "border-destructive focus-visible:ring-destructive" : ""}`}
             />
             {errors.reporterName && (
-              <p className="mt-1 text-xs text-red-600 flex items-center gap-1">
+              <p className="mt-1 text-xs text-destructive flex items-center gap-1">
                 <AlertCircle className="h-3.5 w-3.5 shrink-0" />
                 <span>{errors.reporterName}</span>
               </p>
@@ -268,21 +277,19 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
 
           <div>
             <label htmlFor="reporterContact" className="block text-xs font-bold uppercase tracking-wider text-foreground mb-1.5">
-              Nomor Kontak Aktif (WA/HP) <span className="text-red-600">*</span>
+              Nomor Kontak Aktif (WA/HP) <span className="text-destructive">*</span>
             </label>
-            <input
+            <Input
               id="reporterContact"
               type="tel"
               value={formData.reporterContact}
               onChange={(e) => setFormData({ ...formData, reporterContact: e.target.value })}
               placeholder="081234567890"
               aria-invalid={!!errors.reporterContact}
-              className={`w-full h-11 rounded-lg border bg-background px-3.5 text-sm text-foreground transition-colors focus:outline-none tabular-nums ${
-                errors.reporterContact ? "border-red-500 focus:ring-1 focus:ring-red-500" : "border-border"
-              }`}
+              className={`h-11 tabular-nums ${errors.reporterContact ? "border-destructive focus-visible:ring-destructive" : ""}`}
             />
             {errors.reporterContact && (
-              <p className="mt-1 text-xs text-red-600 flex items-center gap-1">
+              <p className="mt-1 text-xs text-destructive flex items-center gap-1">
                 <AlertCircle className="h-3.5 w-3.5 shrink-0" />
                 <span>{errors.reporterContact}</span>
               </p>
@@ -294,20 +301,22 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label htmlFor="trail" className="block text-xs font-bold uppercase tracking-wider text-foreground mb-1.5">
-              Jalur Pendakian / Lokasi <span className="text-red-600">*</span>
+              Jalur Pendakian / Lokasi <span className="text-destructive">*</span>
             </label>
             <select
               id="trail"
               value={formData.trail}
               onChange={(e) => setFormData({ ...formData, trail: e.target.value as TrailId })}
-              className="w-full h-11 rounded-lg border border-border bg-background px-3.5 text-sm text-foreground transition-colors focus:outline-none"
+              className="w-full h-11 rounded-lg border border-input bg-transparent px-3.5 text-sm text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {TRAIL_SEEDS.map((t) => (
-                <option key={t.id} value={t.id}>
+                <option key={t.id} value={t.id} className="bg-popover text-popover-foreground">
                   {t.name} (Kab. {t.regency})
                 </option>
               ))}
-              <option value="NON_TRAIL">Di luar jalur pendakian resmi (Kawasan Rimba Lain)</option>
+              <option value="NON_TRAIL" className="bg-popover text-popover-foreground">
+                Di luar jalur pendakian resmi (Kawasan Rimba Lain)
+              </option>
             </select>
           </div>
 
@@ -319,13 +328,13 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
               id="incidentType"
               value={formData.incidentType}
               onChange={(e) => setFormData({ ...formData, incidentType: e.target.value as IncidentType })}
-              className="w-full h-11 rounded-lg border border-border bg-background px-3.5 text-sm text-foreground transition-colors focus:outline-none"
+              className="w-full h-11 rounded-lg border border-input bg-transparent px-3.5 text-sm text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
-              <option value="SMOKE">Kepulan Asap Mencurigakan</option>
-              <option value="ACTIVE_FIRE">Titik Api Berkobar Aktif</option>
-              <option value="LITTER_DUMP">Penumpukan Sampah / Kaleng Gas</option>
-              <option value="ILLEGAL_LOGGING">Perusakan Hutan / Penebangan Liar</option>
-              <option value="OTHER">Kejadian Lingkungan Lainnya</option>
+              <option value="SMOKE" className="bg-popover text-popover-foreground">Kepulan Asap Mencurigakan</option>
+              <option value="ACTIVE_FIRE" className="bg-popover text-popover-foreground">Titik Api Berkobar Aktif</option>
+              <option value="LITTER_DUMP" className="bg-popover text-popover-foreground">Penumpukan Sampah / Kaleng Gas</option>
+              <option value="ILLEGAL_LOGGING" className="bg-popover text-popover-foreground">Perusakan Hutan / Penebangan Liar</option>
+              <option value="OTHER" className="bg-popover text-popover-foreground">Kejadian Lingkungan Lainnya</option>
             </select>
           </div>
         </div>
@@ -334,21 +343,19 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label htmlFor="locationDetail" className="block text-xs font-bold uppercase tracking-wider text-foreground mb-1.5">
-              Patokan Lokasi Spesifik <span className="text-red-600">*</span>
+              Patokan Lokasi Spesifik <span className="text-destructive">*</span>
             </label>
-            <input
+            <Input
               id="locationDetail"
               type="text"
               value={formData.locationDetail}
               onChange={(e) => setFormData({ ...formData, locationDetail: e.target.value })}
               placeholder="Contoh: Antara Pos 3 dan Pos 4 Kandang Badak"
               aria-invalid={!!errors.locationDetail}
-              className={`w-full h-11 rounded-lg border bg-background px-3.5 text-sm text-foreground transition-colors focus:outline-none ${
-                errors.locationDetail ? "border-red-500 focus:ring-1 focus:ring-red-500" : "border-border"
-              }`}
+              className={`h-11 ${errors.locationDetail ? "border-destructive focus-visible:ring-destructive" : ""}`}
             />
             {errors.locationDetail && (
-              <p className="mt-1 text-xs text-red-600 flex items-center gap-1">
+              <p className="mt-1 text-xs text-destructive flex items-center gap-1">
                 <AlertCircle className="h-3.5 w-3.5 shrink-0" />
                 <span>{errors.locationDetail}</span>
               </p>
@@ -363,28 +370,30 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
               id="severity"
               value={formData.severity}
               onChange={(e) => setFormData({ ...formData, severity: e.target.value as ReportSeverity })}
-              className="w-full h-11 rounded-lg border border-border bg-background px-3.5 text-sm text-foreground transition-colors focus:outline-none"
+              className="w-full h-11 rounded-lg border border-input bg-transparent px-3.5 text-sm text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
-              <option value="LOW">Rendah (Sampah / Asap Dingin Sisa)</option>
-              <option value="MEDIUM">Sedang (Asap Aktif dari Semak Terisolasi)</option>
-              <option value="HIGH">Tinggi (Api Membakar Vegetasi Luas)</option>
-              <option value="CRITICAL">Kritis (Api Merambat Cepat ke Arah Tenda/Jalur)</option>
+              <option value="LOW" className="bg-popover text-popover-foreground">Rendah (Sampah / Asap Dingin Sisa)</option>
+              <option value="MEDIUM" className="bg-popover text-popover-foreground">Sedang (Asap Aktif dari Semak Terisolasi)</option>
+              <option value="HIGH" className="bg-popover text-popover-foreground">Tinggi (Api Membakar Vegetasi Luas)</option>
+              <option value="CRITICAL" className="bg-popover text-popover-foreground">Kritis (Api Merambat Cepat ke Arah Tenda/Jalur)</option>
             </select>
           </div>
         </div>
 
         {/* Row 4: Coordinates (Optional with GPS helper) */}
-        <div className="rounded-xl border border-border bg-muted/20 p-4">
+        <Card className="p-4 border-border/80 bg-muted/30">
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs font-bold uppercase tracking-wider text-foreground flex items-center gap-1.5">
               <MapPin className="h-4 w-4 text-primary" aria-hidden="true" />
               <span>Koordinat GPS (Opsional)</span>
             </span>
-            <button
+            <Button
               type="button"
+              variant="outline"
+              size="sm"
               onClick={handleGetLocation}
               disabled={isLocating}
-              className="inline-flex h-8 items-center gap-1.5 rounded bg-muted px-2.5 text-xs font-bold text-foreground hover:bg-muted/80 focus:outline-none disabled:opacity-50"
+              className="h-8 gap-1.5 text-xs font-bold"
             >
               {isLocating ? (
                 <>
@@ -397,50 +406,48 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
                   <span>Ambil GPS Saya</span>
                 </>
               )}
-            </button>
+            </Button>
           </div>
 
           <div className="grid grid-cols-2 gap-3">
-            <input
+            <Input
               type="number"
               step="any"
               value={formData.lat}
               onChange={(e) => setFormData({ ...formData, lat: e.target.value })}
               placeholder="Latitude (cth: -6.8921)"
-              className="w-full h-9 rounded border border-border bg-background px-3 text-xs text-foreground tabular-nums"
+              className="h-9 text-xs tabular-nums"
             />
-            <input
+            <Input
               type="number"
               step="any"
               value={formData.lng}
               onChange={(e) => setFormData({ ...formData, lng: e.target.value })}
               placeholder="Longitude (cth: 108.4012)"
-              className="w-full h-9 rounded border border-border bg-background px-3 text-xs text-foreground tabular-nums"
+              className="h-9 text-xs tabular-nums"
             />
           </div>
           {errors.coordinates && (
-            <p className="mt-1.5 text-xs text-red-600">{errors.coordinates}</p>
+            <p className="mt-1.5 text-xs text-destructive">{errors.coordinates}</p>
           )}
-        </div>
+        </Card>
 
         {/* Row 5: Description */}
         <div>
           <label htmlFor="description" className="block text-xs font-bold uppercase tracking-wider text-foreground mb-1.5">
-            Deskripsi Kejadian Lapangan <span className="text-red-600">*</span>
+            Deskripsi Kejadian Lapangan <span className="text-destructive">*</span>
           </label>
-          <textarea
+          <Textarea
             id="description"
             rows={4}
             value={formData.description}
             onChange={(e) => setFormData({ ...formData, description: e.target.value })}
             placeholder="Jelaskan perkiraan luas area, warna asap, arah hembusan angin, dan vegetasi yang terbakar (pinus, ilalang, cantigi)..."
             aria-invalid={!!errors.description}
-            className={`w-full rounded-lg border bg-background p-3 text-sm text-foreground transition-colors focus:outline-none ${
-              errors.description ? "border-red-500 focus:ring-1 focus:ring-red-500" : "border-border"
-            }`}
+            className={`min-h-24 ${errors.description ? "border-destructive focus-visible:ring-destructive" : ""}`}
           />
           {errors.description && (
-            <p className="mt-1 text-xs text-red-600 flex items-center gap-1">
+            <p className="mt-1 text-xs text-destructive flex items-center gap-1">
               <AlertCircle className="h-3.5 w-3.5 shrink-0" />
               <span>{errors.description}</span>
             </p>
@@ -449,10 +456,11 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
 
         {/* Submit Button */}
         <div className="pt-2">
-          <button
+          <Button
             type="submit"
             disabled={isSubmitting}
-            className="w-full h-12 inline-flex items-center justify-center gap-2 rounded-lg bg-red-600 text-sm font-bold text-white shadow-sm transition-colors hover:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-600 disabled:opacity-50"
+            variant="destructive"
+            className="w-full h-12 gap-2 text-sm font-bold shadow-sm"
           >
             {isSubmitting ? (
               <>
@@ -465,9 +473,9 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
                 <span>Kirim Laporan Darurat ke Posko</span>
               </>
             )}
-          </button>
+          </Button>
         </div>
-      </div>
-    </form>
+      </form>
+    </Card>
   );
 }

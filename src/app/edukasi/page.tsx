@@ -2,8 +2,12 @@ import React from "react";
 import SopGuidelines from "@/components/SopGuidelines";
 import InteractiveQuiz from "@/components/InteractiveQuiz";
 import { QUIZ_SEEDS } from "@/lib/constants";
-import { BookOpen, ShieldCheck, Flame } from "lucide-react";
+import { BookOpen, Flame } from "lucide-react";
 import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 export default function EdukasiPage() {
   return (
@@ -11,10 +15,10 @@ export default function EdukasiPage() {
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Header */}
         <div className="border-b border-border pb-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-forest-100 text-forest-800 dark:bg-forest-900/60 dark:text-forest-200 mb-2">
+          <Badge variant="secondary" className="gap-1.5 px-3 py-1 text-xs font-bold uppercase tracking-wider mb-2">
             <BookOpen className="h-3.5 w-3.5" aria-hidden="true" />
             <span>Pusat Edukasi Mitigasi Kebakaran Hutan</span>
-          </div>
+          </Badge>
           <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-foreground">
             Edukasi Rimba Bebas Api & Kuis Kesiapsiagaan
           </h1>
@@ -31,9 +35,9 @@ export default function EdukasiPage() {
         {/* 2. Interactive Quiz Section */}
         <section className="pt-6 border-t border-border" aria-labelledby="quiz-section">
           <div className="mb-6">
-            <span className="text-xs font-bold uppercase tracking-wider text-primary block mb-1">
+            <Badge variant="outline" className="mb-1 text-xs font-bold uppercase tracking-wider text-primary border-primary/30">
               Uji Pemahaman Rimba
-            </span>
+            </Badge>
             <h2 id="quiz-section" className="text-2xl font-black text-foreground">
               Kuis Kesiapsiagaan Karhutla & Etika Konservasi
             </h2>
@@ -48,7 +52,7 @@ export default function EdukasiPage() {
         </section>
 
         {/* Bottom CTA to report */}
-        <div className="rounded-xl border border-border bg-muted/40 p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <Card className="border-border bg-muted/40 p-6 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-none">
           <div>
             <h3 className="text-base font-bold text-foreground">
               Menemukan Pelanggaran Api di Jalur Pendakian?
@@ -59,12 +63,12 @@ export default function EdukasiPage() {
           </div>
           <Link
             href="/lapor"
-            className="inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-red-600 px-5 text-xs font-bold text-white shadow-sm hover:bg-red-700 shrink-0"
+            className={cn(buttonVariants({ variant: "destructive", size: "sm" }), "h-10 px-5 text-xs font-bold gap-2 shadow-sm shrink-0")}
           >
             <Flame className="h-4 w-4" aria-hidden="true" />
             <span>Buka Formulir Lapor</span>
           </Link>
-        </div>
+        </Card>
       </div>
     </div>
   );

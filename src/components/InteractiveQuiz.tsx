@@ -3,6 +3,11 @@
 import React, { useState } from "react";
 import { QuizQuestion } from "@/types";
 import { CheckCircle2, XCircle, Award, RotateCcw, ArrowRight, HelpCircle } from "lucide-react";
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 interface InteractiveQuizProps {
   questions: QuizQuestion[];
@@ -59,18 +64,18 @@ export default function InteractiveQuiz({ questions }: InteractiveQuizProps) {
     const isPass = score >= Math.ceil(questions.length * 0.75);
 
     return (
-      <div className="rounded-2xl border border-border bg-card p-6 sm:p-8 text-center space-y-6">
-        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-forest-100 text-forest-800 dark:bg-forest-900/60 dark:text-emerald-300 mx-auto">
+      <Card className="p-6 sm:p-8 text-center space-y-6 shadow-sm">
+        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary mx-auto">
           <Award className="h-9 w-9" aria-hidden="true" />
         </div>
 
         <div>
-          <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground block mb-1">
+          <Badge variant="outline" className="mb-2 text-xs font-bold uppercase tracking-wider text-muted-foreground border-border">
             Hasil Uji Kesiapsiagaan
-          </span>
-          <h3 className="text-2xl sm:text-3xl font-black text-foreground">
+          </Badge>
+          <CardTitle className="text-2xl sm:text-3xl font-black text-foreground">
             {isPass ? "Lulus : Duta Rimba Siaga Api Ciremai" : "Perlu Pendalaman Materi Konservasi"}
-          </h3>
+          </CardTitle>
           <p className="text-sm text-muted-foreground mt-2 max-w-md mx-auto">
             {isPass
               ? "Luar biasa! Pemahaman Anda mengenai mitigasi kebakaran hutan dan etika pendakian di lereng Ciremai sangat baik."
@@ -86,110 +91,117 @@ export default function InteractiveQuiz({ questions }: InteractiveQuizProps) {
         </div>
 
         <div>
-          <button
+          <Button
             type="button"
             onClick={handleRestart}
-            className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-primary px-6 text-sm font-bold text-white shadow-sm hover:opacity-95"
+            className="h-11 px-6 text-sm font-bold gap-2 shadow-sm"
           >
             <RotateCcw className="h-4 w-4" aria-hidden="true" />
             <span>Ulangi Kuis Edukasi</span>
-          </button>
+          </Button>
         </div>
-      </div>
+      </Card>
     );
   }
 
+  const progressPercent = ((currentIndex + 1) / questions.length) * 100;
+
   return (
-    <div className="rounded-2xl border border-border bg-card p-6 sm:p-8 shadow-sm">
+    <Card className="p-6 sm:p-8 shadow-sm">
       {/* Progress Header */}
-      <div className="flex items-center justify-between pb-4 border-b border-border mb-6">
-        <div className="flex items-center gap-2">
-          <HelpCircle className="h-4 w-4 text-primary" aria-hidden="true" />
-          <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
-            Pertanyaan {currentIndex + 1} dari {questions.length}
-          </span>
+      <CardHeader className="p-0 pb-4 border-b border-border mb-6 space-y-3">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <HelpCircle className="h-4 w-4 text-primary" aria-hidden="true" />
+            <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
+              Pertanyaan {currentIndex + 1} dari {questions.length}
+            </span>
+          </div>
+          <Badge variant="secondary" className="text-xs font-bold text-primary tabular-nums">
+            Skor Sementara: {score}
+          </Badge>
         </div>
-        <span className="text-xs font-bold text-primary tabular-nums">
-          Skor Sementara: {score}
-        </span>
-      </div>
+        <Progress value={progressPercent} className="h-1.5" />
+      </CardHeader>
 
       {/* Question */}
-      <div className="mb-6">
+      <CardContent className="p-0 mb-6 space-y-6">
         <h3 className="text-lg sm:text-xl font-bold text-foreground leading-snug">
           {currentQ.question}
         </h3>
-      </div>
 
-      {/* Options */}
-      <div className="space-y-3 mb-6" role="radiogroup" aria-label={currentQ.question}>
-        {currentQ.options.map((opt) => {
-          const isSelected = selectedOptionId === opt.id;
-          const isCorrect = opt.isCorrect;
+        {/* Options */}
+        <div className="space-y-3" role="radiogroup" aria-label={currentQ.question}>
+          {currentQ.options.map((opt) => {
+            const isSelected = selectedOptionId === opt.id;
+            const isCorrect = opt.isCorrect;
 
-          let btnClass = "border-border bg-background hover:bg-muted/40 text-foreground";
-          if (showFeedback) {
-            if (isCorrect) {
-              btnClass = "border-emerald-500 bg-emerald-50 text-emerald-950 dark:bg-emerald-950/40 dark:text-emerald-200";
-            } else if (isSelected && !isCorrect) {
-              btnClass = "border-red-500 bg-red-50 text-red-950 dark:bg-red-950/40 dark:text-red-200";
+            let btnClass = "border-border bg-background hover:bg-muted/40 text-foreground";
+            if (showFeedback) {
+              if (isCorrect) {
+                btnClass = "border-emerald-500 bg-emerald-500/10 text-emerald-950 dark:text-emerald-200";
+              } else if (isSelected && !isCorrect) {
+                btnClass = "border-destructive bg-destructive/10 text-destructive";
+              }
+            } else if (isSelected) {
+              btnClass = "border-primary bg-primary/10 text-foreground ring-1 ring-primary";
             }
-          } else if (isSelected) {
-            btnClass = "border-primary bg-primary/5 text-foreground ring-1 ring-primary";
-          }
 
-          return (
-            <button
-              key={opt.id}
-              type="button"
-              role="radio"
-              aria-checked={isSelected}
-              disabled={showFeedback}
-              onClick={() => handleSelectOption(opt.id)}
-              className={`w-full min-h-[52px] p-4 rounded-xl border text-left text-xs sm:text-sm font-medium transition-all flex items-center justify-between gap-3 ${btnClass}`}
-            >
-              <span>{opt.text}</span>
-              {showFeedback && isCorrect && (
-                <CheckCircle2 className="h-5 w-5 text-emerald-600 shrink-0" aria-hidden="true" />
-              )}
-              {showFeedback && isSelected && !isCorrect && (
-                <XCircle className="h-5 w-5 text-red-600 shrink-0" aria-hidden="true" />
-              )}
-            </button>
-          );
-        })}
-      </div>
-
-      {/* Explanation Callout */}
-      {showFeedback && (
-        <div className="rounded-xl bg-muted/60 border border-border p-4 mb-6 text-xs leading-relaxed space-y-1">
-          <span className="font-bold text-foreground block">Penjelasan Resmi TNGC :</span>
-          <p className="text-muted-foreground">{currentQ.explanation}</p>
+            return (
+              <button
+                key={opt.id}
+                type="button"
+                role="radio"
+                aria-checked={isSelected}
+                disabled={showFeedback}
+                onClick={() => handleSelectOption(opt.id)}
+                className={`w-full min-h-[52px] p-4 rounded-xl border text-left text-xs sm:text-sm font-medium transition-all flex items-center justify-between gap-3 ${btnClass}`}
+              >
+                <span>{opt.text}</span>
+                {showFeedback && isCorrect && (
+                  <CheckCircle2 className="h-5 w-5 text-emerald-600 shrink-0" aria-hidden="true" />
+                )}
+                {showFeedback && isSelected && !isCorrect && (
+                  <XCircle className="h-5 w-5 text-destructive shrink-0" aria-hidden="true" />
+                )}
+              </button>
+            );
+          })}
         </div>
-      )}
+
+        {/* Explanation Callout */}
+        {showFeedback && (
+          <Alert className="border-border bg-muted/60 text-xs leading-relaxed space-y-1">
+            <AlertDescription className="text-muted-foreground text-xs leading-relaxed">
+              <strong className="font-bold text-foreground block mb-0.5">Penjelasan Resmi TNGC :</strong>
+              {currentQ.explanation}
+            </AlertDescription>
+          </Alert>
+        )}
+      </CardContent>
 
       {/* Action Button */}
-      <div className="flex justify-end pt-2 border-t border-border">
+      <CardFooter className="p-0 pt-4 flex justify-end border-t border-border">
         {!showFeedback ? (
-          <button
+          <Button
             type="button"
             disabled={!selectedOptionId}
             onClick={handleConfirmAnswer}
-            className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-primary px-6 text-xs sm:text-sm font-bold text-white shadow-sm hover:opacity-95 disabled:opacity-40"
+            className="h-11 px-6 text-xs sm:text-sm font-bold shadow-sm"
           >
             <span>Kunci Jawaban</span>
-          </button>
+          </Button>
         ) : (
-          <button
+          <Button
             type="button"
             onClick={handleNextQuestion}
-            className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-primary px-6 text-xs sm:text-sm font-bold text-white shadow-sm hover:opacity-95"
+            className="h-11 px-6 text-xs sm:text-sm font-bold gap-2 shadow-sm"
           >
             <span>{currentIndex + 1 < questions.length ? "Lanjutkan" : "Lihat Nilai Akhir"}</span>
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </button>
+          </Button>
         )}
-      </div>
-    </div>
+      </CardFooter>
+    </Card>
   );
 }

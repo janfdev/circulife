@@ -2,48 +2,85 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #f7f9f6;
-  --foreground: #121f18;
-  --card: #ffffff;
-  --card-foreground: #121f18;
-  --primary: #1b4d3e;
-  --primary-foreground: #ffffff;
-  --muted: #e8eee9;
-  --muted-foreground: #526359;
-  --border: #d4ded7;
-  --accent-alert: #dc2626;
-  --accent-warning: #d97706;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0c1410;
-    --foreground: #edf2ee;
-    --card: #132019;
-    --card-foreground: #edf2ee;
-    --primary: #2d7d66;
-    --primary-foreground: #ffffff;
-    --muted: #1a2a22;
-    --muted-foreground: #8ea396;
-    --border: #22372c;
-    --accent-alert: #ef4444;
-    --accent-warning: #f59e0b;
-  }
-}
+    --background: 140 12% 96%; /* #F4F7F5 */
+    --foreground: 150 25% 6%; /* #0C1410 */
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+    --card: 0 0% 100%;
+    --card-foreground: 150 25% 6%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 150 25% 6%;
+
+    --primary: 161 48% 21%; /* #1B4D3E Civic Forest Canopy */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 158 46% 31%; /* #2A7258 Action Foliage */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 140 14% 91%; /* #E6ECE8 */
+    --muted-foreground: 148 12% 33%; /* #4A5E53 */
+
+    --accent: 140 14% 91%;
+    --accent-foreground: 161 48% 21%;
+
+    --destructive: 0 72% 51%; /* #DC2626 Hazard Red */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 140 12% 85%; /* #D5DFD8 */
+    --input: 140 12% 85%;
+    --ring: 161 48% 21%;
+
+    --radius: 0.625rem;
+  }
+
+  .dark {
+    --background: 150 25% 6%; /* #0C1410 Andesite Dark Base */
+    --foreground: 135 15% 94%; /* #EDF2EE */
+
+    --card: 147 21% 9%; /* #111A14 */
+    --card-foreground: 135 15% 94%;
+
+    --popover: 147 21% 9%;
+    --popover-foreground: 135 15% 94%;
+
+    --primary: 163 47% 33%; /* #2D7D66 */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 160 35% 18%; /* #1E3F33 */
+    --secondary-foreground: 135 15% 94%;
+
+    --muted: 149 21% 11%; /* #16221C */
+    --muted-foreground: 144 11% 60%; /* #8EA396 */
+
+    --accent: 149 21% 11%;
+    --accent-foreground: 163 47% 33%;
+
+    --destructive: 0 84% 60%; /* #EF4444 */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 147 23% 16%; /* #1F3127 */
+    --input: 147 23% 16%;
+    --ring: 163 47% 33%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 /* Accessibility: Visible Focus Ring */
 *:focus-visible {
-  outline: 2px solid var(--primary);
+  outline: 2px solid hsl(var(--primary));
   outline-offset: 2px;
 }
 
@@ -57,8 +94,8 @@ body {
   position: absolute;
   top: -100px;
   left: 1rem;
-  background: var(--primary);
-  color: var(--primary-foreground);
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
   padding: 0.5rem 1rem;
   border-radius: 0.375rem;
   z-index: 100;

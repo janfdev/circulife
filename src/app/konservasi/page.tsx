@@ -2,7 +2,8 @@ import React from "react";
 import SpeciesDirectory from "@/components/SpeciesDirectory";
 import RestorationTracker from "@/components/RestorationTracker";
 import { SPECIES_SEEDS } from "@/lib/constants";
-import { TreePine, Sprout, ShieldCheck } from "lucide-react";
+import { TreePine } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 export default function KonservasiPage() {
   return (
@@ -10,10 +11,10 @@ export default function KonservasiPage() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Header */}
         <div className="border-b border-border pb-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-forest-100 text-forest-800 dark:bg-forest-900/60 dark:text-forest-200 mb-2">
+          <Badge variant="secondary" className="gap-1.5 px-3 py-1 text-xs font-bold uppercase tracking-wider mb-2">
             <TreePine className="h-3.5 w-3.5" aria-hidden="true" />
             <span>Keanekaragaman Hayati & Restorasi Lingkungan</span>
-          </div>
+          </Badge>
           <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-foreground">
             Konservasi Ekosistem & Spesies Endemik Gunung Ciremai
           </h1>
@@ -25,9 +26,9 @@ export default function KonservasiPage() {
         {/* 1. Species Directory Section */}
         <section aria-labelledby="species-heading">
           <div className="mb-6">
-            <span className="text-xs font-bold uppercase tracking-wider text-primary block mb-1">
+            <Badge variant="outline" className="mb-1 text-xs font-bold uppercase tracking-wider text-primary border-primary/30">
               Ensiklopedia Flora & Fauna
-            </span>
+            </Badge>
             <h2 id="species-heading" className="text-2xl font-black text-foreground">
               Katalog Spesies Terlindungi Prioritas
             </h2>

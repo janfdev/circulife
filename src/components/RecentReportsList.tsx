@@ -1,8 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
-import { FireReport, IncidentType } from "@/types";
-import { Flame, MapPin, Clock, Search, ShieldCheck, AlertCircle, FileText } from "lucide-react";
+import { FireReport } from "@/types";
+import { MapPin, Clock, Search, ShieldCheck, FileText } from "lucide-react";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 interface RecentReportsListProps {
   reports: FireReport[];
@@ -44,22 +48,26 @@ export default function RecentReportsList({ reports }: RecentReportsListProps) {
       case "PENDING":
         return {
           label: "Menunggu Verifikasi",
-          cls: "bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300",
+          variant: "secondary" as const,
+          cls: "border-amber-500/30 bg-amber-500/10 text-amber-800 dark:text-amber-300",
         };
       case "INVESTIGATING":
         return {
           label: "Investigasi Lapangan",
-          cls: "bg-blue-100 text-blue-800 dark:bg-blue-950/60 dark:text-blue-300",
+          variant: "outline" as const,
+          cls: "border-blue-500/30 bg-blue-500/10 text-blue-700 dark:text-blue-300",
         };
       case "VERIFIED":
         return {
           label: "Terverifikasi / Ditangani",
-          cls: "bg-purple-100 text-purple-800 dark:bg-purple-950/60 dark:text-purple-300",
+          variant: "secondary" as const,
+          cls: "border-purple-500/30 bg-purple-500/10 text-purple-700 dark:text-purple-300",
         };
       case "RESOLVED":
         return {
           label: "Selesai / Terkendali",
-          cls: "bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300",
+          variant: "outline" as const,
+          cls: "border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300",
         };
     }
   };
@@ -67,13 +75,13 @@ export default function RecentReportsList({ reports }: RecentReportsListProps) {
   const getSeverityBadge = (severity: FireReport["severity"]) => {
     switch (severity) {
       case "LOW":
-        return { label: "Rendah", cls: "text-muted-foreground bg-muted" };
+        return { label: "Rendah", variant: "secondary" as const, cls: "text-muted-foreground" };
       case "MEDIUM":
-        return { label: "Sedang", cls: "text-amber-800 bg-amber-50 dark:bg-amber-950/40 dark:text-amber-300" };
+        return { label: "Sedang", variant: "outline" as const, cls: "border-amber-500/30 text-amber-800 dark:text-amber-300" };
       case "HIGH":
-        return { label: "Tinggi", cls: "text-red-700 bg-red-50 dark:bg-red-950/40 dark:text-red-300" };
+        return { label: "Tinggi", variant: "destructive" as const, cls: "" };
       case "CRITICAL":
-        return { label: "Kritis", cls: "text-white bg-red-600 font-bold" };
+        return { label: "Kritis", variant: "destructive" as const, cls: "font-black tracking-wide" };
     }
   };
 
@@ -81,60 +89,60 @@ export default function RecentReportsList({ reports }: RecentReportsListProps) {
     <div className="space-y-6">
       {/* Search & Filter Header */}
       <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between">
-        <div className="flex flex-wrap gap-1.5 p-1 rounded-lg bg-muted/60 border border-border">
-          <button
+        <div className="flex flex-wrap gap-1.5 p-1 rounded-lg bg-muted border border-border">
+          <Button
             type="button"
+            variant={filterType === "ALL" ? "default" : "ghost"}
+            size="sm"
             onClick={() => setFilterType("ALL")}
-            className={`px-3 py-1.5 rounded text-xs font-bold uppercase tracking-wider transition-colors ${
-              filterType === "ALL" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
-            }`}
+            className="h-8 text-xs font-bold uppercase tracking-wider"
           >
             Semua Laporan ({reports.length})
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
+            variant={filterType === "FIRE" ? "default" : "ghost"}
+            size="sm"
             onClick={() => setFilterType("FIRE")}
-            className={`px-3 py-1.5 rounded text-xs font-bold uppercase tracking-wider transition-colors ${
-              filterType === "FIRE" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
-            }`}
+            className="h-8 text-xs font-bold uppercase tracking-wider"
           >
             Asap / Api
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
+            variant={filterType === "LITTER" ? "default" : "ghost"}
+            size="sm"
             onClick={() => setFilterType("LITTER")}
-            className={`px-3 py-1.5 rounded text-xs font-bold uppercase tracking-wider transition-colors ${
-              filterType === "LITTER" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
-            }`}
+            className="h-8 text-xs font-bold uppercase tracking-wider"
           >
             Sampah
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
+            variant={filterType === "LOGGING" ? "default" : "ghost"}
+            size="sm"
             onClick={() => setFilterType("LOGGING")}
-            className={`px-3 py-1.5 rounded text-xs font-bold uppercase tracking-wider transition-colors ${
-              filterType === "LOGGING" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
-            }`}
+            className="h-8 text-xs font-bold uppercase tracking-wider"
           >
             Perusakan
-          </button>
+          </Button>
         </div>
 
         <div className="relative min-w-[240px]">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" aria-hidden="true" />
-          <input
+          <Input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Cari nomor tiket atau lokasi..."
-            className="w-full h-9 rounded-lg border border-border bg-background pl-9 pr-3 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none"
+            className="h-9 pl-9 pr-3 text-xs"
           />
         </div>
       </div>
 
       {/* Reports Feed */}
       {filteredReports.length === 0 ? (
-        <div className="rounded-xl border border-dashed border-border p-12 text-center">
+        <Card className="border-dashed p-12 text-center shadow-none">
           <FileText className="mx-auto h-8 w-8 text-muted-foreground mb-3" aria-hidden="true" />
           <p className="text-sm font-semibold text-foreground">Tidak Ada Laporan yang Cocok</p>
           <p className="text-xs text-muted-foreground mt-1">
@@ -142,7 +150,7 @@ export default function RecentReportsList({ reports }: RecentReportsListProps) {
               ? `Tidak ditemukan laporan dengan kata kunci "${searchQuery}". Coba periksa nomor tiket.`
               : "Belum ada laporan untuk kategori ini saat ini."}
           </p>
-        </div>
+        </Card>
       ) : (
         <div className="grid grid-cols-1 gap-4">
           {filteredReports.map((report) => {
@@ -150,24 +158,24 @@ export default function RecentReportsList({ reports }: RecentReportsListProps) {
             const severity = getSeverityBadge(report.severity);
 
             return (
-              <div
+              <Card
                 key={report.id}
-                className="rounded-xl border border-border bg-card p-5 shadow-sm transition-all hover:border-primary/40 space-y-3"
+                className="p-5 shadow-sm transition-all hover:border-primary/50 space-y-3"
               >
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <div className="flex items-center gap-2">
                     <span className="font-mono text-sm font-black text-foreground tabular-nums tracking-wide">
                       {report.id}
                     </span>
-                    <span className={`inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider ${status.cls}`}>
+                    <Badge variant={status.variant} className={`text-[11px] font-bold uppercase tracking-wider ${status.cls}`}>
                       {status.label}
-                    </span>
+                    </Badge>
                   </div>
 
                   <div className="flex items-center gap-2">
-                    <span className={`inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold uppercase ${severity.cls}`}>
+                    <Badge variant={severity.variant} className={`text-[11px] font-semibold uppercase ${severity.cls}`}>
                       Ancaman: {severity.label}
-                    </span>
+                    </Badge>
                     <div className="flex items-center gap-1 text-[11px] text-muted-foreground tabular-nums">
                       <Clock className="h-3 w-3" aria-hidden="true" />
                       <span>{report.timestamp}</span>
@@ -188,15 +196,15 @@ export default function RecentReportsList({ reports }: RecentReportsListProps) {
                 </div>
 
                 {report.adminNote && (
-                  <div className="rounded-lg bg-muted/40 p-3 border border-border/60 text-xs">
-                    <span className="font-bold text-foreground block mb-0.5 flex items-center gap-1">
+                  <div className="rounded-lg bg-muted/50 p-3 border border-border/60 text-xs">
+                    <span className="font-bold text-foreground mb-0.5 flex items-center gap-1">
                       <ShieldCheck className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
                       <span>Catatan Posko Balai :</span>
                     </span>
                     <p className="text-muted-foreground leading-normal">{report.adminNote}</p>
                   </div>
                 )}
-              </div>
+              </Card>
             );
           })}
         </div>

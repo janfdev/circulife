@@ -2,7 +2,12 @@
 
 import React, { useState } from "react";
 import { calculateFireRisk } from "@/lib/reportUtils";
-import { Wind, Thermometer, Droplets, Sun, AlertTriangle, RefreshCw, Gauge } from "lucide-react";
+import { Wind, Thermometer, Droplets, Sun, AlertTriangle, Gauge } from "lucide-react";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 export default function WeatherRiskCalculator() {
   const [temp, setTemp] = useState<number>(28);
@@ -23,30 +28,26 @@ export default function WeatherRiskCalculator() {
     switch (level) {
       case "EKSTREM":
         return {
-          bg: "bg-red-600",
-          text: "text-red-600 dark:text-red-400",
-          badge: "bg-red-100 text-red-900 border-red-300 dark:bg-red-950/60 dark:text-red-200",
-          bar: "bg-red-600",
+          variant: "destructive" as const,
+          cls: "border-destructive/30 bg-destructive/10 text-destructive",
+          bar: "bg-destructive",
         };
       case "TINGGI":
         return {
-          bg: "bg-amber-600",
-          text: "text-amber-600 dark:text-amber-400",
-          badge: "bg-amber-100 text-amber-900 border-amber-300 dark:bg-amber-950/60 dark:text-amber-200",
+          variant: "outline" as const,
+          cls: "border-amber-500/30 bg-amber-500/10 text-amber-800 dark:text-amber-300",
           bar: "bg-amber-600",
         };
       case "SEDANG":
         return {
-          bg: "bg-yellow-500",
-          text: "text-yellow-600 dark:text-yellow-400",
-          badge: "bg-yellow-100 text-yellow-900 border-yellow-300 dark:bg-yellow-950/60 dark:text-yellow-200",
+          variant: "secondary" as const,
+          cls: "border-yellow-500/30 bg-yellow-500/10 text-yellow-800 dark:text-yellow-300",
           bar: "bg-yellow-500",
         };
       default:
         return {
-          bg: "bg-emerald-600",
-          text: "text-emerald-600 dark:text-emerald-400",
-          badge: "bg-emerald-100 text-emerald-900 border-emerald-300 dark:bg-emerald-950/60 dark:text-emerald-200",
+          variant: "outline" as const,
+          cls: "border-emerald-500/30 bg-emerald-500/10 text-emerald-800 dark:text-emerald-300",
           bar: "bg-emerald-600",
         };
     }
@@ -55,50 +56,56 @@ export default function WeatherRiskCalculator() {
   const colors = getRiskColor(riskResult.level);
 
   return (
-    <div className="rounded-2xl border border-border bg-card p-6 sm:p-8 shadow-sm">
-      <div className="border-b border-border pb-4 mb-6">
+    <Card className="p-6 sm:p-8 shadow-sm">
+      <CardHeader className="p-0 border-b border-border pb-4 mb-6 space-y-1">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Gauge className="h-5 w-5 text-primary" aria-hidden="true" />
-            <h2 className="text-xl font-bold text-foreground">
+            <CardTitle className="text-xl font-bold text-foreground">
               Simulator Indeks Kerawanan Karhutla Lereng
-            </h2>
+            </CardTitle>
           </div>
-          <span className="text-xs font-semibold px-2 py-0.5 rounded bg-muted text-muted-foreground uppercase">
+          <Badge variant="secondary" className="text-xs font-semibold uppercase">
             Model Estimasi
-          </span>
+          </Badge>
         </div>
-        <p className="text-xs text-muted-foreground mt-1">
+        <CardDescription className="text-xs text-muted-foreground">
           Kalkulasi dinamis indeks kemudahan kebakaran berdasarkan kelembapan serasah dan angin lereng Ciremai.
-        </p>
-      </div>
+        </CardDescription>
+      </CardHeader>
 
       {/* Preset Quick Selectors */}
       <div className="mb-6 flex flex-wrap gap-2 items-center">
         <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
           Skenario Cuaca :
         </span>
-        <button
+        <Button
           type="button"
+          variant="outline"
+          size="sm"
           onClick={() => applyPreset(18, 85, 8, 0)}
-          className="px-3 py-1.5 rounded-lg text-xs font-semibold border border-border bg-background hover:bg-muted text-foreground transition-colors"
+          className="h-8 text-xs font-semibold"
         >
           Kondisi Basah Pagi
-        </button>
-        <button
+        </Button>
+        <Button
           type="button"
+          variant="outline"
+          size="sm"
           onClick={() => applyPreset(28, 50, 18, 7)}
-          className="px-3 py-1.5 rounded-lg text-xs font-semibold border border-border bg-background hover:bg-muted text-foreground transition-colors"
+          className="h-8 text-xs font-semibold"
         >
           Kemarau Normal
-        </button>
-        <button
+        </Button>
+        <Button
           type="button"
+          variant="destructive"
+          size="sm"
           onClick={() => applyPreset(36, 22, 38, 21)}
-          className="px-3 py-1.5 rounded-lg text-xs font-semibold border border-red-300 bg-red-50 text-red-900 dark:border-red-900/60 dark:bg-red-950/40 dark:text-red-200 hover:bg-red-100 transition-colors"
+          className="h-8 text-xs font-semibold"
         >
           Kemarau Ekstrem Puncak
-        </button>
+        </Button>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -108,7 +115,7 @@ export default function WeatherRiskCalculator() {
           <div>
             <div className="flex justify-between items-center text-xs mb-1.5">
               <label htmlFor="temp-input" className="font-bold uppercase tracking-wider text-foreground flex items-center gap-1.5">
-                <Thermometer className="h-4 w-4 text-red-500" aria-hidden="true" />
+                <Thermometer className="h-4 w-4 text-destructive" aria-hidden="true" />
                 <span>Suhu Udara Lereng</span>
               </label>
               <span className="font-mono font-bold text-foreground tabular-nums text-sm">
@@ -211,15 +218,15 @@ export default function WeatherRiskCalculator() {
 
         {/* Calculated Result Display Card */}
         <div className="lg:col-span-5">
-          <div className="rounded-xl border border-border bg-muted/30 p-6 flex flex-col justify-between space-y-6">
+          <Card className="border-border bg-muted/40 p-6 flex flex-col justify-between space-y-6 shadow-none">
             <div>
               <div className="flex items-center justify-between mb-4">
                 <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
                   Skor Kerawanan
                 </span>
-                <span className={`text-xs font-black uppercase px-2.5 py-1 rounded-full border ${colors.badge}`}>
+                <Badge variant={colors.variant} className={`text-xs font-black uppercase px-2.5 py-1 ${colors.cls}`}>
                   Tingkat Kerawanan: {riskResult.level}
-                </span>
+                </Badge>
               </div>
 
               {/* Large Score Metric */}
@@ -234,32 +241,21 @@ export default function WeatherRiskCalculator() {
 
               {/* Progress visual bar */}
               <div className="mt-4 space-y-1">
-                <div className="w-full h-3 rounded-full bg-muted overflow-hidden">
-                  <div
-                    className={`h-full ${colors.bar} rounded-full transition-all duration-300`}
-                    style={{ width: `${riskResult.score}%` }}
-                    role="progressbar"
-                    aria-valuenow={riskResult.score}
-                    aria-valuemin={0}
-                    aria-valuemax={100}
-                  />
-                </div>
+                <Progress value={riskResult.score} className="h-3" />
               </div>
             </div>
 
             {/* Recommendations */}
-            <div className="rounded-lg bg-card p-4 border border-border text-xs leading-relaxed space-y-1">
-              <span className="font-bold text-foreground block flex items-center gap-1.5">
-                <AlertTriangle className="h-3.5 w-3.5 text-primary shrink-0" aria-hidden="true" />
-                <span>Rekomendasi Lapangan :</span>
-              </span>
-              <p className="text-muted-foreground">
+            <Alert className="border-border bg-card text-xs leading-relaxed">
+              <AlertTriangle className="h-3.5 w-3.5 text-primary" />
+              <AlertDescription className="text-muted-foreground text-xs leading-relaxed">
+                <strong className="font-bold text-foreground block mb-0.5">Rekomendasi Lapangan :</strong>
                 {riskResult.recommendation}
-              </p>
-            </div>
-          </div>
+              </AlertDescription>
+            </Alert>
+          </Card>
         </div>
       </div>
-    </div>
+    </Card>
   );
 }

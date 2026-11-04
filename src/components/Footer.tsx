@@ -1,20 +1,23 @@
 import React from "react";
 import Link from "next/link";
 import { ShieldAlert, PhoneCall, Trees, MapPin, Heart } from "lucide-react";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils";
 
 export default function Footer() {
   return (
     <footer className="mt-auto border-t border-border bg-card text-foreground">
       {/* Emergency Strip */}
-      <div className="border-b border-border/80 bg-red-600/10 px-4 py-3 dark:bg-red-950/20">
+      <div className="border-b border-destructive/20 bg-destructive/10 px-4 py-3 dark:bg-destructive/20">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 text-xs sm:text-sm">
-          <div className="flex items-center gap-2 font-semibold text-red-700 dark:text-red-400">
+          <div className="flex items-center gap-2 font-semibold text-destructive">
             <ShieldAlert className="h-4 w-4 shrink-0" aria-hidden="true" />
             <span>Posko Siaga Darurat Karhutla Balai TNGC (24 Jam) : 0232-613158</span>
           </div>
           <a
             href="tel:0232613158"
-            className="inline-flex h-9 items-center gap-1.5 rounded-md bg-red-600 px-3 text-xs font-bold text-white shadow-sm transition-colors hover:bg-red-700 focus-visible:ring-2"
+            className={cn(buttonVariants({ variant: "destructive", size: "sm" }), "h-9 gap-1.5 font-bold shadow-sm")}
           >
             <PhoneCall className="h-3.5 w-3.5" aria-hidden="true" />
             <span>Panggil Posko Darurat</span>
@@ -27,8 +30,8 @@ export default function Footer() {
           {/* Col 1: Mission */}
           <div className="space-y-3">
             <div className="flex items-center gap-2.5">
-              <div className="flex h-8 w-8 items-center justify-center rounded-md bg-forest-800 text-white">
-                <Trees className="h-5 w-5 text-emerald-300" aria-hidden="true" />
+              <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary text-primary-foreground">
+                <Trees className="h-5 w-5 text-primary-foreground" aria-hidden="true" />
               </div>
               <span className="text-base font-extrabold tracking-tight">CIREMAI GUARD</span>
             </div>
@@ -48,22 +51,22 @@ export default function Footer() {
             </h2>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <Link href="/lapor" className="hover:text-primary transition-colors">
+                <Link href="/lapor" className="transition-colors hover:text-primary">
                   Lapor Cepat Indikasi Asap & Kebakaran
                 </Link>
               </li>
               <li>
-                <Link href="/edukasi" className="hover:text-primary transition-colors">
+                <Link href="/edukasi" className="transition-colors hover:text-primary">
                   Panduan Mitigasi & SOP Rimba Bebas Api
                 </Link>
               </li>
               <li>
-                <Link href="/konservasi" className="hover:text-primary transition-colors">
+                <Link href="/konservasi" className="transition-colors hover:text-primary">
                   Ensiklopedia Flora & Fauna Endemik Ciremai
                 </Link>
               </li>
               <li>
-                <Link href="/pantau" className="hover:text-primary transition-colors">
+                <Link href="/pantau" className="transition-colors hover:text-primary">
                   Pemantauan Cuaca & Direktori Posko Lapangan
                 </Link>
               </li>
@@ -76,19 +79,19 @@ export default function Footer() {
               4 Pos Jalur Pendakian Resmi
             </h2>
             <div className="grid grid-cols-2 gap-2 text-xs">
-              <div className="rounded-md border border-border p-2">
+              <div className="rounded-lg border border-border bg-background/50 p-2.5">
                 <p className="font-bold text-foreground">Jalur Palutungan</p>
                 <p className="text-muted-foreground">Cisantana, Kuningan</p>
               </div>
-              <div className="rounded-md border border-border p-2">
+              <div className="rounded-lg border border-border bg-background/50 p-2.5">
                 <p className="font-bold text-foreground">Jalur Apuy</p>
                 <p className="text-muted-foreground">Argamukti, Majalengka</p>
               </div>
-              <div className="rounded-md border border-border p-2">
+              <div className="rounded-lg border border-border bg-background/50 p-2.5">
                 <p className="font-bold text-foreground">Jalur Linggarjati</p>
                 <p className="text-muted-foreground">Cilimus, Kuningan</p>
               </div>
-              <div className="rounded-md border border-border p-2">
+              <div className="rounded-lg border border-border bg-background/50 p-2.5">
                 <p className="font-bold text-foreground">Jalur Sadarehe</p>
                 <p className="text-muted-foreground">Rajagaluh, Majalengka</p>
               </div>
@@ -96,13 +99,15 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-border/80 pt-6 text-xs text-muted-foreground sm:flex-row">
+        <Separator className="my-8" />
+
+        <div className="flex flex-col items-center justify-between gap-4 text-xs text-muted-foreground sm:flex-row">
           <p className="tabular-nums">
             &copy; 2026 CIREMAI GUARD : Kolaborasi Masyarakat Peduli Api & Generasi Muda Pelestari Hutan.
           </p>
           <div className="flex items-center gap-1 font-medium text-foreground">
             <span>Peduli Hutan Ciremai</span>
-            <Heart className="h-3.5 w-3.5 text-red-500 fill-current" aria-hidden="true" />
+            <Heart className="h-3.5 w-3.5 fill-current text-destructive" aria-hidden="true" />
             <span>Untuk Generasi Mendatang</span>
           </div>
         </div>

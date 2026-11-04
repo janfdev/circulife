@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Geist } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
   title: "CIREMAI GUARD : Digital Forest Protection & Environmental Awareness Platform",
@@ -27,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className="scroll-smooth">
+    <html lang="id" className={cn("scroll-smooth", "font-sans", geist.variable)}>
       <body className="antialiased flex flex-col min-h-screen">
         <a href="#main-content" className="skip-link">
           Lewati ke konten utama

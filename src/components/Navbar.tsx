@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { ShieldCheck, Flame, BookOpen, Trees, Radio, Menu, X } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
 interface NavbarProps {
   currentPath?: string;
@@ -38,16 +40,18 @@ export default function Navbar({ currentPath = "/" }: NavbarProps) {
           href="/"
           className="flex items-center gap-3 transition-opacity hover:opacity-90 focus:outline-none"
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-forest-800 text-white shadow-sm dark:bg-forest-700">
-            <ShieldCheck className="h-6 w-6 text-emerald-300" aria-hidden="true" />
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-sm">
+            <ShieldCheck className="h-6 w-6 text-primary-foreground" aria-hidden="true" />
           </div>
           <div className="flex flex-col">
             <span className="text-base font-extrabold tracking-tight text-foreground sm:text-lg">
               CIREMAI GUARD
             </span>
-            <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground tabular-nums">
-              Puncak 3.078 mdpl : TNGC
-            </span>
+            <div className="flex items-center gap-1.5">
+              <Badge variant="outline" className="h-4 border-primary/30 px-1 py-0 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground tabular-nums">
+                Puncak 3.078 mdpl : TNGC
+              </Badge>
+            </div>
           </div>
         </Link>
 
@@ -64,11 +68,11 @@ export default function Navbar({ currentPath = "/" }: NavbarProps) {
                   href={item.href}
                   className={`ml-2 inline-flex items-center gap-2 rounded-lg px-3.5 py-2 text-xs font-bold uppercase tracking-wider transition-colors focus-visible:ring-2 ${
                     isActive
-                      ? "bg-red-600 text-white shadow-sm"
-                      : "bg-red-50 text-red-700 hover:bg-red-100 dark:bg-red-950/40 dark:text-red-300 dark:hover:bg-red-900/50"
+                      ? "bg-destructive text-destructive-foreground shadow-sm"
+                      : "bg-destructive/10 text-destructive hover:bg-destructive/20 dark:bg-destructive/20 dark:text-red-300 dark:hover:bg-destructive/30"
                   }`}
                 >
-                  <Icon className="h-4 w-4 text-red-600 dark:text-red-400" aria-hidden="true" />
+                  <Icon className="h-4 w-4" aria-hidden="true" />
                   <span>{item.label}</span>
                 </Link>
               );
@@ -80,11 +84,11 @@ export default function Navbar({ currentPath = "/" }: NavbarProps) {
                 href={item.href}
                 className={`inline-flex items-center gap-2 rounded-lg px-3.5 py-2 text-sm font-medium transition-colors focus-visible:ring-2 ${
                   isActive
-                    ? "bg-forest-800 text-white dark:bg-forest-700"
+                    ? "bg-primary text-primary-foreground shadow-sm"
                     : "text-foreground/80 hover:bg-muted hover:text-foreground"
                 }`}
               >
-                <Icon className="h-4 w-4 opacity-75" aria-hidden="true" />
+                <Icon className="h-4 w-4 opacity-80" aria-hidden="true" />
                 <span>{item.label}</span>
               </Link>
             );
@@ -93,19 +97,21 @@ export default function Navbar({ currentPath = "/" }: NavbarProps) {
 
         {/* Mobile Menu Toggle (Min Tap Target 44px) */}
         <div className="flex items-center md:hidden">
-          <button
+          <Button
             type="button"
+            variant="outline"
+            size="icon"
             onClick={() => setMobileMenuOpen((prev) => !prev)}
             aria-label={mobileMenuOpen ? "Tutup menu navigasi" : "Buka menu navigasi"}
             aria-expanded={mobileMenuOpen}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-card text-foreground transition-colors hover:bg-muted focus:outline-none"
+            className="h-11 w-11"
           >
             {mobileMenuOpen ? (
               <X className="h-6 w-6" aria-hidden="true" />
             ) : (
               <Menu className="h-6 w-6" aria-hidden="true" />
             )}
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -127,9 +133,9 @@ export default function Navbar({ currentPath = "/" }: NavbarProps) {
                   onClick={() => setMobileMenuOpen(false)}
                   className={`flex h-12 items-center gap-3 rounded-lg px-4 text-base font-medium transition-colors ${
                     isActive
-                      ? "bg-forest-800 text-white dark:bg-forest-700"
+                      ? "bg-primary text-primary-foreground"
                       : item.alertHighlight
-                      ? "bg-red-50 text-red-700 dark:bg-red-950/40 dark:text-red-300"
+                      ? "bg-destructive/10 text-destructive dark:bg-destructive/20 dark:text-red-300"
                       : "text-foreground hover:bg-muted"
                   }`}
                 >

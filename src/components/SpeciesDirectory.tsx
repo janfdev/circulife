@@ -2,7 +2,11 @@
 
 import React, { useState } from "react";
 import { Species } from "@/types";
-import { Search, ShieldAlert, Mountain, Sparkles, Filter, Leaf, Bird } from "lucide-react";
+import { Search, Mountain, Leaf, Bird } from "lucide-react";
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 interface SpeciesDirectoryProps {
   speciesList: Species[];
@@ -37,27 +41,32 @@ export default function SpeciesDirectory({ speciesList }: SpeciesDirectoryProps)
       case "CRITICAL":
         return {
           label: "Kritis (CR)",
-          cls: "bg-red-100 text-red-900 border-red-300 dark:bg-red-950/60 dark:text-red-300 dark:border-red-900",
+          variant: "destructive" as const,
+          cls: "border-destructive/30 bg-destructive/10 text-destructive",
         };
       case "ENDANGERED":
         return {
           label: "Terancam (EN)",
-          cls: "bg-amber-100 text-amber-900 border-amber-300 dark:bg-amber-950/60 dark:text-amber-300 dark:border-amber-900",
+          variant: "outline" as const,
+          cls: "border-amber-500/30 bg-amber-500/10 text-amber-800 dark:text-amber-300",
         };
       case "VULNERABLE":
         return {
           label: "Rentan (VU)",
-          cls: "bg-yellow-100 text-yellow-900 border-yellow-300 dark:bg-yellow-950/60 dark:text-yellow-300 dark:border-yellow-900",
+          variant: "secondary" as const,
+          cls: "border-yellow-500/30 bg-yellow-500/10 text-yellow-800 dark:text-yellow-300",
         };
       case "PROTECTED":
         return {
           label: "Dilindungi Penuh",
-          cls: "bg-emerald-100 text-emerald-900 border-emerald-300 dark:bg-emerald-950/60 dark:text-emerald-300 dark:border-emerald-900",
+          variant: "outline" as const,
+          cls: "border-emerald-500/30 bg-emerald-500/10 text-emerald-800 dark:text-emerald-300",
         };
       default:
         return {
           label: "Dilindungi",
-          cls: "bg-muted text-muted-foreground border-border",
+          variant: "secondary" as const,
+          cls: "",
         };
     }
   };
@@ -66,109 +75,107 @@ export default function SpeciesDirectory({ speciesList }: SpeciesDirectoryProps)
     <div className="space-y-6">
       {/* Search & Category Filter */}
       <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center justify-between">
-        <div className="flex flex-wrap gap-1.5 p-1 rounded-lg bg-muted/60 border border-border">
-          <button
+        <div className="flex flex-wrap gap-1.5 p-1 rounded-lg bg-muted border border-border">
+          <Button
             type="button"
+            variant={categoryFilter === "ALL" ? "default" : "ghost"}
+            size="sm"
             onClick={() => setCategoryFilter("ALL")}
-            className={`px-3 py-1.5 rounded text-xs font-bold uppercase tracking-wider transition-colors ${
-              categoryFilter === "ALL"
-                ? "bg-background text-foreground shadow-sm"
-                : "text-muted-foreground hover:text-foreground"
-            }`}
+            className="h-8 text-xs font-bold uppercase tracking-wider"
           >
             Semua Spesies ({speciesList.length})
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
+            variant={categoryFilter === "FAUNA" ? "default" : "ghost"}
+            size="sm"
             onClick={() => setCategoryFilter("FAUNA")}
-            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-bold uppercase tracking-wider transition-colors ${
-              categoryFilter === "FAUNA"
-                ? "bg-background text-foreground shadow-sm"
-                : "text-muted-foreground hover:text-foreground"
-            }`}
+            className="h-8 gap-1.5 text-xs font-bold uppercase tracking-wider"
           >
             <Bird className="h-3.5 w-3.5" aria-hidden="true" />
             <span>Fauna</span>
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
+            variant={categoryFilter === "FLORA" ? "default" : "ghost"}
+            size="sm"
             onClick={() => setCategoryFilter("FLORA")}
-            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-bold uppercase tracking-wider transition-colors ${
-              categoryFilter === "FLORA"
-                ? "bg-background text-foreground shadow-sm"
-                : "text-muted-foreground hover:text-foreground"
-            }`}
+            className="h-8 gap-1.5 text-xs font-bold uppercase tracking-wider"
           >
             <Leaf className="h-3.5 w-3.5" aria-hidden="true" />
             <span>Flora</span>
-          </button>
+          </Button>
         </div>
 
         <div className="relative min-w-[260px]">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" aria-hidden="true" />
-          <input
+          <Input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Cari nama satwa atau tumbuhan..."
-            className="w-full h-10 rounded-lg border border-border bg-background pl-9 pr-3 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none"
+            className="h-10 pl-9 pr-3 text-xs"
           />
         </div>
       </div>
 
       {/* Grid of Species */}
       {filtered.length === 0 ? (
-        <div className="rounded-xl border border-dashed border-border p-12 text-center">
+        <Card className="border-dashed p-12 text-center shadow-none">
           <Leaf className="mx-auto h-8 w-8 text-muted-foreground mb-3" aria-hidden="true" />
           <p className="text-sm font-semibold text-foreground">Tidak Ada Spesies Ditemukan</p>
           <p className="text-xs text-muted-foreground mt-1">
             Coba gunakan kata kunci lain seperti &quot;Macan&quot;, &quot;Edelweiss&quot;, atau &quot;Elang&quot;.
           </p>
-        </div>
+        </Card>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {filtered.map((item) => {
             const status = getStatusBadge(item.conservationStatus);
 
             return (
-              <div
+              <Card
                 key={item.id}
-                className="flex flex-col justify-between rounded-xl border border-border bg-card p-5 shadow-sm transition-all hover:border-primary/50"
+                className="flex flex-col justify-between shadow-sm transition-all hover:border-primary/50"
               >
                 <div>
-                  {/* Category & Status Badges */}
-                  <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className="text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-muted text-muted-foreground">
-                      {item.category === "FAUNA" ? "Satwa Endemik" : "Tumbuhan Hutan"}
-                    </span>
-                    <span
-                      className={`text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded border ${status.cls}`}
-                    >
-                      {status.label}
-                    </span>
-                  </div>
+                  <CardHeader className="pb-3 space-y-2">
+                    {/* Category & Status Badges */}
+                    <div className="flex items-center justify-between gap-2">
+                      <Badge variant="secondary" className="text-[11px] font-bold uppercase tracking-wider">
+                        {item.category === "FAUNA" ? "Satwa Endemik" : "Tumbuhan Hutan"}
+                      </Badge>
+                      <Badge variant={status.variant} className={`text-[11px] font-bold uppercase tracking-wider ${status.cls}`}>
+                        {status.label}
+                      </Badge>
+                    </div>
 
-                  {/* Names */}
-                  <h3 className="text-lg font-bold text-foreground leading-snug">{item.commonName}</h3>
-                  <p className="text-xs italic text-primary font-medium mb-3">
-                    {item.scientificName}
-                  </p>
+                    {/* Names */}
+                    <div>
+                      <CardTitle className="text-lg font-bold text-foreground leading-snug">{item.commonName}</CardTitle>
+                      <p className="text-xs italic text-primary font-medium mt-0.5">
+                        {item.scientificName}
+                      </p>
+                    </div>
+                  </CardHeader>
 
-                  {/* Habitat Elevation */}
-                  <div className="flex items-center gap-1.5 text-xs text-muted-foreground bg-muted/30 rounded px-2.5 py-1.5 mb-3 border border-border/40">
-                    <Mountain className="h-3.5 w-3.5 text-primary shrink-0" aria-hidden="true" />
-                    <span>Zona Ketinggian :</span>
-                    <span className="font-bold text-foreground tabular-nums">{item.habitatElevation}</span>
-                  </div>
+                  <CardContent className="pt-0 space-y-3">
+                    {/* Habitat Elevation */}
+                    <div className="flex items-center gap-1.5 text-xs text-muted-foreground bg-muted/40 rounded-md px-2.5 py-1.5 border border-border/50">
+                      <Mountain className="h-3.5 w-3.5 text-primary shrink-0" aria-hidden="true" />
+                      <span>Zona Ketinggian :</span>
+                      <span className="font-bold text-foreground tabular-nums">{item.habitatElevation}</span>
+                    </div>
 
-                  {/* Description */}
-                  <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3 mb-4">
-                    {item.description}
-                  </p>
+                    {/* Description */}
+                    <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3">
+                      {item.description}
+                    </p>
+                  </CardContent>
                 </div>
 
-                <div className="pt-3 border-t border-border/60 space-y-2 text-xs">
-                  <div>
+                <CardFooter className="pt-3 border-t border-border/60 flex-col items-start gap-2 text-xs">
+                  <div className="w-full">
                     <span className="font-bold text-foreground block text-[11px] uppercase tracking-wider">
                       Faktor Ancaman :
                     </span>
@@ -177,7 +184,7 @@ export default function SpeciesDirectory({ speciesList }: SpeciesDirectoryProps)
                     </p>
                   </div>
 
-                  <div className="bg-primary/5 rounded p-2 border border-primary/10">
+                  <div className="w-full bg-primary/5 rounded-md p-2 border border-primary/10">
                     <span className="font-bold text-primary block text-[11px] uppercase tracking-wider">
                       Peran Ekosistem :
                     </span>
@@ -185,8 +192,8 @@ export default function SpeciesDirectory({ speciesList }: SpeciesDirectoryProps)
                       {item.roleInEcosystem}
                     </p>
                   </div>
-                </div>
-              </div>
+                </CardFooter>
+              </Card>
             );
           })}
         </div>

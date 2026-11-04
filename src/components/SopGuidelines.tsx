@@ -1,5 +1,7 @@
 import React from "react";
 import { Flame, Ban, ShieldCheck, AlertTriangle } from "lucide-react";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 export default function SopGuidelines() {
   const guidelines = [
@@ -60,9 +62,9 @@ export default function SopGuidelines() {
   return (
     <div className="space-y-6">
       <div className="border-b border-border pb-4">
-        <span className="text-xs font-bold uppercase tracking-wider text-primary block mb-1">
+        <Badge variant="outline" className="mb-2 text-xs font-bold uppercase tracking-wider text-primary border-primary/30">
           Pedoman Keselamatan Hutan
-        </span>
+        </Badge>
         <h2 className="text-2xl font-black text-foreground">
           SOP Rimba Bebas Api : Standar Resmi Pengunjung TNGC
         </h2>
@@ -75,23 +77,23 @@ export default function SopGuidelines() {
         {guidelines.map((item) => {
           const Icon = item.icon;
           return (
-            <div
+            <Card
               key={item.id}
-              className="rounded-xl border border-border bg-card p-6 shadow-sm flex flex-col justify-between"
+              className="p-6 shadow-sm flex flex-col justify-between"
             >
               <div>
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-forest-100 text-forest-800 dark:bg-forest-900/60 dark:text-emerald-300">
+                <CardHeader className="p-0 mb-4 flex flex-row items-center justify-between space-y-0">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
                     <Icon className="h-5 w-5" aria-hidden="true" />
                   </div>
                   <span className="font-mono text-sm font-black text-muted-foreground/50 tabular-nums">
                     {item.number}
                   </span>
-                </div>
+                </CardHeader>
 
-                <h3 className="text-base font-bold text-foreground mb-2 leading-snug">
+                <CardTitle className="text-base font-bold text-foreground mb-2 leading-snug">
                   {item.title}
-                </h3>
+                </CardTitle>
                 <p className="text-xs text-muted-foreground leading-relaxed mb-4">
                   {item.description}
                 </p>
@@ -107,7 +109,7 @@ export default function SopGuidelines() {
                   </ul>
                 </div>
               </div>
-            </div>
+            </Card>
           );
         })}
       </div>
