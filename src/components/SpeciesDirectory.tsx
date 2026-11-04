@@ -158,7 +158,7 @@ export default function SpeciesDirectory({ speciesList }: SpeciesDirectoryProps)
                   <div className="flex items-center gap-1.5 text-xs text-muted-foreground bg-muted/30 rounded px-2.5 py-1.5 mb-3 border border-border/40">
                     <Mountain className="h-3.5 w-3.5 text-primary shrink-0" aria-hidden="true" />
                     <span>Zona Ketinggian :</span>
-                    <span className="font-bold text-foreground tabular-nums">{item.elevation}</span>
+                    <span className="font-bold text-foreground tabular-nums">{item.habitatElevation}</span>
                   </div>
 
                   {/* Description */}

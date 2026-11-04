@@ -107,9 +107,10 @@ export interface FireRiskEvaluation {
 export function calculateFireRisk(
   tempCelcius: number,
   humidityPct: number,
-  windSpeedKmh: number
+  windSpeedKmh: number,
+  daysWithoutRain: number = 0
 ): FireRiskEvaluation {
-  // Indeks sederhana: Suhu tinggi + Kelembapan rendah + Angin kencang = resiko tinggi
+  // Indeks sederhana: Suhu tinggi + Kelembapan rendah + Angin kencang + Kemarau = resiko tinggi
   let score = 20;
 
   if (tempCelcius > 30) score += 25;
@@ -120,6 +121,9 @@ export function calculateFireRisk(
 
   if (windSpeedKmh > 20) score += 25;
   else if (windSpeedKmh > 12) score += 15;
+
+  if (daysWithoutRain > 14) score += 15;
+  else if (daysWithoutRain > 7) score += 10;
 
   score = Math.min(100, Math.max(0, score));
 
