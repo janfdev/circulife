@@ -24,16 +24,19 @@ export default function HomePage() {
       <CampaignActionSection />
 
       {/* 4. Urgent Emergency Callout Bar */}
-      <section className="bg-primary text-primary-foreground py-12 px-4 sm:px-6 lg:px-8 border-t border-border">
-        <div className="mx-auto max-w-7xl flex flex-col md:flex-row items-center justify-between gap-6">
+      <section className="bg-primary text-primary-foreground py-14 px-4 sm:px-6 lg:px-8 border-t border-border relative overflow-hidden">
+        {/* Subtle background glow */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_120%,rgba(46,229,157,0.15),transparent)] pointer-events-none" />
+
+        <div className="relative mx-auto max-w-7xl flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-2 text-center md:text-left">
             <div className="inline-flex items-center gap-2">
               <ShieldAlert className="h-4 w-4 text-emerald-300" aria-hidden="true" />
-              <Badge variant="outline" className="text-xs font-bold uppercase tracking-wider text-primary-foreground border-primary-foreground/30">
+              <Badge variant="outline" className="text-[11px] font-mono font-bold uppercase tracking-wider text-primary-foreground border-primary-foreground/30 rounded-md">
                 Sistem Siaga Bencana Kebakaran Hutan & Lahan
               </Badge>
             </div>
-            <h2 className="text-xl sm:text-2xl font-black tracking-tight">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-black tracking-tight">
               Melihat Kepulan Asap atau Indikasi Perusakan Hutan?
             </h2>
             <p className="text-sm text-primary-foreground/80 max-w-2xl leading-relaxed">
@@ -44,17 +47,17 @@ export default function HomePage() {
           <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto shrink-0">
             <Link
               href="/lapor"
-              className={cn(buttonVariants({ variant: "destructive", size: "lg" }), "h-11 px-5 text-sm font-bold gap-2 shadow-sm")}
+              className={cn(buttonVariants({ variant: "destructive", size: "lg" }), "h-12 px-6 text-sm font-bold gap-2.5 shadow-sm rounded-xl")}
             >
               <Flame className="h-4 w-4" aria-hidden="true" />
               <span>Buat Laporan Cepat Warga</span>
             </Link>
             <a
               href="tel:0232613158"
-              className={cn(buttonVariants({ variant: "secondary", size: "lg" }), "h-11 px-5 text-sm font-bold gap-2 shadow-sm")}
+              className={cn(buttonVariants({ variant: "secondary", size: "lg" }), "h-12 px-6 text-sm font-bold gap-2.5 shadow-sm rounded-xl border border-white/20")}
             >
-              <PhoneCall className="h-4 w-4 text-emerald-600 dark:text-emerald-300" aria-hidden="true" />
-              <span>Telpon Posko (0232-613158)</span>
+              <PhoneCall className="h-4 w-4 text-emerald-700 dark:text-emerald-300" aria-hidden="true" />
+              <span className="font-mono">Telpon Posko (0232-613158)</span>
             </a>
           </div>
         </div>

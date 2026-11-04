@@ -4,65 +4,73 @@
 
 @layer base {
   :root {
-    --background: 140 12% 96%; /* #F4F7F5 */
-    --foreground: 150 25% 6%; /* #0C1410 */
+    /* Highland Mist Surface */
+    --background: 140 12% 97%; /* #F4F7F4 */
+    --foreground: 154 28% 8%; /* #0F1A15 */
 
     --card: 0 0% 100%;
-    --card-foreground: 150 25% 6%;
+    --card-foreground: 154 28% 8%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 150 25% 6%;
+    --popover-foreground: 154 28% 8%;
 
-    --primary: 161 48% 21%; /* #1B4D3E Civic Forest Canopy */
-    --primary-foreground: 0 0% 100%;
+    /* Deep Canopy Boreal Spruce */
+    --primary: 163 66% 16%; /* #0E4436 */
+    --primary-foreground: 140 20% 98%;
 
-    --secondary: 158 46% 31%; /* #2A7258 Action Foliage */
-    --secondary-foreground: 0 0% 100%;
+    /* Action Foliage */
+    --secondary: 158 50% 28%; /* #236C52 */
+    --secondary-foreground: 140 20% 98%;
 
-    --muted: 140 14% 91%; /* #E6ECE8 */
-    --muted-foreground: 148 12% 33%; /* #4A5E53 */
+    /* Telemetry Layer & Muted */
+    --muted: 140 15% 93%; /* #EAF0EC */
+    --muted-foreground: 150 14% 38%; /* #536A5E */
 
-    --accent: 140 14% 91%;
-    --accent-foreground: 161 48% 21%;
+    /* Active Telemetry Phosphor */
+    --accent: 156 78% 40%; /* #16A36E */
+    --accent-foreground: 140 20% 98%;
 
-    --destructive: 0 72% 51%; /* #DC2626 Hazard Red */
+    /* Crimson Fire Alert */
+    --destructive: 0 75% 50%; /* #DC2626 */
     --destructive-foreground: 0 0% 100%;
 
-    --border: 140 12% 85%; /* #D5DFD8 */
-    --input: 140 12% 85%;
-    --ring: 161 48% 21%;
+    --border: 150 15% 86%; /* #D6E4DC */
+    --input: 150 15% 86%;
+    --ring: 163 66% 16%;
 
-    --radius: 0.625rem;
+    --radius: 0.75rem;
   }
 
   .dark {
-    --background: 150 25% 6%; /* #0C1410 Andesite Dark Base */
-    --foreground: 135 15% 94%; /* #EDF2EE */
+    /* Deep Andesite Crater */
+    --background: 154 28% 5%; /* #090E0C */
+    --foreground: 140 20% 96%; /* #F2F7F4 */
 
-    --card: 147 21% 9%; /* #111A14 */
-    --card-foreground: 135 15% 94%;
+    --card: 154 25% 8%; /* #0E1714 */
+    --card-foreground: 140 20% 96%;
 
-    --popover: 147 21% 9%;
-    --popover-foreground: 135 15% 94%;
+    --popover: 154 25% 8%;
+    --popover-foreground: 140 20% 96%;
 
-    --primary: 163 47% 33%; /* #2D7D66 */
-    --primary-foreground: 0 0% 100%;
+    /* Glowing Bio-Phosphor */
+    --primary: 156 75% 42%; /* #1BC483 */
+    --primary-foreground: 154 28% 5%;
 
-    --secondary: 160 35% 18%; /* #1E3F33 */
-    --secondary-foreground: 135 15% 94%;
+    --secondary: 158 35% 20%; /* #214436 */
+    --secondary-foreground: 140 20% 96%;
 
-    --muted: 149 21% 11%; /* #16221C */
-    --muted-foreground: 144 11% 60%; /* #8EA396 */
+    --muted: 154 20% 12%; /* #14211C */
+    --muted-foreground: 144 14% 65%; /* #93B2A1 */
 
-    --accent: 149 21% 11%;
-    --accent-foreground: 163 47% 33%;
+    --accent: 156 78% 54%; /* #2EE59D */
+    --accent-foreground: 154 28% 5%;
 
     --destructive: 0 84% 60%; /* #EF4444 */
     --destructive-foreground: 0 0% 100%;
 
-    --border: 147 23% 16%; /* #1F3127 */
-    --input: 147 23% 16%;
-    --ring: 163 47% 33%;
+    --border: 154 20% 18%; /* #1C2D27 */
+    --input: 154 20% 18%;
+    --ring: 156 75% 42%;
   }
 
   * {
@@ -70,7 +78,7 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased selection:bg-primary/20 selection:text-foreground;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     min-height: 100vh;
     display: flex;
@@ -84,7 +92,7 @@
   outline-offset: 2px;
 }
 
-/* Tabular figures for numbers, elevations, and coordinates */
+/* Tabular figures for telemetry numbers, elevations, coordinates, and dates */
 .tabular-nums {
   font-variant-numeric: tabular-nums;
 }
@@ -105,4 +113,28 @@
 
 .skip-link:focus {
   top: 1rem;
+}
+
+/* Futuristic Biosphere Telemetry Utilities */
+.hud-panel {
+  position: relative;
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+}
+
+.hud-panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, hsl(var(--primary) / 0.5) 50%, transparent 100%);
+}
+
+.telemetry-tag {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
