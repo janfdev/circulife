@@ -83,20 +83,38 @@ export default function CircularProductCatalog() {
         {filteredProducts.map((p) => (
           <Card
             key={p.id}
-            className="flex flex-col justify-between rounded-2xl border-border bg-card shadow-sm hover:border-primary/40 transition-all hover:shadow-md overflow-hidden"
+            className="flex flex-col justify-between rounded-2xl border-border bg-card shadow-sm hover:border-primary/40 transition-all hover:shadow-md overflow-hidden group"
           >
             <div>
+              {p.imageUrl && (
+                <div className="h-36 w-full bg-muted overflow-hidden relative border-b border-border/60">
+                  <img
+                    src={p.imageUrl}
+                    alt={p.name}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute top-2.5 right-2.5 z-10">
+                    <Badge variant="secondary" className="text-[10px] font-mono font-bold uppercase backdrop-blur-md bg-background/80 px-2 py-0.5">
+                      {p.pointsRequired} Poin
+                    </Badge>
+                  </div>
+                </div>
+              )}
+
               <CardHeader className="p-4 pb-2 border-b border-border/60 bg-muted/20 space-y-1.5">
                 <div className="flex items-center justify-between">
                   <span className="flex items-center gap-1.5 text-[11px] font-mono font-bold uppercase tracking-wider text-muted-foreground">
                     {getCategoryIcon(p.category)}
                     <span>{p.category}</span>
                   </span>
-                  <div className="flex items-center gap-1.5">
-                    <Badge variant="secondary" className="text-[10px] font-mono font-bold uppercase px-2 py-0.5">
-                      {p.pointsRequired} Poin
-                    </Badge>
-                  </div>
+                  {!p.imageUrl && (
+                    <div className="flex items-center gap-1.5">
+                      <Badge variant="secondary" className="text-[10px] font-mono font-bold uppercase px-2 py-0.5">
+                        {p.pointsRequired} Poin
+                      </Badge>
+                    </div>
+                  )}
                 </div>
                 <CardTitle className="text-base font-black text-foreground leading-snug">
                   {p.name}

@@ -64,6 +64,7 @@ export interface CircularProduct {
   priceEstimateRp: number;
   description: string;
   application: string;
+  imageUrl?: string;
 }
 
 // Alur Pemanfaatan Sampah Types
@@ -93,6 +94,7 @@ export interface ArticleItem {
   summary: string;
   content: string | string[];
   keyTakeaways?: string[];
+  imageUrl?: string;
 }
 
 export interface GalleryItem {
@@ -131,6 +133,7 @@ export interface Species {
   roleInEcosystem: string;
   dietOrHabit: string;
   threats: string;
+  imageUrl?: string;
 }
 
 export interface QuizOption {

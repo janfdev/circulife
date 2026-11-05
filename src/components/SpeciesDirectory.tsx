@@ -136,9 +136,20 @@ export default function SpeciesDirectory({ speciesList }: SpeciesDirectoryProps)
             return (
               <Card
                 key={item.id}
-                className="flex flex-col justify-between shadow-sm transition-all hover:border-primary/50 rounded-2xl overflow-hidden hover:shadow-md bg-card"
+                className="flex flex-col justify-between shadow-sm transition-all hover:border-primary/50 rounded-2xl overflow-hidden hover:shadow-md bg-card group"
               >
                 <div>
+                  {item.imageUrl && (
+                    <div className="h-44 w-full bg-muted overflow-hidden relative border-b border-border/60">
+                      <img
+                        src={item.imageUrl}
+                        alt={item.commonName}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
+
                   <CardHeader className="p-6 pb-4 space-y-3 border-b border-border/40 bg-muted/15">
                     {/* Category & Status Badges */}
                     <div className="flex items-center justify-between gap-2">

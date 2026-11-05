@@ -200,6 +200,7 @@ export const CIRCULAR_PRODUCTS: CircularProduct[] = [
     priceEstimateRp: 12500,
     description: "Material perkerasan jalan setapak ramah lingkungan berkekuatan K-250. Tahan cuaca ekstrem, berdaya serap air baik, dan tidak mudah retak.",
     application: "Jalan setapak lingkungan perumahan, pelataran taman sekolah, dan area publik ramah anak.",
+    imageUrl: "/images/products/paving-block-pet.jpg",
   },
   {
     id: "kompos-bio-kasgot",
@@ -212,6 +213,7 @@ export const CIRCULAR_PRODUCTS: CircularProduct[] = [
     priceEstimateRp: 15000,
     description: "Pupuk organik kaya unsur hara makro NPK dan mikro, diproses cepat melalui biokonversi larva maggot Black Soldier Fly (BSF).",
     application: "Nutrisi persemaian bibit pohon penghijauan, sayuran pekarangan, dan tanaman hias perkotaan.",
+    imageUrl: "/images/products/kompos-bio-kasgot.jpg",
   },
   {
     id: "tungku-ultralight-upcycle",
@@ -224,6 +226,7 @@ export const CIRCULAR_PRODUCTS: CircularProduct[] = [
     priceEstimateRp: 35000,
     description: "Kompor ranting kayu mini dengan sistem aliran udara ganda (wood gas stove). Ringan, efisien, dan bekerja tanpa gas kanister baru.",
     application: "Peralatan masak kegiatan luar ruangan darurat dan edukasi gaya hidup minim energi fosil.",
+    imageUrl: "/images/products/tungku-biomassa.jpg",
   },
   {
     id: "asbak-saku-logam",
@@ -236,6 +239,7 @@ export const CIRCULAR_PRODUCTS: CircularProduct[] = [
     priceEstimateRp: 10000,
     description: "Wadah puntung rokok kedap udara berukuran saku. Memadamkan bara puntung seketika saat tutup diputar rapat tanpa bau.",
     application: "Wajib dibawa bagi perokok di ruang terbuka untuk mewujudkan etika lingkungan nol puntung.",
+    imageUrl: "/images/products/asbak-saku.jpg",
   },
   {
     id: "tote-bag-sachet",
@@ -248,6 +252,7 @@ export const CIRCULAR_PRODUCTS: CircularProduct[] = [
     priceEstimateRp: 25000,
     description: "Tas belanja yang kuat, tahan air, dan dijahit rapi dengan pola simetris serta tali anyam katun ramah lingkungan.",
     application: "Pengganti kantong plastik sekali pakai untuk belanja pasar dan wadah serbaguna.",
+    imageUrl: "/images/products/tote-bag-sachet.jpg",
   },
   {
     id: "bibit-pohon-reboisasi",
@@ -260,6 +265,7 @@ export const CIRCULAR_PRODUCTS: CircularProduct[] = [
     priceEstimateRp: 20000,
     description: "Bibit pohon endemik pelindung mata air setinggi 40 cm lengkap dengan polybag ramah lingkungan siap tanam di zona kritis.",
     application: "Penanaman kembali pada program reboisasi kawasan hulu dan penghijauan pekarangan sekolah.",
+    imageUrl: "/images/products/papan-partikel-plastik.jpg",
   },
 ];
 
@@ -563,6 +569,7 @@ export const SPECIES_SEEDS: Species[] = [
     roleInEcosystem: "Apex predator pengendali populasi reptil dan mamalia kecil.",
     dietOrHabit: "Karnivora (burung kecil, tikus hutan, kadal). Aktif berburu di kanopi hutan.",
     threats: "Sampah anorganik yang merusak rantai pakan alami dan jerat liar.",
+    imageUrl: "/images/species/elang-jawa.jpg",
   },
   {
     id: "macan-tutul-jawa",
@@ -575,6 +582,7 @@ export const SPECIES_SEEDS: Species[] = [
     roleInEcosystem: "Top carnivore penjaga keseimbangan rantai makanan hutan hujan tropis.",
     dietOrHabit: "Karnivora (babi hutan, kancil, primata). Soliter dan teritorial.",
     threats: "Fragmentasi habitat dan cemaran sisa makanan manusia yang merubah perilaku satwa mangsa.",
+    imageUrl: "/images/species/macan-tutul.jpg",
   },
   {
     id: "edelweiss-jawa",
@@ -587,6 +595,7 @@ export const SPECIES_SEEDS: Species[] = [
     roleInEcosystem: "Pencegah erosi tanah pegunungan dan habitat serangga penyerbuk.",
     dietOrHabit: "Tumbuhan perdu berdaun tebal dengan bulu halus pelindung radiasi UV.",
     threats: "Tertimbun sampah anorganik di sekitar area perkemahan puncak.",
+    imageUrl: "/images/species/edelweiss-jawa.jpg",
   },
   {
     id: "surili-jawa",
@@ -599,6 +608,7 @@ export const SPECIES_SEEDS: Species[] = [
     roleInEcosystem: "Penyebar biji buah hutan dan indikator keutuhan struktur pohon hutan hujan tropis.",
     dietOrHabit: "Herbivora (daun muda, buah pohon hutan, bunga). Hidup berkelompok.",
     threats: "Sampah sachet plastik yang termakan tidak sengaja dan deforestasi.",
+    imageUrl: "/images/species/surili-jawa.jpg",
   },
 ];
 
@@ -613,6 +623,7 @@ export const CIRCULIFE_ARTICLES: ArticleItem[] = [
     date: "4 November 2026",
     summary: "Langkah terukur memilah sampah organik dan anorganik sebelum keluar pintu rumah, lengkap dengan tips memilih komposter hemat tempat.",
     content: "Mengubah kebiasaan membuang sampah dimulai dari pemahaman sederhana: tidak ada yang namanya membuang ke luar, karena sampah kita selalu berakhir di bumi yang sama. Mulailah dengan 3 ember sederhana di dapur untuk memisahkan sisa sayur, botol plastik bersih, dan residu tidak dapat didaur ulang.",
+    imageUrl: "/images/articles/panduan-zero-waste.jpg",
   },
   {
     id: "art-2",
@@ -624,6 +635,7 @@ export const CIRCULIFE_ARTICLES: ArticleItem[] = [
     date: "2 November 2026",
     summary: "Uji kelayakan teknik dan standar tekan paving block berbasis limbah cacahan botol plastik hasil olahan kelompok swadaya masyarakat.",
     content: "Paving block plastik tidak memerlukan semen dalam proses pembuatannya. Campuran lelehan plastik PET dan pasir silika sungai menghasilkan ikatan polimer kuat yang tahan rembesan air dan memiliki kuat tekan di atas 250 kg/cm2, memenuhi standar jalan setapak pemukiman.",
+    imageUrl: "/images/articles/paving-block-tech.jpg",
   },
   {
     id: "art-3",
@@ -635,6 +647,7 @@ export const CIRCULIFE_ARTICLES: ArticleItem[] = [
     date: "28 Oktober 2026",
     summary: "Memanfaatkan larva lalat tentara hitam untuk mereduksi 80% volume sampah dapur hanya dalam 24 jam dan memanen pupuk kasgot kaya hara.",
     content: "Maggot Black Soldier Fly (BSF) merupakan biodekomposer paling rakus dan higienis di alam. Mereka tidak menyebarkan penyakit pada manusia dan fesesnya (kasgot) menjadi pupuk organik cair dan padat dengan kandungan NPK seimbang untuk persemaian bibit tanaman.",
+    imageUrl: "/images/articles/maggot-biokonversi.jpg",
   },
   {
     id: "art-4",
@@ -646,6 +659,7 @@ export const CIRCULIFE_ARTICLES: ArticleItem[] = [
     date: "24 Oktober 2026",
     summary: "Cara mendepresurisasi kaleng gas portabel secara aman dan merakitnya menjadi tungku kayu mini hemat bahan bakar untuk kebutuhan darurat.",
     content: "Kaleng gas portabel sering kali menjadi bom waktu di tempat pembuangan sampah jika dibakar sembarangan. Dengan alat pelubang khusus dan ventilasi bertingkat, kaleng kosong dapat disulap menjadi tungku gasifikasi kayu yang menyala bersih tanpa jelaga pekat.",
+    imageUrl: "/images/articles/kaleng-upcycling.jpg",
   },
 ];
 

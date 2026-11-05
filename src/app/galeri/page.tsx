@@ -123,20 +123,29 @@ export default function GaleriPage() {
                   className="rounded-3xl border-border bg-card overflow-hidden shadow-sm hover:shadow-md transition-all group flex flex-col justify-between"
                 >
                   <div>
-                    {/* Visual Placeholder / Mock Frame with Tag */}
-                    <div className="h-48 bg-gradient-to-br from-primary/15 via-primary/5 to-muted relative flex items-center justify-center p-6 border-b border-border/60">
-                      <div className="absolute top-3 left-3">
-                        <Badge variant="secondary" className="font-mono text-[10px] font-bold uppercase">
+                    {/* Visual Media Header */}
+                    <div className="h-48 bg-gradient-to-br from-primary/15 via-primary/5 to-muted relative flex items-center justify-center border-b border-border/60 overflow-hidden">
+                      {item.imageUrl ? (
+                        <img
+                          src={item.imageUrl}
+                          alt={item.title}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          loading="lazy"
+                        />
+                      ) : (
+                        <div className="text-center space-y-2 p-6">
+                          <div className="h-12 w-12 rounded-2xl bg-card border border-border/80 shadow-sm mx-auto flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                            <ImageIcon className="h-6 w-6" />
+                          </div>
+                          <span className="text-[11px] font-mono text-muted-foreground block">
+                            Dokumentasi Terverifikasi KSM
+                          </span>
+                        </div>
+                      )}
+                      <div className="absolute top-3 left-3 z-10">
+                        <Badge variant="secondary" className="font-mono text-[10px] font-bold uppercase backdrop-blur-md bg-background/80">
                           {item.category}
                         </Badge>
-                      </div>
-                      <div className="text-center space-y-2">
-                        <div className="h-12 w-12 rounded-2xl bg-card border border-border/80 shadow-sm mx-auto flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
-                          <ImageIcon className="h-6 w-6" />
-                        </div>
-                        <span className="text-[11px] font-mono text-muted-foreground block">
-                          Dokumentasi Terverifikasi KSM
-                        </span>
                       </div>
                     </div>
 
@@ -205,16 +214,32 @@ export default function GaleriPage() {
               {filteredArticles.map((article) => (
                 <Card
                   key={article.id}
-                  className="rounded-3xl border-border bg-card p-6 sm:p-7 space-y-4 hover:border-primary/40 transition-colors shadow-sm flex flex-col justify-between"
+                  className="rounded-3xl border-border bg-card overflow-hidden hover:border-primary/40 transition-colors shadow-sm flex flex-col justify-between group"
                 >
-                  <div className="space-y-3">
+                  {article.imageUrl && (
+                    <div className="h-48 w-full bg-muted overflow-hidden relative border-b border-border/60">
+                      <img
+                        src={article.imageUrl}
+                        alt={article.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                      <div className="absolute top-3 left-3 z-10">
+                        <Badge variant="secondary" className="font-mono text-[10px] font-bold uppercase backdrop-blur-md bg-background/80">
+                          {article.category}
+                        </Badge>
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="p-6 sm:p-7 space-y-4">
                     <div className="flex items-center justify-between text-xs font-mono text-muted-foreground">
-                      <Badge variant="secondary" className="font-mono text-[10px] font-bold uppercase">
-                        {article.category}
-                      </Badge>
                       <span className="flex items-center gap-1">
-                        <Clock className="h-3 w-3" />
+                        <Clock className="h-3.5 w-3.5 text-primary" />
                         <span>{article.readTime}</span>
+                      </span>
+                      <span className="text-[10px] uppercase tracking-wider text-muted-foreground">
+                        Edukasi Sirkular
                       </span>
                     </div>
 
@@ -227,11 +252,11 @@ export default function GaleriPage() {
                     </p>
                   </div>
 
-                  <div className="pt-4 border-t border-border/60 flex items-center justify-between text-xs">
+                  <div className="p-6 pt-0 mt-auto border-t border-border/60 flex items-center justify-between text-xs">
                     <div className="flex items-center gap-2 text-muted-foreground font-mono">
                       <User className="h-3.5 w-3.5 text-primary" />
                       <span>{article.author}</span>
-                      <span>-</span>
+                      <span>•</span>
                       <span>{article.date}</span>
                     </div>
 
