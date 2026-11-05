@@ -24,19 +24,36 @@ Setiap elemen visual terikat langsung pada realitas geografis Gunung Ciremai (3.
 
 ---
 
-## 3. Color Token Architecture (Futuristic Eco-Telemetry)
+## 3. World-Class Environmental Design Benchmark & Principles
 
-Palet warna diturunkan dari ekosistem hutan hujan tropis basah lereng Ciremai yang berpadu dengan aksen fosfor telemetri digital:
+1. **Patagonia Action Works (Action-Driven Conservation)**:
+   - Menghindari dekorasi visual klise (daun generik, gradien pelangi, ikon daur ulang berlebih).
+   - Menempatkan data impak nyata dan callout partisipasi relawan di posisi utama dengan hierarki tegas.
+2. **Swiss National Park / Biosfera Val Müstair (Alpine Telemetry HUD)**:
+   - Navigasi atas memuat status telemetri geospasial real-time: ketinggian puncak, koordinat lintang-bujur, dan status buka-tutup jalur posko.
+3. **Copernicus European Forest Fire Early Warning System**:
+   - Simulator kerawanan kebakaran berbasis parameter cuaca nyata (suhu, kelembaban, kecepatan angin, hari tanpa hujan).
+   - Tipografi angka monospace tabular (`tabular-nums`) untuk metrik lingkungan demi keterbacaan ilmiah.
+4. **Aturan Distribusi Warna 60-30-10**:
+   - **60% Kanvas Netral**: Putih kabut pegunungan (`--background: 140 15% 97.5%`) untuk ketenangan visual.
+   - **30% Identitas Rimba**: Hijau kanopi cemara dan lumut andesit (`--primary: 163 66% 16%`, `--secondary: 158 45% 26%`).
+   - **10% Aksen Presisi**: Oranye kemarau lereng (`--warning: 38 92% 50%`) dan merah siaga kebakaran (`--destructive: 0 75% 50%`).
 
-```
+---
+
+## 4. Color Token Architecture (Futuristic Eco-Telemetry)
+
+Palet warna diturunkan dari ekosistem hutan hujan tropis lereng Ciremai yang berpadu dengan aksen fosfor telemetri digital:
+
+```css
 /* Light Theme Tokens */
 --primary: 163 66% 16%;             /* Deep Canopy Spruce: #0E4436 (Otoritas & Ketenangan Rimba) */
 --primary-foreground: 140 20% 98%;  /* Clean Light: #F8FAF8 */
---secondary: 158 50% 28%;           /* Forest Moss: #236C52 */
+--secondary: 158 45% 26%;           /* Forest Moss: #236C52 */
 --secondary-foreground: 140 20% 98%;
---accent: 156 78% 40%;              /* Telemetry Emerald: #16A36E (Sensor & Status Aktif) */
+--accent: 156 75% 42%;              /* Telemetry Emerald: #1BC483 (Sensor & Status Aktif) */
 --accent-foreground: 140 20% 98%;
---background: 140 12% 97%;          /* Highland Mist: #F4F7F4 (Putih kabut pegunungan, tidak menyilaukan) */
+--background: 140 15% 97.5%;        /* Highland Mist: #F4F7F4 (Putih kabut pegunungan, anti glare) */
 --foreground: 150 25% 8%;           /* Volcanic Andesite: #0F1A15 (Kontras tinggi WCAG AAA > 12:1) */
 --card: 0 0% 100%;                  /* Pure Clean Card Surface */
 --card-foreground: 150 25% 8%;
@@ -57,12 +74,12 @@ Palet warna diturunkan dari ekosistem hutan hujan tropis basah lereng Ciremai ya
 
 ---
 
-## 4. Typography Hierarchy & Micro-Details
+## 5. Typography Hierarchy & Micro-Details
 
-1. **Headings (Display Grotesque)**:
-   - Karakter: Tajam, padat, berbobot tebal (`font-black tracking-tight`), memancarkan urgensi dan ketegasan misi konservasi.
+1. **Headings (Display Poppins)**:
+   - Karakter: Tajam, padat, berbobot tebal (`font-black tracking-tight leading-[1.2]`), memancarkan kejelasan dan wibawa.
    - Skala: H1 `text-3xl sm:text-4xl lg:text-5xl`, H2 `text-2xl sm:text-3xl`, H3 `text-lg sm:text-xl`.
-2. **Body & Prose (High-Legibility Sans)**:
+2. **Body & Prose (High-Legibility Poppins)**:
    - Karakter: Bersih, renggang secukupnya, kontras teruji WCAG AA/AAA.
    - Skala: Body `text-sm sm:text-base leading-relaxed`, Caption `text-xs leading-normal`.
 3. **Telemetry & Data Labels (Monospace Scientific)**:
@@ -71,21 +88,22 @@ Palet warna diturunkan dari ekosistem hutan hujan tropis basah lereng Ciremai ya
 
 ---
 
-## 5. Layout Architecture & Futuristik Signatures
+## 6. Layout Architecture & BagUI Block Patterns
 
 1. **Top Telemetry HUD Bar (Navbar)**:
-   - Menampilkan koordinat geospasial TNGC (`108°24' BT | 06°53' LS`), elevasi puncak `3.078 mdpl`, serta live status siaga kebakaran secara real-time.
+   - Koordinat geospasial TNGC (`108°24' BT | 06°53' LS`), elevasi puncak `3.078 mdpl`, serta live radar status siaga kemarau lereng.
 2. **Hero Mission Section**:
-   - Split grid yang menghubungkan pernyataan misi perlindungan hutan dengan instrumen radar elevasi Gunung Ciremai dan kartu matriks siaga 4 posko jalur.
-3. **Tactical Board & Mission Dispatch (Lapor & Pantau)**:
-   - Formulir lapor dengan verifikasi koordinat GPS latitude/longitude seketika, generator tiket audit `CRG-YYYYMM-XXX`, dan salin kode sekali klik.
-   - Simulator cuaca lereng interaktif dengan indikator visual indeks kerawanan karhutla.
-4. **Specimen Bio-Archive (Konservasi)**:
-   - Tata letak kartu satwa/flora yang menyajikan taksonomi ilmiah, status IUCN dengan visual badge presisi, dan zona elevasi sebaran habitat.
+   - Split layout menghubungkan profil elevasi vulkanik SVG Ciremai (Palutungan - Puncak 3.078 mdpl - Apuy) dengan kuadran data telemetri siaga.
+3. **Bento Feature Block (Inspired by BagUI `feature-1` / `feature-2`)**:
+   - Kartu inisiatif konservasi interaktif: Gerakan Sapu Gunung, Adopsi Pohon Pionir Saninten, dan Relawan Patroli MPA Ciremai dengan metrik capaian nyata.
+4. **Collapsible SOP & FAQ Block (Inspired by BagUI `faq1`)**:
+   - Panduan pencegahan karhutla yang dapat dibuka-tutup secara modular, bersih, dan hemat ruang vertikal.
+5. **Ecological Defense Dispatch CTA Block (Inspired by BagUI `cta-1`)**:
+   - Banner callout terpadu dengan nomor darurat 24 jam Balai TNGC, akses formulir cepat, dan integrasi WhatsApp posko lapangan.
 
 ---
 
-## 6. Anti-Slop Strict Enforcement (R-01 - R-38)
+## 7. Anti-Slop Strict Enforcement (R-01 - R-38)
 
 - **R-02 (Copywriting)**: DILARANG KERAS menggunakan karakter em-dash (`—`). Hanya gunakan tanda hubung biasa (`-`) atau titik dua (`:`).
 - **R-03 (Mobile Responsiveness)**: Seluruh viewport mobile (360px hingga 430px) harus bebas horizontal overflow, tombol memenuhi touch target minimal 44px.
