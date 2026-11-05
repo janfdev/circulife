@@ -173,7 +173,7 @@ export default function InteractiveQuiz({ questions }: InteractiveQuizProps) {
         {showFeedback && (
           <Alert className="border-border bg-muted/60 text-xs leading-relaxed space-y-1">
             <AlertDescription className="text-muted-foreground text-xs leading-relaxed">
-              <strong className="font-bold text-foreground block mb-0.5">Penjelasan Resmi TNGC :</strong>
+              <strong className="font-bold text-foreground block mb-0.5">Penjelasan Ilmiah CircuLife :</strong>
               {currentQ.explanation}
             </AlertDescription>
           </Alert>

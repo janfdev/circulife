@@ -19,7 +19,7 @@ export default function LaporPage() {
 
   useEffect(() => {
     try {
-      const stored = localStorage.getItem("ciremai_citizen_reports");
+      const stored = localStorage.getItem("circulife_citizen_reports");
       if (stored) {
         const parsed: WasteDropReport[] = JSON.parse(stored);
         const ids = new Set(parsed.map((p) => p.id));
@@ -49,16 +49,16 @@ export default function LaporPage() {
               Setor Sampah Terpilah & Tukar Bibit Saninten
             </h1>
             <p className="text-sm sm:text-base text-muted-foreground max-w-2xl leading-relaxed">
-              Catat sampah anorganik dan organik bawaan turun Anda dari puncak Gunung Ciremai. Dapatkan tiket verifikasi posko untuk ditukar bibit pohon atau poin komunitas.
+              Catat sampah anorganik dan organik bawaan Anda untuk disetorkan ke drop-point terdekat. Dapatkan tiket verifikasi digital untuk ditukar bibit pohon atau poin komunitas.
             </p>
           </div>
 
           <a
-            href="tel:0232613158"
+            href="tel:081299002026"
             className={cn(buttonVariants({ variant: "outline", size: "sm" }), "h-11 px-5 gap-2 text-xs font-bold shrink-0 self-start md:self-auto rounded-xl border-primary/30 text-primary")}
           >
             <PhoneCall className="h-4 w-4" aria-hidden="true" />
-            <span className="font-mono">Posko TNGC: 0232-613158</span>
+            <span className="font-mono">Hotline CircuLife: 0812-9900-2026</span>
           </a>
         </div>
 
@@ -104,7 +104,7 @@ export default function LaporPage() {
                     </li>
                     <li className="flex items-start gap-2.5">
                       <span className="font-bold font-mono text-primary shrink-0 mt-0.5">3.</span>
-                      <span>Tunjukkan tiket digital formulir ini kepada petugas ranger untuk mengambil bibit pohon Saninten siap tanam.</span>
+                      <span>Tunjukkan tiket digital formulir ini kepada petugas drop-point untuk menukar poin atau mengambil bibit pohon siap tanam.</span>
                     </li>
                   </ul>
                 </CardContent>
@@ -113,8 +113,8 @@ export default function LaporPage() {
               <Alert className="border-emerald-300 bg-emerald-500/10 text-emerald-950 dark:border-emerald-900/60 dark:text-emerald-200 p-5 rounded-2xl">
                 <Sprout className="h-5 w-5 text-emerald-600 mb-1" />
                 <AlertDescription className="text-xs sm:text-sm leading-relaxed">
-                  <strong className="font-bold block mb-1">Gerakan 1 Pendaki 1 Pohon :</strong>
-                  Setiap setoran minimal 2 kg botol plastik atau 5 kaleng gas berhak mendapatkan 1 bibit pohon Saninten bersertifikat balai TNGC.
+                  <strong className="font-bold block mb-1">Gerakan 1 Setoran 1 Pohon :</strong>
+                  Setiap setoran minimal 2 kg botol plastik atau 5 kaleng gas berhak mendapatkan 1 bibit pohon penghijauan binaan CircuLife.
                 </AlertDescription>
               </Alert>
             </div>

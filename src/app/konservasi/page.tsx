@@ -14,13 +14,13 @@ export default function KonservasiPage() {
         <div className="border-b border-border pb-8 space-y-3">
           <Badge variant="secondary" className="gap-2 px-3.5 py-1 text-xs font-bold uppercase tracking-wider mb-1">
             <Recycle className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
-            <span>Ekonomi Sirkular & Konservasi Terpadu TNGC</span>
+            <span>Ekonomi Sirkular & Konservasi Lingkungan</span>
           </Badge>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-foreground leading-[1.2]">
-            Katalog Produk Olahan Sampah & Konservasi Ciremai
+            Katalog Produk Olahan Sampah & Konservasi Terpadu
           </h1>
           <p className="text-sm sm:text-base text-muted-foreground max-w-3xl leading-relaxed">
-            Mengubah sampah jalur pendakian menjadi material konstruksi jalan setapak ramah lingkungan, pupuk persemaian bibit Saninten, dan cinderamata khas lereng oleh kelompok swadaya masyarakat.
+            Mengubah sampah anorganik terpilah menjadi material konstruksi jalan setapak ramah lingkungan, pupuk persemaian bibit penghijauan, dan produk upcycling bernilai tambah tinggi.
           </p>
         </div>
 

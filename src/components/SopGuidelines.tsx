@@ -16,13 +16,13 @@ export default function SopGuidelines() {
       category: "Wajib Registrasi",
       title: "Protokol TITO (Trash In Trash Out) & Repacking Wadah Guna Ulang",
       description:
-        "Berdasarkan SK Balai TNGC, setiap pendaki diwajibkan mencatatkan daftar bawaan logistik saat pemeriksaan tas pra-pendakian di pos awal dan membawa kembali seluruh kemasannya saat turun.",
+        "Berdasarkan standar operasional CircuLife, setiap warga dan mitra diwajibkan memilah logistik kemasan anorganik dari rumah dan menyetorkannya ke posko terdaftar.",
       keyRules: [
-        "Repacking bahan makanan kering dari bungkus plastik sekali pakai ke dalam kotak makan (food container) guna ulang sebelum mendaki.",
-        "Dilarang membawa botol air sekali pakai ukuran mini (kurang dari 600 ml) dan tisu basah non-biodegradable.",
-        "Jumlah kemasan yang dibawa naik wajib cocok dengan sampah yang ditimbang saat kembali di posko registrasi.",
+        "Repacking bahan makanan kering dari bungkus plastik sekali pakai ke dalam wadah guna ulang sebelum bepergian.",
+        "Dilarang membuang botol air sekali pakai dan tisu basah non-biodegradable sembarangan.",
+        "Jumlah kemasan yang disetorkan wajib dicatat dan ditimbang saat verifikasi di posko drop-point.",
       ],
-      faqs: "Mengapa tisu basah dilarang? Tisu basah mengandung serat sintetis plastik poliester yang tidak terurai puluhan tahun di tanah dingin pegunungan.",
+      faqs: "Mengapa tisu basah dilarang? Tisu basah mengandung serat sintetis plastik poliester yang tidak terurai puluhan tahun di alam terbuka.",
     },
     {
       id: "sop-2",
@@ -31,9 +31,9 @@ export default function SopGuidelines() {
       category: "Pemilahan Jalur",
       title: "SOP Pemilahan Sampah Terpadu: Clean, Dry, and Separate",
       description:
-        "Pisahkan jenis sampah sejak di dalam tenda agar material anorganik tetap bernilai tinggi saat didaur ulang menjadi paving block dan cinderamata KSM.",
+        "Pisahkan jenis sampah sejak di dalam rumah agar material anorganik tetap bernilai tinggi saat didaur ulang menjadi paving block dan cinderamata KSM.",
       keyRules: [
-        "Kosongkan dan remas botol plastik PET hingga pipih guna menghemat volume trash bag pendakian.",
+        "Kosongkan dan remas botol plastik PET hingga pipih guna menghemat volume penyimpanan.",
         "Pisahkan sisa makanan basah ke kantong tersendiri agar tidak mengotori kaleng dan plastik daur ulang.",
         "Keringkan sampah plastik makanan instan dari sisa minyak atau kuah sebelum dimasukkan ke kantong sampah.",
       ],
@@ -44,30 +44,30 @@ export default function SopGuidelines() {
       number: "03",
       icon: Recycle,
       category: "Limbah Berbahaya",
-      title: "Protokol Penanganan Limbah Kaleng Gas & Asbak Saku Sachet",
+      title: "Protokol Penanganan Limbah Kaleng Gas & Kemasan Residu",
       description:
-        "Kaleng gas kompor portabel bekas bertekanan sisa dan puntung rokok memerlukan perlakuan khusus demi keselamatan dan kebersihan jalur.",
+        "Kaleng gas portabel bekas bertekanan sisa dan limbah residu memerlukan perlakuan khusus demi keselamatan lingkungan sekitar.",
       keyRules: [
-        "Dilarang menusuk atau membakar kaleng gas di area kemping; gas sisa rawan meledak jika terkena panas.",
-        "Simpan kaleng gas kosong di kompartemen luar ransel dan serahkan langsung ke drop-box B3 di pos registrasi.",
-        "Gunakan wadah asbak saku portabel (pocket ashtray) tertutup untuk menampung puntung dan abu hingga turun ke posko.",
+        "Dilarang menusuk atau membakar kaleng gas secara sembarangan; gas sisa rawan meledak jika terkena panas.",
+        "Simpan kaleng gas kosong di tempat terpisah dan serahkan langsung ke drop-box limbah kaleng di pos registrasi.",
+        "Gunakan wadah khusus tertutup untuk menampung residu anorganik hingga dibawa ke posko.",
       ],
-      faqs: "Apa yang dilakukan pengelola terhadap kaleng gas bekas? Kaleng dikosongkan sisa gasnya secara aman di posko lalu dilebur dan dicetak menjadi tungku ultralight.",
+      faqs: "Apa yang dilakukan pengelola terhadap kaleng gas bekas? Kaleng dikosongkan sisa gasnya secara aman di posko lalu dilebur dan dicetak menjadi tungku biomassa ultralight.",
     },
     {
       id: "sop-4",
       number: "04",
       icon: Ban,
       category: "Larangan Keras",
-      title: "Larangan Mutlak Pembakaran & Penimbunan Sampah di Kawasan TNGC",
+      title: "Larangan Mutlak Pembakaran Terbuka & Pembuangan Sampah Liar",
       description:
-        "Membakar atau mengubur sampah di area shelter, savana, maupun puncak Ciremai merupakan tindak perusakan lingkungan yang dikenakan sanksi tegas.",
+        "Membakar atau membuang sampah sembarangan mencemari udara, merusak kualitas air tanah, dan melanggar ketentuan regulasi persampahan.",
       keyRules: [
-        "Pembakaran sampah plastik menghasilkan asap beracun dioksin dan memicu risiko kobaran karhutla di semak kering lereng.",
-        "Menimbun sampah organik atau anorganik mengundang satwa babi hutan masuk ke area kemping dan merusak tanah resapan air.",
-        "Pelanggar dikenakan denda pembersihan jalur secara sukarela dan sanksi blacklist di seluruh gerbang pendakian.",
+        "Pembakaran sampah terbuka menghasilkan asap beracun dioksin dan partikel karsinogenik PM2.5.",
+        "Membuang sampah anorganik ke selokan atau sungai mencemari ekosistem perairan dan memicu banjir.",
+        "Pelanggar dikenakan sanksi tindak pidana lingkungan hidup sesuai UU No. 18 Tahun 2008.",
       ],
-      faqs: "Bolehkah mengubur sisa nasi di tanah? Dilarang. Suhu dingin puncak Ciremai menghambat pembusukan dan mengubah kebiasaan mencari makan satwa liar.",
+      faqs: "Bolehkah membakar sampah daun kering di pekarangan? Tidak disarankan. Sampah daun sebaiknya dicacah dan dikomposkan menggunakan biokonversi maggot BSF.",
     },
   ];
 
@@ -76,13 +76,13 @@ export default function SopGuidelines() {
       {/* Header */}
       <div className="border-b border-border pb-6 space-y-2">
         <Badge variant="outline" className="text-xs font-mono font-bold uppercase tracking-wider text-primary border-primary/30">
-          Pedoman Sirkular Rimba
+          Pedoman Sirkular Zero Waste
         </Badge>
         <h2 className="text-2xl sm:text-3xl font-black text-foreground tracking-tight">
-          SOP Gunung Bebas Sampah : Standar Resmi Pengunjung TNGC
+          SOP Ekosistem Bebas Sampah : Standar Operasional CircuLife
         </h2>
         <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-          Kompilasi protokol resmi pemilahan logistik, penukaran sampah TITO, dan tanya jawab pelestarian ekosistem Ciremai.
+          Kompilasi protokol resmi pemilahan logistik, penukaran sampah, dan tata kelola ekonomi sirkular ramah lingkungan.
         </p>
       </div>
 

@@ -143,21 +143,21 @@ export default function RestorationTracker() {
             </div>
             <div className="space-y-1">
               <h3 className="text-base sm:text-lg font-black text-foreground">
-                Ingin Berpartisipasi Mengadopsi Pohon Endemik Saninten?
+                Ingin Berpartisipasi Menukar Poin Sirkular Menjadi Bibit Pohon?
               </h3>
               <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed max-w-2xl">
-                Program adopsi bibit pohon dikelola bersama komunitas masyarakat desa penyangga sekitar TNGC untuk memastikan pemeliharaan bibit selama 3 tahun pertama.
+                Setiap penukaran poin sirkular disalurkan langsung ke kelompok tani hutan mitra binaan CircuLife untuk penanaman pohon pelindung mata air dan konservasi tanah.
               </p>
             </div>
           </div>
 
           <a
-            href="https://tngciremai.menlhk.go.id"
+            href="https://menlhk.go.id"
             target="_blank"
             rel="noopener noreferrer"
             className={cn(buttonVariants({ variant: "default", size: "lg" }), "h-12 px-6 text-xs font-bold shadow-sm shrink-0 rounded-xl")}
           >
-            Kunjungi Laman Resmi Balai TNGC
+            Kunjungi Portal Resmi KLHK
           </a>
         </div>
       </Card>

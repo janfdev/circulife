@@ -17,10 +17,10 @@ export default function HotlineDirectory() {
           </Badge>
         </div>
         <h2 className="text-2xl sm:text-3xl font-black text-foreground tracking-tight">
-          Hotline Kontak Darurat Balai TNGC & Posko Jalur
+          Hotline Kontak Drop-Point & Mitra Sirkular CircuLife
         </h2>
         <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-          Nomor telepon resmi posko lapangan untuk panggilan darurat bahaya kebakaran, evakuasi medis pendaki, dan laporan tindak pidana kehutanan.
+          Nomor kontak resmi posko lapangan untuk penjemputan sampah terpilah skala besar, verifikasi drop-point, dan koordinasi kemitraan bank sampah.
         </p>
       </div>
 

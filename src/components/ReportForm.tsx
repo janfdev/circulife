@@ -122,10 +122,10 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
 
     // Save to LocalStorage
     try {
-      const existing = localStorage.getItem("ciremai_citizen_reports");
+      const existing = localStorage.getItem("circulife_citizen_reports");
       const list: WasteDropReport[] = existing ? JSON.parse(existing) : [];
       list.unshift(completeReport);
-      localStorage.setItem("ciremai_citizen_reports", JSON.stringify(list));
+      localStorage.setItem("circulife_citizen_reports", JSON.stringify(list));
     } catch {
       // LocalStorage fallback
     }
@@ -173,10 +173,10 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
           </div>
           <div>
             <h2 className="text-xl font-bold text-emerald-950 dark:text-emerald-100">
-              Setoran Sampah Berhasil Diverifikasi di Posko TNGC
+              Setoran Sampah Berhasil Diverifikasi di Drop-Point CircuLife
             </h2>
             <p className="text-xs text-emerald-800 dark:text-emerald-300">
-              Data sampah terpilah telah dicatat dalam sistem sirkularitas TITO Ciremai Guard.
+              Data sampah terpilah telah dicatat dalam sistem sirkularitas CircuLife Hub.
             </p>
           </div>
         </div>

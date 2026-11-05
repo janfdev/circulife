@@ -39,10 +39,10 @@ export default function EdukasiPage() {
               Uji Wawasan Rimba
             </Badge>
             <h2 id="quiz-section" className="text-2xl sm:text-3xl font-black text-foreground">
-              Kuis Pengetahuan Pengolahan Sampah Pegunungan
+              Kuis Pengetahuan Pengolahan Sampah & Daur Ulang
             </h2>
             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-              Jawab pertanyaan seputar dekomposisi material, daur ulang limbah pendakian, dan etika konservasi di kawasan TNGC. Dapatkan sertifikasi simbolis Pendaki Lestari Ciremai.
+              Jawab pertanyaan seputar dekomposisi material, daur ulang limbah, dan etika konservasi lingkungan hidup. Dapatkan sertifikasi simbolis Pejuang Zero Waste CircuLife.
             </p>
           </div>
 
@@ -55,7 +55,7 @@ export default function EdukasiPage() {
         <Card className="border-border bg-muted/40 p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-sm rounded-2xl">
           <div className="space-y-1 text-center sm:text-left">
             <h3 className="text-lg font-black text-foreground">
-              Sudah Memilah Sampah dari Jalur Pendakian?
+              Sudah Memilah Sampah dari Rumah Anda?
             </h3>
             <p className="text-xs sm:text-sm text-muted-foreground">
               Catat setoran sampah Anda di posko registrasi untuk ditukar dengan bibit pohon Saninten.
