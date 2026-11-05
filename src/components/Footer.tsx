@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { CircuLifeMark } from "@/components/CircuLifeLogo";
 import { Recycle, PhoneCall, MapPin, Heart, Sparkles, ShieldCheck } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -30,8 +31,8 @@ export default function Footer() {
           {/* Col 1: Mission */}
           <div className="space-y-4">
             <div className="flex items-center gap-2.5">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-sm">
-                <Recycle className="h-5 w-5 text-primary-foreground" aria-hidden="true" />
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-card border border-border/80 shadow-sm">
+                <CircuLifeMark className="h-5 w-5" />
               </div>
               <span className="text-lg font-black tracking-tight">CIRCULIFE</span>
             </div>

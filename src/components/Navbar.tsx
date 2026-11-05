@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { CircuLifeMark } from "@/components/CircuLifeLogo";
 import {
   Recycle,
   Info,
@@ -84,10 +85,10 @@ export default function Navbar({ currentPath }: NavbarProps) {
         {/* Brand & Identity */}
         <Link
           href="/"
-          className="flex items-center gap-3 transition-opacity hover:opacity-90 focus:outline-none"
+          className="flex items-center gap-3 transition-opacity hover:opacity-90 focus:outline-none group"
         >
-          <div className="flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-sm ring-1 ring-primary/20">
-            <Recycle className="h-5 w-5 sm:h-6 sm:w-6 text-primary-foreground" aria-hidden="true" />
+          <div className="flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-card border border-border/80 shadow-sm ring-1 ring-primary/20 transition-transform group-hover:scale-105">
+            <CircuLifeMark className="h-6 w-6 sm:h-7 sm:w-7" />
           </div>
           <div className="flex flex-col">
             <span className="text-base font-black tracking-tight text-foreground sm:text-lg">
