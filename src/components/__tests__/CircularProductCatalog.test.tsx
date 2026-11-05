@@ -7,8 +7,8 @@ describe("CircularProductCatalog Component", () => {
   it("should render all default circular products with prices and names", () => {
     render(<CircularProductCatalog />);
 
-    expect(screen.getByText("Eco-Paving Block Lereng Ciremai")).toBeInTheDocument();
-    expect(screen.getByText(/Pupuk Kompos Organik Bio-Saninten/i)).toBeInTheDocument();
+    expect(screen.getByText("Eco-Paving Block Plastik PET K-250")).toBeInTheDocument();
+    expect(screen.getByText(/Pupuk Kompos Bio-Organik Kasgot/i)).toBeInTheDocument();
     expect(screen.getByText(/Tungku Ultralight Biomassa Upcycled/i)).toBeInTheDocument();
   });
 
@@ -19,14 +19,14 @@ describe("CircularProductCatalog Component", () => {
     const petFilter = screen.getByRole("button", { name: /paving block pet/i });
     fireEvent.click(petFilter);
 
-    expect(screen.getByText("Eco-Paving Block Lereng Ciremai")).toBeInTheDocument();
-    expect(screen.queryByText(/Pupuk Kompos Organik Bio-Saninten/i)).not.toBeInTheDocument();
+    expect(screen.getByText("Eco-Paving Block Plastik PET K-250")).toBeInTheDocument();
+    expect(screen.queryByText(/Pupuk Kompos Bio-Organik Kasgot/i)).not.toBeInTheDocument();
 
-    // Filter to Kompos Saninten
-    const compostFilter = screen.getByRole("button", { name: /kompos saninten/i });
+    // Filter to Kompos Bio-Kasgot
+    const compostFilter = screen.getByRole("button", { name: /kompos bio-kasgot/i });
     fireEvent.click(compostFilter);
 
-    expect(screen.getByText(/Pupuk Kompos Organik Bio-Saninten/i)).toBeInTheDocument();
-    expect(screen.queryByText("Eco-Paving Block Lereng Ciremai")).not.toBeInTheDocument();
+    expect(screen.getByText(/Pupuk Kompos Bio-Organik Kasgot/i)).toBeInTheDocument();
+    expect(screen.queryByText("Eco-Paving Block Plastik PET K-250")).not.toBeInTheDocument();
   });
 });

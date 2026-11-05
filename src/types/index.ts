@@ -4,7 +4,7 @@ export type TrailId = "APUY" | "PALUTUNGAN" | "LINGGARJATI" | "SADAREHE" | "NON_
 export type CircularTargetProduct = "PAVING_BLOCK" | "COMPOST" | "UPCYCLED_METAL" | "ECO_SOUVENIR";
 
 export interface WasteDropReport {
-  id: string; // e.g. "CRG-TITO-202611-001"
+  id: string; // e.g. "CLC-DROP-202611-001"
   reporterName: string;
   reporterContact: string;
   trail: TrailId;
@@ -38,7 +38,7 @@ export type DropPointStatus = "SIAP_TERIMA" | "PENGIRIMAN_PENGOLAH" | "PENUH";
 export interface TrailCondition {
   id: TrailId;
   name: string;
-  regency: "Kuningan" | "Majalengka";
+  regency: "Kuningan" | "Majalengka" | string;
   lengthKm: number;
   openStatus: "OPEN" | "RESTRICTED" | "CLOSED";
   fireRiskLevel?: "RENDAH" | "SEDANG" | "TINGGI" | "EKSTREM";
@@ -64,6 +64,56 @@ export interface CircularProduct {
   priceEstimateRp: number;
   description: string;
   application: string;
+}
+
+// Alur Pemanfaatan Sampah Types
+export interface WasteFlowStage {
+  step: number;
+  title: string;
+  subtitle: string;
+  iconName: string;
+  badgeText: string;
+  description: string;
+  inputMaterials: string[];
+  transformationProcess: string;
+  outputProducts: string[];
+  impactMetric: string;
+  communityBenefit: string;
+}
+
+// Artikel & Galeri Types
+export interface ArticleItem {
+  id: string;
+  title: string;
+  slug?: string;
+  category: "ZERO_WASTE" | "DAUR_ULANG" | "INOVASI" | "KOMUNITAS" | "PANDUAN" | "TEKNOLOGI" | "ORGANIK" | "UPCYCLING" | string;
+  author: string;
+  readTime: string;
+  date: string;
+  summary: string;
+  content: string | string[];
+  keyTakeaways?: string[];
+}
+
+export interface GalleryItem {
+  id: string;
+  title: string;
+  category: "BEFORE_AFTER" | "PRODUKSI" | "AKSI_WARGA" | "PRODUK_JADI" | "TRANSFORMASI" | "BIOKONVERSI" | "UPCYCLING" | "LOGISTIK" | "DAMPAK" | string;
+  location?: string;
+  description: string;
+  beforeState?: string;
+  afterState?: string;
+  impactResult?: string;
+  partnerName?: string;
+  imageUrl?: string;
+  wasteTransformed?: string;
+}
+
+export interface FaqItem {
+  id?: string;
+  question: string;
+  answer: string;
+  category?: "SETOR" | "POIN" | "PRODUK" | "KEMITRAAN" | string;
 }
 
 // Backward compatibility for Species interface

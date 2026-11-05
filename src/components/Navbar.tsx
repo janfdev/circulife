@@ -3,7 +3,18 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Recycle, PackageCheck, BookOpen, Layers, Calculator, Menu, X, CheckCircle2 } from "lucide-react";
+import {
+  Recycle,
+  Info,
+  BookOpen,
+  Mail,
+  PackageCheck,
+  Calculator,
+  Menu,
+  X,
+  CheckCircle2,
+  Sparkles,
+} from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
@@ -11,12 +22,13 @@ interface NavbarProps {
   currentPath?: string;
 }
 
-const NAV_ITEMS = [
+export const NAV_ITEMS = [
   { href: "/", label: "Beranda", icon: Recycle },
-  { href: "/lapor", label: "Setor Sampah", icon: PackageCheck, alertHighlight: true },
-  { href: "/edukasi", label: "SOP Sirkular", icon: BookOpen },
-  { href: "/konservasi", label: "Produk Olahan", icon: Layers },
-  { href: "/pantau", label: "Hitung Nilai", icon: Calculator },
+  { href: "/about", label: "Tentang Kami", icon: Info },
+  { href: "/galeri", label: "Artikel & Galeri", icon: BookOpen },
+  { href: "/contact", label: "Kontak", icon: Mail },
+  { href: "/lapor", label: "Setor Sampah", icon: PackageCheck, isAction: true },
+  { href: "/pantau", label: "Kalkulator Nilai", icon: Calculator },
 ];
 
 export default function Navbar({ currentPath }: NavbarProps) {
@@ -52,24 +64,24 @@ export default function Navbar({ currentPath }: NavbarProps) {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
               </span>
-              <span>SENTRA SIRKULAR : TNGC</span>
+              <span>CIRCULIFE HUB : ZERO WASTE</span>
             </span>
             <span className="text-border">|</span>
-            <span className="tabular-nums">108°24&apos; BT, 06°53&apos; LS</span>
+            <span className="tabular-nums">184.6 TON SAMPAH TERKELOLA</span>
             <span className="text-border">|</span>
-            <span className="tabular-nums">Atap Tertinggi Jawa Barat</span>
+            <span className="tabular-nums">132.8 TON REDUKSI CO2e</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="text-primary font-semibold flex items-center gap-1.5">
               <CheckCircle2 className="h-3 w-3 text-primary" aria-hidden="true" />
-              <span>4 DROP-POINT SAMPAH AKTIF</span>
+              <span>24 DROP-POINT NASIONAL AKTIF</span>
             </span>
           </div>
         </div>
       </div>
 
       <div className="mx-auto flex h-16 sm:h-18 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        {/* Brand & Elevation */}
+        {/* Brand & Identity */}
         <Link
           href="/"
           className="flex items-center gap-3 transition-opacity hover:opacity-90 focus:outline-none"
@@ -79,11 +91,11 @@ export default function Navbar({ currentPath }: NavbarProps) {
           </div>
           <div className="flex flex-col">
             <span className="text-base font-black tracking-tight text-foreground sm:text-lg">
-              CIREMAI GUARD
+              CIRCULIFE
             </span>
             <div className="flex items-center gap-1.5">
               <Badge variant="outline" className="h-4 border-primary/30 px-1.5 py-0 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground tabular-nums font-mono">
-                Puncak 3.078 mdpl : TNGC
+                Digital Zero Waste & Value Hub
               </Badge>
             </div>
           </div>
@@ -95,18 +107,18 @@ export default function Navbar({ currentPath }: NavbarProps) {
             const Icon = item.icon;
             const isActive = activePath === item.href;
 
-            if (item.alertHighlight) {
+            if (item.isAction) {
               return (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`ml-2 inline-flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-bold uppercase tracking-wider transition-all focus-visible:ring-2 ${
+                  className={`ml-2 inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-bold uppercase tracking-wider transition-all focus-visible:ring-2 ${
                     isActive
                       ? "bg-primary text-primary-foreground shadow-sm"
-                      : "bg-primary/10 text-primary hover:bg-primary/20 dark:bg-primary/20 dark:text-emerald-300 dark:hover:bg-primary/30"
+                      : "bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm"
                   }`}
                 >
-                  <Icon className="h-4 w-4" aria-hidden="true" />
+                  <Icon className="h-3.5 w-3.5" aria-hidden="true" />
                   <span>{item.label}</span>
                 </Link>
               );
@@ -116,13 +128,13 @@ export default function Navbar({ currentPath }: NavbarProps) {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`inline-flex items-center gap-2 rounded-lg px-3.5 py-2 text-sm font-semibold transition-all focus-visible:ring-2 ${
+                className={`inline-flex items-center gap-1.5 rounded-xl px-3.5 py-2 text-xs font-bold tracking-wide uppercase transition-all focus-visible:ring-2 ${
                   isActive
-                    ? "bg-primary text-primary-foreground shadow-sm"
+                    ? "bg-primary/10 text-primary font-extrabold"
                     : "text-foreground/80 hover:bg-muted hover:text-foreground"
                 }`}
               >
-                <Icon className="h-4 w-4 opacity-80" aria-hidden="true" />
+                <Icon className="h-3.5 w-3.5 opacity-80" aria-hidden="true" />
                 <span>{item.label}</span>
               </Link>
             );
@@ -175,9 +187,9 @@ export default function Navbar({ currentPath }: NavbarProps) {
                     <Icon className="h-5 w-5 opacity-90" aria-hidden="true" />
                     <span>{item.label}</span>
                   </div>
-                  {item.alertHighlight && (
+                  {item.isAction && (
                     <Badge variant="secondary" className="text-[10px] font-mono uppercase tracking-wider">
-                      Drop & Redeem
+                      Setor & Tukar
                     </Badge>
                   )}
                 </Link>

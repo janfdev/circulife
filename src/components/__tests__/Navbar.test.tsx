@@ -4,21 +4,22 @@ import React from "react";
 import Navbar from "../Navbar";
 
 describe("Navbar Component", () => {
-  it("should render the brand title and 3.078 mdpl elevation indicator", () => {
+  it("should render the brand title CIRCULIFE and telemetry indicators", () => {
     render(<Navbar currentPath="/" />);
-    expect(screen.getByText("CIREMAI GUARD")).toBeInTheDocument();
-    expect(screen.getByText(/3\.078\s*mdpl/i)).toBeInTheDocument();
+    expect(screen.getByText("CIRCULIFE")).toBeInTheDocument();
+    expect(screen.getByText(/Digital Zero Waste & Value Hub/i)).toBeInTheDocument();
   });
 
-  it("should render all 5 primary navigation links with valid routes", () => {
+  it("should render mandatory competition navigation links with valid routes", () => {
     render(<Navbar currentPath="/" />);
     const links = screen.getAllByRole("link");
     const hrefs = links.map((l) => l.getAttribute("href"));
 
     expect(hrefs).toContain("/");
+    expect(hrefs).toContain("/about");
+    expect(hrefs).toContain("/galeri");
+    expect(hrefs).toContain("/contact");
     expect(hrefs).toContain("/lapor");
-    expect(hrefs).toContain("/edukasi");
-    expect(hrefs).toContain("/konservasi");
     expect(hrefs).toContain("/pantau");
   });
 

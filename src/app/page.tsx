@@ -1,10 +1,11 @@
 import React from "react";
 import Link from "next/link";
 import HeroSection from "@/components/HeroSection";
+import WasteUtilizationFlow from "@/components/WasteUtilizationFlow";
 import TrailStatusBoard from "@/components/TrailStatusBoard";
 import CampaignActionSection from "@/components/CampaignActionSection";
-import { TRAIL_SEEDS } from "@/lib/constants";
-import { Recycle, PackageCheck, PhoneCall, Radio, CheckCircle, ArrowRight, Sprout } from "lucide-react";
+import { TRAIL_SEEDS, CIRCULIFE_INFO } from "@/lib/constants";
+import { Recycle, PackageCheck, PhoneCall, Radio, CheckCircle, ArrowRight, Sprout, Sparkles } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -15,15 +16,18 @@ export default function HomePage() {
       {/* 1. Hero Section */}
       <HeroSection />
 
-      {/* 2. Trail Status Board (Anchor: #jalur-status) */}
-      <div id="jalur-status">
-        <TrailStatusBoard trails={TRAIL_SEEDS} />
-      </div>
+      {/* 2. Interactive Waste-to-Value Utilization Flow (Core Feature) */}
+      <WasteUtilizationFlow />
 
       {/* 3. Conservation Action Initiatives (BagUI-Inspired Bento Grid Block) */}
       <CampaignActionSection />
 
-      {/* 4. Circular Economy Mission Dispatch CTA Block (Inspired by BagUI CTA Patterns) */}
+      {/* 4. Drop-Point & Bank Sampah Status Board (Anchor: #jalur-status) */}
+      <div id="jalur-status">
+        <TrailStatusBoard trails={TRAIL_SEEDS} />
+      </div>
+
+      {/* 5. Circular Economy Mission Dispatch CTA Block (Inspired by BagUI CTA Patterns) */}
       <section className="bg-gradient-to-b from-primary to-primary/95 text-primary-foreground py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-t border-border relative overflow-hidden">
         {/* Subtle radial glow overlay */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_120%,rgba(27,196,131,0.18),transparent)] pointer-events-none" />
@@ -35,33 +39,33 @@ export default function HomePage() {
                 <div className="inline-flex flex-wrap items-center justify-center lg:justify-start gap-2">
                   <Badge variant="outline" className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-300 border-emerald-400/30 rounded-md px-3 py-1 gap-1.5">
                     <Radio className="h-3.5 w-3.5 animate-pulse" aria-hidden="true" />
-                    <span>Inisiatif Zero Waste Gunung Ciremai</span>
+                    <span>Inisiatif Zero Waste CircuLife Nasional</span>
                   </Badge>
                   <span className="text-xs font-mono text-primary-foreground/70 hidden sm:inline">
-                    Drop Point 4 Jalur Resmi
+                    24 Drop Point & 18 KSM Sentral
                   </span>
                 </div>
 
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.15] text-primary-foreground">
-                  Bawa Turun Sampah Pendakian & Tukarkan Jadi Manfaat Nyata
+                  Pilah Sampah Dari Rumah & Ubah Menjadi Dampak Nyata
                 </h2>
 
                 <p className="text-sm sm:text-base text-primary-foreground/85 leading-relaxed">
-                  Setiap botol plastik PET, kaleng gas, dan sisa makanan yang Anda bawa turun ditimbang di pos registrasi dan diolah menjadi paving block jalan setapak desa serta bibit pohon Saninten oleh KSM lokal lereng.
+                  Setiap botol plastik PET, kaleng logam, dan sisa makanan yang Anda pilah dan setorkan ke CircuLife ditimbang secara digital dan dikonversi menjadi paving block jalan lingkungan, kompos kasgot bernutrisi, serta insentif reward langsung.
                 </p>
 
                 <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2 text-xs font-mono text-emerald-200">
                   <div className="flex items-center gap-1.5">
                     <CheckCircle className="h-4 w-4 text-emerald-400" aria-hidden="true" />
-                    <span>Konversi Paving Block Mandiri</span>
+                    <span>Konversi Paving Block K-250 Teruji</span>
                   </div>
                   <div className="flex items-center gap-1.5">
                     <CheckCircle className="h-4 w-4 text-emerald-400" aria-hidden="true" />
-                    <span>Tukar Bibit Saninten Siap Tanam</span>
+                    <span>Tukar Bibit & Produk Daur Ulang</span>
                   </div>
                   <div className="flex items-center gap-1.5">
                     <CheckCircle className="h-4 w-4 text-emerald-400" aria-hidden="true" />
-                    <span>100% Dikelola KSM Desa Penyangga</span>
+                    <span>100% Berdayakan KSM Komunitas</span>
                   </div>
                 </div>
               </div>
@@ -79,16 +83,16 @@ export default function HomePage() {
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
 
-                <a
-                  href="tel:0232613158"
+                <Link
+                  href="/contact"
                   className={cn(
                     buttonVariants({ variant: "outline", size: "lg" }),
                     "h-13 px-8 text-xs font-mono font-bold uppercase tracking-wider gap-2.5 shadow-md rounded-xl border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10"
                   )}
                 >
                   <PhoneCall className="h-4 w-4" aria-hidden="true" />
-                  <span>Posko Balai : 0232-613158</span>
-                </a>
+                  <span>Hubungi Tim Kemitraan</span>
+                </Link>
               </div>
             </div>
           </div>

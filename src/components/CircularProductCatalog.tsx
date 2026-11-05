@@ -59,7 +59,7 @@ export default function CircularProductCatalog() {
             className="h-9 px-3.5 gap-2 text-xs font-bold uppercase tracking-wider rounded-lg"
           >
             <Sprout className="h-4 w-4" aria-hidden="true" />
-            <span>Kompos Saninten</span>
+            <span>Kompos Bio-Kasgot</span>
           </Button>
           <Button
             type="button"
@@ -69,12 +69,12 @@ export default function CircularProductCatalog() {
             className="h-9 px-3.5 gap-2 text-xs font-bold uppercase tracking-wider rounded-lg"
           >
             <Flame className="h-4 w-4" aria-hidden="true" />
-            <span>Upcycle Kaleng Gas</span>
+            <span>Upcycle Logam</span>
           </Button>
         </div>
 
         <Badge variant="outline" className="text-xs font-mono font-bold uppercase px-3 py-1.5 border-primary/30 text-primary">
-          Standar Kualitas TNGC
+          Standar Sirkularitas Teruji
         </Badge>
       </div>
 

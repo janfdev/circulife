@@ -25,10 +25,10 @@ export default function TrailStatusBoard({ trails }: TrailStatusBoardProps) {
               </Badge>
             </div>
             <h2 id="trail-status-heading" className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-foreground">
-              Status 4 Jalur Pendakian Resmi Ciremai
+              Status Drop-Point & Bank Sampah Terintegrasi
             </h2>
             <p className="text-sm text-muted-foreground max-w-2xl leading-relaxed">
-              Fasilitas penampungan sampah terpilah (TITO), kapasitas drop-point, serta tingkat kesiapsiagaan posko di seluruh pintu masuk TNGC.
+              Fasilitas penampungan sampah terpilah (TITO), kapasitas drop-point, serta tingkat kesiapsiagaan posko di seluruh sentra penampungan mitra komunitas.
             </p>
           </div>
           <Link

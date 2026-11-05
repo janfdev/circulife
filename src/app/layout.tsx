@@ -13,21 +13,22 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "CIREMAI GUARD : Sentra Pemanfaatan & Sirkular Sampah Gunung Ciremai",
+  title: "CircuLife : Digital Zero Waste & Waste-to-Value Hub",
   description:
-    "Platform digital sentra pemanfaatan sampah sirkular, penukaran sampah TITO, edukasi zero waste, dan pemberdayaan KSM daur ulang Taman Nasional Gunung Ciremai (3.078 mdpl), Jawa Barat.",
+    "Platform digital zero waste dan ekosistem sirkular pemanfaatan sampah terpadu: dari botol plastik menjadi paving block K-250, kaleng logam menjadi tungku biomassa, dan sisa makanan menjadi kompos kasgot. Kompetisi Nasional EcoDigital Web Design.",
   keywords: [
-    "Gunung Ciremai",
-    "Taman Nasional Gunung Ciremai",
-    "TNGC",
-    "Pemanfaatan Sampah Gunung",
-    "Zero Waste Mountain",
-    "Daur Ulang Botol PET Paving Block",
-    "Kompos Sampah Organik Ciremai",
-    "Jalur Palutungan",
-    "Jalur Apuy",
-    "Jalur Linggarjati",
-    "Jalur Sadarehe",
+    "Zero Waste",
+    "CircuLife",
+    "Bank Sampah Digital",
+    "Pengelolaan Limbah",
+    "EcoDigital",
+    "Web Design Competition",
+    "Eco-Paving Block",
+    "Kompos Kasgot",
+    "Upcycling Kaleng Logam",
+    "Daur Ulang Plastik PET",
+    "Ekonomi Sirkular",
+    "Lingkungan Hidup",
   ],
 };
 
