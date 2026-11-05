@@ -1,10 +1,10 @@
-export type ReportSeverity = "LOW" | "MEDIUM" | "HIGH" | "CRITICAL";
-export type ReportStatus = "PENDING" | "VERIFIED" | "INVESTIGATING" | "RESOLVED";
-export type IncidentType = "SMOKE" | "ACTIVE_FIRE" | "ILLEGAL_LOGGING" | "LITTER_DUMP" | "OTHER";
+export type WasteCategory = "PLASTIC_PET" | "GAS_CANISTER" | "ORGANIC" | "MIXED_ANORGANIC";
+export type WasteSubmissionStatus = "SUBMITTED" | "VERIFIED" | "PROCESSED" | "REDEEMED";
 export type TrailId = "APUY" | "PALUTUNGAN" | "LINGGARJATI" | "SADAREHE" | "NON_TRAIL";
+export type CircularTargetProduct = "PAVING_BLOCK" | "COMPOST" | "UPCYCLED_METAL" | "ECO_SOUVENIR";
 
-export interface FireReport {
-  id: string; // e.g. "CRG-202611-001"
+export interface WasteDropReport {
+  id: string; // e.g. "CRG-TITO-202611-001"
   reporterName: string;
   reporterContact: string;
   trail: TrailId;
@@ -13,14 +13,27 @@ export interface FireReport {
     lat: number;
     lng: number;
   };
-  severity: ReportSeverity;
-  incidentType: IncidentType;
+  wasteCategory: WasteCategory;
+  weightKg: number;
+  canisterCount?: number;
+  targetProduct: CircularTargetProduct;
+  rewardChoice: "SEEDLING" | "COMMUNITY_POINTS" | "BADGE_CERTIFICATE";
   description: string;
   imageUrl?: string;
   timestamp: string; // ISO 8601
-  status: ReportStatus;
+  status: WasteSubmissionStatus | ReportStatus;
   adminNote?: string;
+  incidentType?: IncidentType;
+  severity?: ReportSeverity;
 }
+
+// Backward compatibility alias for FireReport
+export type FireReport = WasteDropReport;
+export type ReportSeverity = "LOW" | "MEDIUM" | "HIGH" | "CRITICAL";
+export type ReportStatus = "PENDING" | "VERIFIED" | "INVESTIGATING" | "RESOLVED";
+export type IncidentType = "SMOKE" | "ACTIVE_FIRE" | "ILLEGAL_LOGGING" | "LITTER_DUMP" | "OTHER";
+
+export type DropPointStatus = "SIAP_TERIMA" | "PENGIRIMAN_PENGOLAH" | "PENUH";
 
 export interface TrailCondition {
   id: TrailId;
@@ -28,12 +41,32 @@ export interface TrailCondition {
   regency: "Kuningan" | "Majalengka";
   lengthKm: number;
   openStatus: "OPEN" | "RESTRICTED" | "CLOSED";
-  fireRiskLevel: "RENDAH" | "SEDANG" | "TINGGI" | "EKSTREM";
+  fireRiskLevel?: "RENDAH" | "SEDANG" | "TINGGI" | "EKSTREM";
+  dropPointStatus: DropPointStatus;
+  wasteCapacityKg: number;
+  wasteCollectedKg: number;
+  partnerUnit: string;
   elevationRange: string;
   lastUpdated: string;
   notes: string;
 }
 
+export type ProductCategory = "PAVING" | "COMPOST" | "UPCYCLING" | "CRAFT";
+
+export interface CircularProduct {
+  id: string;
+  name: string;
+  category: ProductCategory;
+  rawMaterial: string;
+  producerUnit: string;
+  impactMetric: string;
+  pointsRequired: number;
+  priceEstimateRp: number;
+  description: string;
+  application: string;
+}
+
+// Backward compatibility for Species interface
 export type SpeciesCategory = "FAUNA" | "FLORA";
 export type ConservationStatus = "CRITICAL" | "ENDANGERED" | "VULNERABLE" | "PROTECTED";
 
@@ -72,4 +105,13 @@ export interface EmergencyContact {
   whatsapp?: string;
   location: string;
   availableHours: string;
+}
+
+export interface WasteImpactResult {
+  pavingBlocks: number;
+  compostKg: number;
+  canistersUpcycled: number;
+  seedlingPoints: number;
+  co2SavedKg: number;
+  economicValueRp: number;
 }

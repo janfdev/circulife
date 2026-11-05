@@ -2,7 +2,7 @@ import React from "react";
 import SopGuidelines from "@/components/SopGuidelines";
 import InteractiveQuiz from "@/components/InteractiveQuiz";
 import { QUIZ_SEEDS } from "@/lib/constants";
-import { BookOpen, Flame } from "lucide-react";
+import { BookOpen, Recycle, PackageCheck, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -16,14 +16,14 @@ export default function EdukasiPage() {
         {/* Header */}
         <div className="border-b border-border pb-8 space-y-3">
           <Badge variant="secondary" className="gap-2 px-3.5 py-1 text-xs font-bold uppercase tracking-wider mb-1">
-            <BookOpen className="h-3.5 w-3.5" aria-hidden="true" />
-            <span>Pusat Edukasi Mitigasi Kebakaran Hutan</span>
+            <BookOpen className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
+            <span>Pusat Edukasi Sirkularitas & Pengurangan Sampah</span>
           </Badge>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-foreground leading-[1.2]">
-            Edukasi Rimba Bebas Api & Kuis Kesiapsiagaan
+            Edukasi Zero Waste Rimba & Kuis Sirkularitas
           </h1>
           <p className="text-sm sm:text-base text-muted-foreground max-w-3xl leading-relaxed">
-            Menghilangkan potensi kebakaran hutan di Gunung Ciremai dimulai dari kesadaran setiap individu. Pahami standar operasional prosedur rimba dan uji kesiapan Anda sebelum melangkah ke jalur pendakian.
+            Menjaga kebersihan dan kelestarian ekosistem Gunung Ciremai dimulai dari manajemen logistik pendaki. Pelajari protokol pemilahan sampah TITO dan uji wawasan Anda sebelum mendaki.
           </p>
         </div>
 
@@ -35,14 +35,14 @@ export default function EdukasiPage() {
         {/* 2. Interactive Quiz Section */}
         <section className="pt-10 border-t border-border" aria-labelledby="quiz-section">
           <div className="mb-8 space-y-2">
-            <Badge variant="outline" className="mb-1 text-xs font-bold uppercase tracking-wider text-primary border-primary/30">
-              Uji Pemahaman Rimba
+            <Badge variant="outline" className="mb-1 text-xs font-mono font-bold uppercase tracking-wider text-primary border-primary/30">
+              Uji Wawasan Rimba
             </Badge>
             <h2 id="quiz-section" className="text-2xl sm:text-3xl font-black text-foreground">
-              Kuis Kesiapsiagaan Karhutla & Etika Konservasi
+              Kuis Pengetahuan Pengolahan Sampah Pegunungan
             </h2>
             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-              Jawab pertanyaan seputar mitigasi bencana kebakaran dan keselamatan di lereng Ciremai. Dapatkan sertifikasi simbolis Duta Siaga Rimba.
+              Jawab pertanyaan seputar dekomposisi material, daur ulang limbah pendakian, dan etika konservasi di kawasan TNGC. Dapatkan sertifikasi simbolis Pendaki Lestari Ciremai.
             </p>
           </div>
 
@@ -55,18 +55,18 @@ export default function EdukasiPage() {
         <Card className="border-border bg-muted/40 p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-sm rounded-2xl">
           <div className="space-y-1 text-center sm:text-left">
             <h3 className="text-lg font-black text-foreground">
-              Menemukan Pelanggaran Api di Jalur Pendakian?
+              Sudah Memilah Sampah dari Jalur Pendakian?
             </h3>
             <p className="text-xs sm:text-sm text-muted-foreground">
-              Laporkan segera melalui formulir siaga karhutla agar dapat ditertibkan regu posko.
+              Catat setoran sampah Anda di posko registrasi untuk ditukar dengan bibit pohon Saninten.
             </p>
           </div>
           <Link
             href="/lapor"
-            className={cn(buttonVariants({ variant: "destructive", size: "lg" }), "h-12 px-6 text-xs font-bold gap-2.5 shadow-sm shrink-0 rounded-xl")}
+            className={cn(buttonVariants({ variant: "default", size: "lg" }), "h-12 px-6 text-xs font-bold gap-2.5 shadow-sm shrink-0 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90")}
           >
-            <Flame className="h-4 w-4" aria-hidden="true" />
-            <span>Buka Formulir Lapor</span>
+            <PackageCheck className="h-4 w-4" aria-hidden="true" />
+            <span>Setor Sampah Sekarang</span>
           </Link>
         </Card>
       </div>

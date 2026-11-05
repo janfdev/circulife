@@ -1,8 +1,9 @@
 import React from "react";
 import SpeciesDirectory from "@/components/SpeciesDirectory";
 import RestorationTracker from "@/components/RestorationTracker";
+import CircularProductCatalog from "@/components/CircularProductCatalog";
 import { SPECIES_SEEDS } from "@/lib/constants";
-import { TreePine } from "lucide-react";
+import { Recycle, TreePine, Sparkles, Layers } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 export default function KonservasiPage() {
@@ -12,34 +13,50 @@ export default function KonservasiPage() {
         {/* Header */}
         <div className="border-b border-border pb-8 space-y-3">
           <Badge variant="secondary" className="gap-2 px-3.5 py-1 text-xs font-bold uppercase tracking-wider mb-1">
-            <TreePine className="h-3.5 w-3.5" aria-hidden="true" />
-            <span>Keanekaragaman Hayati & Restorasi Lingkungan</span>
+            <Recycle className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
+            <span>Ekonomi Sirkular & Konservasi Terpadu TNGC</span>
           </Badge>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-foreground leading-[1.2]">
-            Konservasi Ekosistem & Spesies Endemik Gunung Ciremai
+            Katalog Produk Olahan Sampah & Konservasi Ciremai
           </h1>
           <p className="text-sm sm:text-base text-muted-foreground max-w-3xl leading-relaxed">
-            Gunung Ciremai merupakan benteng keanekaragaman hayati pulau Jawa dengan ratusan jenis flora dan fauna endemik yang bergantung pada kelestarian hutan primer dan savana lereng.
+            Mengubah sampah jalur pendakian menjadi material konstruksi jalan setapak ramah lingkungan, pupuk persemaian bibit Saninten, dan cinderamata khas lereng oleh kelompok swadaya masyarakat.
           </p>
         </div>
 
-        {/* 1. Species Directory Section */}
-        <section aria-labelledby="species-heading">
+        {/* 1. Circular Product Catalog Section */}
+        <section aria-labelledby="circular-heading">
           <div className="mb-8 space-y-2">
             <Badge variant="outline" className="mb-1 text-xs font-bold uppercase tracking-wider text-primary border-primary/30">
-              Ensiklopedia Flora & Fauna
+              Waste-to-Value Hub
             </Badge>
-            <h2 id="species-heading" className="text-2xl sm:text-3xl font-black text-foreground">
-              Katalog Spesies Terlindungi Prioritas
+            <h2 id="circular-heading" className="text-2xl sm:text-3xl font-black text-foreground">
+              Produk Olahan Daur Ulang Mandiri Komunitas
             </h2>
             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-              Mengenal lebih dekat satwa kunci dan vegetasi alami penjaga keseimbangan ekologi TNGC.
+              Katalog resmi produk hasil daur ulang limbah pendakian yang diproduksi oleh 4 KSM mitra di posko jalur resmi.
+            </p>
+          </div>
+          <CircularProductCatalog />
+        </section>
+
+        {/* 2. Species Directory Section */}
+        <section className="pt-10 border-t border-border" aria-labelledby="species-heading">
+          <div className="mb-8 space-y-2">
+            <Badge variant="outline" className="mb-1 text-xs font-bold uppercase tracking-wider text-primary border-primary/30">
+              Flora & Fauna yang Dilindungi
+            </Badge>
+            <h2 id="species-heading" className="text-2xl sm:text-3xl font-black text-foreground">
+              Ekosistem Asli yang Kita Lindungi dari Ancaman Sampah
+            </h2>
+            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+              Sampah plastik dan kaleng mengancam habitat satwa endemik seperti Elang Jawa dan Macan Tutul. Kenali mereka dan jaga rumah mereka.
             </p>
           </div>
           <SpeciesDirectory speciesList={SPECIES_SEEDS} />
         </section>
 
-        {/* 2. Ecosystem Restoration Section */}
+        {/* 3. Ecosystem Restoration Section */}
         <section className="pt-10 border-t border-border" aria-labelledby="restoration-heading">
           <RestorationTracker />
         </section>

@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import { FireReport, TrailId, IncidentType, ReportSeverity } from "@/types";
+import { WasteDropReport, TrailId, WasteCategory, CircularTargetProduct } from "@/types";
 import { validateReportInput, generateReportId } from "@/lib/reportUtils";
 import { TRAIL_SEEDS } from "@/lib/constants";
-import { Flame, MapPin, AlertCircle, CheckCircle2, Loader2, Navigation, Copy, Check } from "lucide-react";
+import { Recycle, PackageCheck, MapPin, AlertCircle, CheckCircle2, Loader2, Navigation, Copy, Check, Sprout, Sparkles } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
 
 interface ReportFormProps {
   initialTrail?: TrailId;
-  onReportSubmitted?: (report: FireReport) => void;
+  onReportSubmitted?: (report: WasteDropReport) => void;
 }
 
 export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmitted }: ReportFormProps) {
@@ -24,8 +24,11 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
     reporterContact: "",
     trail: initialTrail,
     locationDetail: "",
-    incidentType: "SMOKE" as IncidentType,
-    severity: "MEDIUM" as ReportSeverity,
+    wasteCategory: "PLASTIC_PET" as WasteCategory,
+    weightKg: "2.5",
+    canisterCount: "2",
+    targetProduct: "PAVING_BLOCK" as CircularTargetProduct,
+    rewardChoice: "SEEDLING" as "SEEDLING" | "COMMUNITY_POINTS" | "BADGE_CERTIFICATE",
     description: "",
     lat: "",
     lng: "",
@@ -33,7 +36,7 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
 
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submittedReport, setSubmittedReport] = useState<FireReport | null>(null);
+  const [submittedReport, setSubmittedReport] = useState<WasteDropReport | null>(null);
   const [isLocating, setIsLocating] = useState(false);
   const [copiedTicket, setCopiedTicket] = useState(false);
 
@@ -71,13 +74,19 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
         ? { lat: parseFloat(formData.lat), lng: parseFloat(formData.lng) }
         : undefined;
 
-    const payload: Partial<FireReport> = {
+    const parsedWeight = parseFloat(formData.weightKg) || 1.0;
+    const parsedCanisters = parseInt(formData.canisterCount, 10) || 0;
+
+    const payload: Partial<WasteDropReport> = {
       reporterName: formData.reporterName,
       reporterContact: formData.reporterContact,
       trail: formData.trail,
       locationDetail: formData.locationDetail,
-      incidentType: formData.incidentType,
-      severity: formData.severity,
+      wasteCategory: formData.wasteCategory,
+      weightKg: parsedWeight,
+      canisterCount: parsedCanisters,
+      targetProduct: formData.targetProduct,
+      rewardChoice: formData.rewardChoice,
       description: formData.description,
       coordinates: coords,
     };
@@ -89,29 +98,32 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
       return;
     }
 
-    // Generate Ticket ID
+    // Generate Ticket ID matching CRG-YYYYMM-XXX
     const randomCounter = Math.floor(Math.random() * 800) + 100;
     const reportId = generateReportId(randomCounter);
 
-    const completeReport: FireReport = {
+    const completeReport: WasteDropReport = {
       id: reportId,
       reporterName: formData.reporterName.trim(),
       reporterContact: formData.reporterContact.trim(),
       trail: formData.trail,
       locationDetail: formData.locationDetail.trim(),
       coordinates: coords,
-      severity: formData.severity,
-      incidentType: formData.incidentType,
+      wasteCategory: formData.wasteCategory,
+      weightKg: parsedWeight,
+      canisterCount: parsedCanisters,
+      targetProduct: formData.targetProduct,
+      rewardChoice: formData.rewardChoice,
       description: formData.description.trim(),
       timestamp: new Date().toISOString(),
-      status: "PENDING",
-      adminNote: "Laporan masuk ke sistem posko. Menunggu verifikasi petugas regu jaga.",
+      status: "VERIFIED",
+      adminNote: "Setoran sampah telah diverifikasi di pos registrasi. Dialokasikan ke unit daur ulang desa.",
     };
 
     // Save to LocalStorage
     try {
       const existing = localStorage.getItem("ciremai_citizen_reports");
-      const list: FireReport[] = existing ? JSON.parse(existing) : [];
+      const list: WasteDropReport[] = existing ? JSON.parse(existing) : [];
       list.unshift(completeReport);
       localStorage.setItem("ciremai_citizen_reports", JSON.stringify(list));
     } catch {
@@ -140,8 +152,11 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
       reporterContact: "",
       trail: initialTrail,
       locationDetail: "",
-      incidentType: "SMOKE",
-      severity: "MEDIUM",
+      wasteCategory: "PLASTIC_PET",
+      weightKg: "2.5",
+      canisterCount: "2",
+      targetProduct: "PAVING_BLOCK",
+      rewardChoice: "SEEDLING",
       description: "",
       lat: "",
       lng: "",
@@ -151,27 +166,27 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
 
   if (submittedReport) {
     return (
-      <Card className="border-emerald-300 bg-emerald-50/80 p-6 sm:p-8 dark:border-emerald-900/60 dark:bg-emerald-950/30 text-foreground shadow-sm">
+      <Card className="border-emerald-300 bg-emerald-50/80 p-6 sm:p-8 dark:border-emerald-900/60 dark:bg-emerald-950/30 text-foreground shadow-sm rounded-2xl">
         <div className="flex items-center gap-3 mb-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-600 text-white">
+          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-600 text-white shadow-sm">
             <CheckCircle2 className="h-7 w-7" aria-hidden="true" />
           </div>
           <div>
             <h2 className="text-xl font-bold text-emerald-950 dark:text-emerald-100">
-              Laporan Berhasil Dikirim ke Posko TNGC
+              Setoran Sampah Berhasil Diverifikasi di Posko TNGC
             </h2>
             <p className="text-xs text-emerald-800 dark:text-emerald-300">
-              Data insiden telah dicatat dalam sistem penanganan darurat lapangan.
+              Data sampah terpilah telah dicatat dalam sistem sirkularitas TITO Ciremai Guard.
             </p>
           </div>
         </div>
 
-        <Card className="my-6 border-emerald-200 bg-white p-5 dark:border-emerald-900 dark:bg-card">
+        <Card className="my-6 border-emerald-200 bg-white p-5 dark:border-emerald-900 dark:bg-card rounded-xl">
           <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground block mb-1">
-            Nomor Tiket Pelaporan
+            Nomor Tiket Penyetoran & Daur Ulang
           </span>
           <div className="flex items-center justify-between gap-3">
-            <span className="text-2xl sm:text-3xl font-black text-foreground tabular-nums tracking-wider">
+            <span className="text-2xl sm:text-3xl font-black text-foreground tabular-nums tracking-wider font-mono">
               {submittedReport.id}
             </span>
             <Button
@@ -195,22 +210,25 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
             </Button>
           </div>
 
-          <div className="mt-4 pt-4 border-t border-border grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+          <div className="mt-4 pt-4 border-t border-border grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono">
             <div>
-              <span className="text-muted-foreground block">Pelapor :</span>
-              <span className="font-semibold">{submittedReport.reporterName}</span>
+              <span className="text-muted-foreground block">Penyetor / Pendaki :</span>
+              <span className="font-semibold text-foreground">{submittedReport.reporterName}</span>
             </div>
             <div>
-              <span className="text-muted-foreground block">Lokasi Insiden :</span>
-              <span className="font-semibold">{submittedReport.locationDetail} (Jalur {submittedReport.trail})</span>
+              <span className="text-muted-foreground block">Pos Registrasi :</span>
+              <span className="font-semibold text-foreground">Jalur {submittedReport.trail}</span>
             </div>
             <div>
-              <span className="text-muted-foreground block">Tipe Kejadian :</span>
-              <span className="font-semibold">{submittedReport.incidentType}</span>
+              <span className="text-muted-foreground block">Kategori Sampah :</span>
+              <span className="font-semibold text-foreground">{submittedReport.wasteCategory} ({submittedReport.weightKg} kg)</span>
             </div>
             <div>
-              <span className="text-muted-foreground block">Status Awal :</span>
-              <span className="font-bold text-amber-600 dark:text-amber-400">Menunggu Verifikasi Posko</span>
+              <span className="text-muted-foreground block">Reward Diterima :</span>
+              <span className="font-bold text-primary flex items-center gap-1">
+                <Sprout className="h-3.5 w-3.5" />
+                <span>Bibit Pohon Saninten Siap Tanam</span>
+              </span>
             </div>
           </div>
         </Card>
@@ -221,13 +239,13 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
             onClick={handleResetForm}
             className="h-11 px-5 text-sm font-bold shadow-sm"
           >
-            Buat Laporan Baru
+            Setor Sampah Lagi
           </Button>
           <a
             href="tel:0232613158"
             className={cn(buttonVariants({ variant: "outline" }), "h-11 px-5 text-sm font-bold")}
           >
-            Konfirmasi Telepon Posko (0232-613158)
+            Hubungi Koordinator Posko (0232-613158)
           </a>
         </div>
       </Card>
@@ -235,19 +253,19 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
   }
 
   return (
-    <Card className="p-6 sm:p-8 shadow-sm">
+    <Card className="p-6 sm:p-8 shadow-sm rounded-2xl border-border/80">
       <CardHeader className="p-0 mb-6 pb-4 border-b border-border space-y-1">
         <div className="mb-1">
-          <Badge variant="destructive" className="gap-1.5 px-2.5 py-1 text-xs font-bold uppercase tracking-wider">
-            <Flame className="h-3.5 w-3.5" aria-hidden="true" />
-            <span>Formulir Cepat Siaga Karhutla</span>
+          <Badge variant="outline" className="gap-1.5 px-2.5 py-1 text-xs font-mono font-bold uppercase tracking-wider text-primary border-primary/30">
+            <Recycle className="h-3.5 w-3.5" aria-hidden="true" />
+            <span>Formulir Penyetoran & Daur Ulang Sampah</span>
           </Badge>
         </div>
         <CardTitle className="text-xl sm:text-2xl font-black text-foreground">
-          Kirimkan Laporan Indikasi Asap atau Bahaya Hutan
+          Catat & Tukar Sampah Terpilah Gunung Ciremai
         </CardTitle>
-        <CardDescription className="text-xs sm:text-sm text-muted-foreground">
-          Laporan Anda langsung diteruskan ke regu Masyarakat Peduli Api (MPA) dan petugas piket Balai TNGC terdekat.
+        <CardDescription className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+          Setiap botol plastik, kaleng gas, dan sisa makanan yang Anda bawa turun ditimbang di pos registrasi dan dikonversi menjadi bibit pohon atau paving block komunitas.
         </CardDescription>
       </CardHeader>
 
@@ -263,7 +281,7 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
               type="text"
               value={formData.reporterName}
               onChange={(e) => setFormData({ ...formData, reporterName: e.target.value })}
-              placeholder="Contoh: Rian Anggara (Pendaki)"
+              placeholder="Contoh: Ahmad Dahlan (Pendaki)"
               aria-invalid={!!errors.reporterName}
               className={`h-11 ${errors.reporterName ? "border-destructive focus-visible:ring-destructive" : ""}`}
             />
@@ -297,11 +315,11 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
           </div>
         </div>
 
-        {/* Row 2: Trail & Incident Type */}
+        {/* Row 2: Trail & Category */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label htmlFor="trail" className="block text-xs font-bold uppercase tracking-wider text-foreground mb-1.5">
-              Jalur Pendakian / Lokasi <span className="text-destructive">*</span>
+              Jalur Pendakian / Posko <span className="text-destructive">*</span>
             </label>
             <select
               id="trail"
@@ -321,36 +339,35 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
           </div>
 
           <div>
-            <label htmlFor="incidentType" className="block text-xs font-bold uppercase tracking-wider text-foreground mb-1.5">
-              Jenis Kejadian
+            <label htmlFor="wasteCategory" className="block text-xs font-bold uppercase tracking-wider text-foreground mb-1.5">
+              Kategori Sampah Terpilah
             </label>
             <select
-              id="incidentType"
-              value={formData.incidentType}
-              onChange={(e) => setFormData({ ...formData, incidentType: e.target.value as IncidentType })}
+              id="wasteCategory"
+              value={formData.wasteCategory}
+              onChange={(e) => setFormData({ ...formData, wasteCategory: e.target.value as WasteCategory })}
               className="w-full h-11 rounded-lg border border-input bg-transparent px-3.5 text-sm text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
-              <option value="SMOKE" className="bg-popover text-popover-foreground">Kepulan Asap Mencurigakan</option>
-              <option value="ACTIVE_FIRE" className="bg-popover text-popover-foreground">Titik Api Berkobar Aktif</option>
-              <option value="LITTER_DUMP" className="bg-popover text-popover-foreground">Penumpukan Sampah / Kaleng Gas</option>
-              <option value="ILLEGAL_LOGGING" className="bg-popover text-popover-foreground">Perusakan Hutan / Penebangan Liar</option>
-              <option value="OTHER" className="bg-popover text-popover-foreground">Kejadian Lingkungan Lainnya</option>
+              <option value="PLASTIC_PET" className="bg-popover text-popover-foreground">Botol Plastik PET & Kemasan Sachet</option>
+              <option value="GAS_CANISTER" className="bg-popover text-popover-foreground">Kaleng Gas Portabel Bekas</option>
+              <option value="ORGANIC" className="bg-popover text-popover-foreground">Sampah Organik Sisa Makanan Logistik</option>
+              <option value="MIXED_ANORGANIC" className="bg-popover text-popover-foreground">Limbah Anorganik Campur Lainnya</option>
             </select>
           </div>
         </div>
 
-        {/* Row 3: Severity & Location detail */}
+        {/* Row 3: Weight, Target Product & Location detail */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label htmlFor="locationDetail" className="block text-xs font-bold uppercase tracking-wider text-foreground mb-1.5">
-              Patokan Lokasi Spesifik <span className="text-destructive">*</span>
+              Patokan Lokasi Asal Sampah <span className="text-destructive">*</span>
             </label>
             <Input
               id="locationDetail"
               type="text"
               value={formData.locationDetail}
               onChange={(e) => setFormData({ ...formData, locationDetail: e.target.value })}
-              placeholder="Contoh: Antara Pos 3 dan Pos 4 Kandang Badak"
+              placeholder="Contoh: Shelter Pos 3 Arban / Pos 4"
               aria-invalid={!!errors.locationDetail}
               className={`h-11 ${errors.locationDetail ? "border-destructive focus-visible:ring-destructive" : ""}`}
             />
@@ -363,29 +380,29 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
           </div>
 
           <div>
-            <label htmlFor="severity" className="block text-xs font-bold uppercase tracking-wider text-foreground mb-1.5">
-              Perkiraan Tingkat Ancaman
+            <label htmlFor="targetProduct" className="block text-xs font-bold uppercase tracking-wider text-foreground mb-1.5">
+              Target Pemanfaatan Daur Ulang
             </label>
             <select
-              id="severity"
-              value={formData.severity}
-              onChange={(e) => setFormData({ ...formData, severity: e.target.value as ReportSeverity })}
+              id="targetProduct"
+              value={formData.targetProduct}
+              onChange={(e) => setFormData({ ...formData, targetProduct: e.target.value as CircularTargetProduct })}
               className="w-full h-11 rounded-lg border border-input bg-transparent px-3.5 text-sm text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
-              <option value="LOW" className="bg-popover text-popover-foreground">Rendah (Sampah / Asap Dingin Sisa)</option>
-              <option value="MEDIUM" className="bg-popover text-popover-foreground">Sedang (Asap Aktif dari Semak Terisolasi)</option>
-              <option value="HIGH" className="bg-popover text-popover-foreground">Tinggi (Api Membakar Vegetasi Luas)</option>
-              <option value="CRITICAL" className="bg-popover text-popover-foreground">Kritis (Api Merambat Cepat ke Arah Tenda/Jalur)</option>
+              <option value="PAVING_BLOCK" className="bg-popover text-popover-foreground">Eco-Paving Block Jalan Setapak Desa</option>
+              <option value="UPCYCLED_METAL" className="bg-popover text-popover-foreground">Tungku Ultralight & Asbak Kaleng Gas</option>
+              <option value="COMPOST" className="bg-popover text-popover-foreground">Kompos Organik Persemaian Saninten</option>
+              <option value="ECO_SOUVENIR" className="bg-popover text-popover-foreground">Tas Etnik Anyaman Sachet Ciremai</option>
             </select>
           </div>
         </div>
 
         {/* Row 4: Coordinates (Optional with GPS helper) */}
-        <Card className="p-4 border-border/80 bg-muted/30">
+        <Card className="p-4 border-border/80 bg-muted/30 rounded-xl">
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs font-bold uppercase tracking-wider text-foreground flex items-center gap-1.5">
               <MapPin className="h-4 w-4 text-primary" aria-hidden="true" />
-              <span>Koordinat GPS (Opsional)</span>
+              <span>Koordinat GPS Lokasi Temuan (Opsional)</span>
             </span>
             <Button
               type="button"
@@ -435,14 +452,14 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
         {/* Row 5: Description */}
         <div>
           <label htmlFor="description" className="block text-xs font-bold uppercase tracking-wider text-foreground mb-1.5">
-            Deskripsi Kejadian Lapangan <span className="text-destructive">*</span>
+            Deskripsi Kejadian / Rincian Sampah Terpilah <span className="text-destructive">*</span>
           </label>
           <Textarea
             id="description"
             rows={4}
             value={formData.description}
             onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-            placeholder="Jelaskan perkiraan luas area, warna asap, arah hembusan angin, dan vegetasi yang terbakar (pinus, ilalang, cantigi)..."
+            placeholder="Jelaskan jenis sampah yang disetorkan (cth: 15 botol PET 600ml, 2 kaleng gas kompor kosong, sampah bersih tanpa sisa cairan)..."
             aria-invalid={!!errors.description}
             className={`min-h-24 ${errors.description ? "border-destructive focus-visible:ring-destructive" : ""}`}
           />
@@ -459,18 +476,17 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
           <Button
             type="submit"
             disabled={isSubmitting}
-            variant="destructive"
-            className="w-full h-12 gap-2 text-sm font-bold shadow-sm"
+            className="w-full h-12 gap-2 text-sm font-bold shadow-sm bg-primary text-primary-foreground hover:bg-primary/90"
           >
             {isSubmitting ? (
               <>
                 <Loader2 className="h-4 w-4 animate-spin" />
-                <span>Memproses Laporan...</span>
+                <span>Memproses Verifikasi Sampah...</span>
               </>
             ) : (
               <>
-                <Flame className="h-4 w-4" aria-hidden="true" />
-                <span>Kirim Laporan Darurat ke Posko</span>
+                <PackageCheck className="h-4 w-4" aria-hidden="true" />
+                <span>Kirim Laporan Darurat & Setor Sampah</span>
               </>
             )}
           </Button>

@@ -13,20 +13,21 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "CIREMAI GUARD : Digital Forest Protection & Environmental Awareness Platform",
+  title: "CIREMAI GUARD : Sentra Pemanfaatan & Sirkular Sampah Gunung Ciremai",
   description:
-    "Platform digital edukasi, mitigasi karhutla, pelaporan cepat indikasi kebakaran, dan pelestarian ekosistem kawasan Taman Nasional Gunung Ciremai (3.078 mdpl), Jawa Barat.",
+    "Platform digital sentra pemanfaatan sampah sirkular, penukaran sampah TITO, edukasi zero waste, dan pemberdayaan KSM daur ulang Taman Nasional Gunung Ciremai (3.078 mdpl), Jawa Barat.",
   keywords: [
     "Gunung Ciremai",
     "Taman Nasional Gunung Ciremai",
     "TNGC",
-    "Karhutla Ciremai",
-    "Pencegahan Kebakaran Hutan",
-    "Lapor Kebakaran Hutan",
-    "Konservasi Lingkungan",
+    "Pemanfaatan Sampah Gunung",
+    "Zero Waste Mountain",
+    "Daur Ulang Botol PET Paving Block",
+    "Kompos Sampah Organik Ciremai",
     "Jalur Palutungan",
     "Jalur Apuy",
     "Jalur Linggarjati",
+    "Jalur Sadarehe",
   ],
 };
 

@@ -1,10 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { Flame, Ban, ShieldCheck, AlertTriangle, ChevronDown, CheckCircle2, HelpCircle } from "lucide-react";
+import { Recycle, PackageCheck, Ban, Sparkles, ChevronDown, CheckCircle2, HelpCircle, Layers, Sprout } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 
 export default function SopGuidelines() {
   const [openId, setOpenId] = useState<string>("sop-1");
@@ -13,62 +12,62 @@ export default function SopGuidelines() {
     {
       id: "sop-1",
       number: "01",
-      icon: Ban,
-      category: "Larangan Keras",
-      title: "Larangan Mutlak Api Unggun & Pembakaran Sampah di Seluruh Jalur",
+      icon: PackageCheck,
+      category: "Wajib Registrasi",
+      title: "Protokol TITO (Trash In Trash Out) & Repacking Wadah Guna Ulang",
       description:
-        "Berdasarkan UU Konservasi No. 5/1990 dan SK Kepala Balai TNGC, segala bentuk perapian terbuka (open fire), api unggun kayu, maupun pembakaran sisa logistik dilarang keras di seluruh zona rimba dan jalur pendakian.",
+        "Berdasarkan SK Balai TNGC, setiap pendaki diwajibkan mencatatkan daftar bawaan logistik saat pemeriksaan tas pra-pendakian di pos awal dan membawa kembali seluruh kemasannya saat turun.",
       keyRules: [
-        "Kayu dan ranting kering di lereng Ciremai merupakan biomassa yang sangat mudah tersulut angin kencang.",
-        "Sanksi denda pidana kehutanan dan blacklist permanen di seluruh pintu registrasi pendakian Jawa Barat.",
-        "Gunakan pakaian berlapis (layering system) dan sleeping bag berstandar kenyamanan sub-zero untuk menahan dingin.",
+        "Repacking bahan makanan kering dari bungkus plastik sekali pakai ke dalam kotak makan (food container) guna ulang sebelum mendaki.",
+        "Dilarang membawa botol air sekali pakai ukuran mini (kurang dari 600 ml) dan tisu basah non-biodegradable.",
+        "Jumlah kemasan yang dibawa naik wajib cocok dengan sampah yang ditimbang saat kembali di posko registrasi.",
       ],
-      faqs: "Mengapa api unggun dilarang meski di pos camp? Udara lereng Ciremai memiliki kelembaban rendah saat malam kemarau, tiupan angin gunung dapat menerbangkan bara api sejauh ratusan meter ke semak kering.",
+      faqs: "Mengapa tisu basah dilarang? Tisu basah mengandung serat sintetis plastik poliester yang tidak terurai puluhan tahun di tanah dingin pegunungan.",
     },
     {
       id: "sop-2",
       number: "02",
-      icon: Flame,
-      category: "Prosedur Memasak",
-      title: "Prosedur Aman Penggunaan Kompor Gas Lapangan & Shelter",
+      icon: Layers,
+      category: "Pemilahan Jalur",
+      title: "SOP Pemilahan Sampah Terpadu: Clean, Dry, and Separate",
       description:
-        "Memasak makanan hangat diizinkan hanya dengan kompor gas kanister portabel bertipe ulir resmi, dengan kepatuhan penempatan di zona shelter yang terlindung dari terpaan angin lereng.",
+        "Pisahkan jenis sampah sejak di dalam tenda agar material anorganik tetap bernilai tinggi saat didaur ulang menjadi paving block dan cinderamata KSM.",
       keyRules: [
-        "Nyalakan kompor hanya di dalam shelter atau area terbuka berpasir yang bersih dari dedaunan kering.",
-        "Gunakan windshield pelindung angin untuk mencegah lidah api menjilat ilalang atau tenda sekitar.",
-        "Pastikan katup regulator tertutup rapat dan tabung telah dingin sempurna sebelum dimasukkan ke tas pendakian.",
+        "Kosongkan dan remas botol plastik PET hingga pipih guna menghemat volume trash bag pendakian.",
+        "Pisahkan sisa makanan basah ke kantong tersendiri agar tidak mengotori kaleng dan plastik daur ulang.",
+        "Keringkan sampah plastik makanan instan dari sisa minyak atau kuah sebelum dimasukkan ke kantong sampah.",
       ],
-      faqs: "Bolehkah menggunakan bahan bakar spirtus / parafin? Dilarang keras. Bahan bakar cair dan parafin padat memiliki stabilitas rendah dan rawan tumpah membakar alas tenda.",
+      faqs: "Apakah botol plastik kotor tetap diterima? Ya, namun botol bersih dan kering memiliki prioritas tinggi untuk langsung dicacah mesin ekstrusi desa.",
     },
     {
       id: "sop-3",
       number: "03",
-      icon: AlertTriangle,
-      category: "Manajemen Resiko",
-      title: "Protokol Puntung Rokok, Korek Api, dan Sampah Kaleng Gas",
+      icon: Recycle,
+      category: "Limbah Berbahaya",
+      title: "Protokol Penanganan Limbah Kaleng Gas & Asbak Saku Sachet",
       description:
-        "Puntung rokok yang masih menyala merupakan salah satu penyebab utama kebakaran savana lereng barat Ciremai saat kemarau ekstrem.",
+        "Kaleng gas kompor portabel bekas bertekanan sisa dan puntung rokok memerlukan perlakuan khusus demi keselamatan dan kebersihan jalur.",
       keyRules: [
-        "Dilarang merokok saat berjalan di jalur pendakian yang dikelilingi semak dan ilalang kering.",
-        "Matikan bara rokok sepenuhnya dengan menekan ke batu dan tetesi air hingga dingin tak berasap.",
-        "Wajib membawa asbak saku portabel (pocket ashtray) dan membawa pulang seluruh sampah kaleng gas.",
+        "Dilarang menusuk atau membakar kaleng gas di area kemping; gas sisa rawan meledak jika terkena panas.",
+        "Simpan kaleng gas kosong di kompartemen luar ransel dan serahkan langsung ke drop-box B3 di pos registrasi.",
+        "Gunakan wadah asbak saku portabel (pocket ashtray) tertutup untuk menampung puntung dan abu hingga turun ke posko.",
       ],
-      faqs: "Bagaimana cara membuang kaleng gas portabel bekas? Jangan menusuk atau melubangi kaleng gas di gunung. Bawa turun kembali ke pos registrasi untuk ditampung pada drop-box limbah B3 posko.",
+      faqs: "Apa yang dilakukan pengelola terhadap kaleng gas bekas? Kaleng dikosongkan sisa gasnya secara aman di posko lalu dilebur dan dicetak menjadi tungku ultralight.",
     },
     {
       id: "sop-4",
       number: "04",
-      icon: ShieldCheck,
-      category: "Darurat Evakuasi",
-      title: "Prosedur Penyelamatan Diri & Evakuasi Cepat Terjebak Asap",
+      icon: Ban,
+      category: "Larangan Keras",
+      title: "Larangan Mutlak Pembakaran & Penimbunan Sampah di Kawasan TNGC",
       description:
-        "Jika terperangkap dalam situasi karhutla aktif saat berada di trek elevasi tinggi, prioritaskan penyelamatan jiwa dengan mengikuti protokol lapangan posko balai.",
+        "Membakar atau mengubur sampah di area shelter, savana, maupun puncak Ciremai merupakan tindak perusakan lingkungan yang dikenakan sanksi tegas.",
       keyRules: [
-        "Jangan berlari ke arah lereng atas karena lidah api dan gelombang panas menjalar jauh lebih cepat ke punggungan puncak.",
-        "Segera bergerak melintang tegak lurus terhadap arah tiupan angin untuk keluar dari koridor asap tebal.",
-        "Basahi buff masker atau kain dengan air minum untuk melindungi saluran pernapasan dari gas karbon monoksida beracun.",
+        "Pembakaran sampah plastik menghasilkan asap beracun dioksin dan memicu risiko kobaran karhutla di semak kering lereng.",
+        "Menimbun sampah organik atau anorganik mengundang satwa babi hutan masuk ke area kemping dan merusak tanah resapan air.",
+        "Pelanggar dikenakan denda pembersihan jalur secara sukarela dan sanksi blacklist di seluruh gerbang pendakian.",
       ],
-      faqs: "Siapa yang harus pertama kali dihubungi? Hubungi Posko Balai TNGC via panggilan darurat 112 atau hotline 24 jam pos registrasi jalur tempat Anda mendaftar.",
+      faqs: "Bolehkah mengubur sisa nasi di tanah? Dilarang. Suhu dingin puncak Ciremai menghambat pembusukan dan mengubah kebiasaan mencari makan satwa liar.",
     },
   ];
 
@@ -77,13 +76,13 @@ export default function SopGuidelines() {
       {/* Header */}
       <div className="border-b border-border pb-6 space-y-2">
         <Badge variant="outline" className="text-xs font-mono font-bold uppercase tracking-wider text-primary border-primary/30">
-          Pedoman Keselamatan Hutan
+          Pedoman Sirkular Rimba
         </Badge>
         <h2 className="text-2xl sm:text-3xl font-black text-foreground tracking-tight">
-          SOP Rimba Bebas Api : Standar Resmi Pengunjung TNGC
+          SOP Gunung Bebas Sampah : Standar Resmi Pengunjung TNGC
         </h2>
         <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-          Kompilasi protokol resmi pencegahan karhutla dan tanya jawab mitigasi darurat bagi seluruh pendaki, pemandu lokal, dan peneliti.
+          Kompilasi protokol resmi pemilahan logistik, penukaran sampah TITO, dan tanya jawab pelestarian ekosistem Ciremai.
         </p>
       </div>
 

@@ -1,13 +1,17 @@
-import { FireReport, Species, TrailId } from "@/types";
+import { WasteDropReport, CircularProduct, ProductCategory, Species, TrailId, WasteImpactResult } from "@/types";
 
 /**
- * Menghasilkan ID unik laporan warga dengan format CRG-YYYYMM-XXX
+ * Menghasilkan ID unik tiket setor / laporan dengan format CRG-YYYYMM-XXX
  */
-export function generateReportId(counter: number, date: Date = new Date()): string {
+export function generateReportId(
+  counter: number,
+  date: Date = new Date(),
+  prefix: string = "CRG"
+): string {
   const year = date.getUTCFullYear();
   const month = String(date.getUTCMonth() + 1).padStart(2, "0");
   const seq = String(counter).padStart(3, "0");
-  return `CRG-${year}${month}-${seq}`;
+  return `${prefix}-${year}${month}-${seq}`;
 }
 
 export interface ReportValidationResult {
@@ -16,9 +20,9 @@ export interface ReportValidationResult {
 }
 
 /**
- * Validasi form laporan insiden / indikasi kebakaran
+ * Validasi form penyetoran sampah dan laporan warga
  */
-export function validateReportInput(input: Partial<FireReport>): ReportValidationResult {
+export function validateReportInput(input: Partial<WasteDropReport>): ReportValidationResult {
   const errors: Record<string, string> = {};
 
   if (!input.reporterName || input.reporterName.trim().length === 0) {
@@ -64,7 +68,33 @@ export function validateReportInput(input: Partial<FireReport>): ReportValidatio
 }
 
 /**
- * Filter katalog spesies flora dan fauna
+ * Filter katalog produk olahan daur ulang sampah
+ */
+export function filterCircularProducts(
+  list: CircularProduct[],
+  category: "ALL" | ProductCategory = "ALL",
+  query: string = ""
+): CircularProduct[] {
+  const q = (query || "").trim().toLowerCase();
+
+  return list.filter((item) => {
+    const matchesCategory = category === "ALL" || item.category === category;
+    if (!matchesCategory) return false;
+
+    if (!q) return true;
+
+    return (
+      item.name.toLowerCase().includes(q) ||
+      item.rawMaterial.toLowerCase().includes(q) ||
+      item.producerUnit.toLowerCase().includes(q) ||
+      item.description.toLowerCase().includes(q) ||
+      item.application.toLowerCase().includes(q)
+    );
+  });
+}
+
+/**
+ * Filter katalog spesies flora dan fauna (backward compatibility)
  */
 export function filterSpecies(
   list: Species[],
@@ -89,6 +119,53 @@ export function filterSpecies(
   });
 }
 
+/**
+ * Kalkulasi dampak sirkular dan nilai pemanfaatan sampah gunung
+ * @param plasticKg Berat sampah plastik botol PET & sachet (kg)
+ * @param organicKg Berat sampah organik sisa logistik (kg)
+ * @param canisterCount Jumlah kaleng gas portabel bekas (buah)
+ */
+export function calculateWasteImpact(
+  plasticKg: number,
+  organicKg: number,
+  canisterCount: number
+): WasteImpactResult {
+  const safePlastic = Math.max(0, plasticKg);
+  const safeOrganic = Math.max(0, organicKg);
+  const safeCanister = Math.max(0, canisterCount);
+
+  // 1 paving block membutuhkan ~1.25 kg cacahan plastik PET/sachet (~25 botol plastik)
+  const pavingBlocks = Math.floor(safePlastic * 0.8);
+
+  // 1 kg sampah organik menghasilkan ~0.45 kg pupuk kompos matang
+  const compostKg = Number((safeOrganic * 0.45).toFixed(1));
+
+  // 2 kaleng gas menghasilkan 1 unit kompor ultralight atau asbak saku
+  const canistersUpcycled = Math.floor(safeCanister / 2);
+
+  // Poin reward (1 kg plastik = 10 poin, 1 kg organik = 5 poin, 1 kaleng = 15 poin)
+  const seedlingPoints = Math.floor(safePlastic * 10 + safeOrganic * 5 + safeCanister * 15);
+
+  // Reduksi emisi CO2e (kg)
+  const co2SavedKg = Number(
+    (safePlastic * 1.82 + safeOrganic * 0.5 + safeCanister * 0.4).toFixed(2)
+  );
+
+  // Estimasi nilai ekonomi bagi bank sampah komunitas mitra desa
+  const economicValueRp = Math.round(
+    safePlastic * 4000 + safeOrganic * 2000 + safeCanister * 3000
+  );
+
+  return {
+    pavingBlocks,
+    compostKg,
+    canistersUpcycled,
+    seedlingPoints,
+    co2SavedKg,
+    economicValueRp,
+  };
+}
+
 export type FireRiskCategory = "RENDAH" | "SEDANG" | "TINGGI" | "EKSTREM";
 
 export interface FireRiskEvaluation {
@@ -99,10 +176,7 @@ export interface FireRiskEvaluation {
 }
 
 /**
- * Kalkulasi resiko kebakaran hutan berdasarkan indikator cuaca
- * @param tempCelcius Suhu permukaan lereng (°C)
- * @param humidityPct Kelembapan relatif udara (%)
- * @param windSpeedKmh Kecepatan angin (km/jam)
+ * Kalkulasi resiko kebakaran hutan berdasarkan indikator cuaca (backward compatibility)
  */
 export function calculateFireRisk(
   tempCelcius: number,
@@ -110,7 +184,6 @@ export function calculateFireRisk(
   windSpeedKmh: number,
   daysWithoutRain: number = 0
 ): FireRiskEvaluation {
-  // Indeks sederhana: Suhu tinggi + Kelembapan rendah + Angin kencang + Kemarau = resiko tinggi
   let score = 20;
 
   if (tempCelcius > 30) score += 25;

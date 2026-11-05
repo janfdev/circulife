@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { ShieldCheck, Flame, BookOpen, Trees, Radio, Menu, X, Activity } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { Recycle, PackageCheck, BookOpen, Layers, Calculator, Menu, X, CheckCircle2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
@@ -11,15 +12,23 @@ interface NavbarProps {
 }
 
 const NAV_ITEMS = [
-  { href: "/", label: "Beranda", icon: ShieldCheck },
-  { href: "/lapor", label: "Lapor Cepat", icon: Flame, alertHighlight: true },
-  { href: "/edukasi", label: "Edukasi Karhutla", icon: BookOpen },
-  { href: "/konservasi", label: "Konservasi", icon: Trees },
-  { href: "/pantau", label: "Pantau Cuaca", icon: Radio },
+  { href: "/", label: "Beranda", icon: Recycle },
+  { href: "/lapor", label: "Setor Sampah", icon: PackageCheck, alertHighlight: true },
+  { href: "/edukasi", label: "SOP Sirkular", icon: BookOpen },
+  { href: "/konservasi", label: "Produk Olahan", icon: Layers },
+  { href: "/pantau", label: "Hitung Nilai", icon: Calculator },
 ];
 
-export default function Navbar({ currentPath = "/" }: NavbarProps) {
+export default function Navbar({ currentPath }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  let pathname = "/";
+  try {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    pathname = usePathname() || "/";
+  } catch {
+    pathname = "/";
+  }
+  const activePath = currentPath ?? pathname;
 
   // Close mobile menu on Escape key
   useEffect(() => {
@@ -34,7 +43,7 @@ export default function Navbar({ currentPath = "/" }: NavbarProps) {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/80 bg-background/95 backdrop-blur-md transition-colors">
-      {/* Futuristic Telemetry HUD Strip with comfortable padding */}
+      {/* Telemetry Strip */}
       <div className="hidden sm:block border-b border-border/60 bg-muted/40 px-4 sm:px-6 lg:px-8 py-2 text-[11px] text-muted-foreground font-mono">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <div className="flex items-center gap-3">
@@ -43,7 +52,7 @@ export default function Navbar({ currentPath = "/" }: NavbarProps) {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
               </span>
-              <span>TELEMETRI AKTIF : TNGC</span>
+              <span>SENTRA SIRKULAR : TNGC</span>
             </span>
             <span className="text-border">|</span>
             <span className="tabular-nums">108°24&apos; BT, 06°53&apos; LS</span>
@@ -51,9 +60,9 @@ export default function Navbar({ currentPath = "/" }: NavbarProps) {
             <span className="tabular-nums">Atap Tertinggi Jawa Barat</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-amber-700 dark:text-amber-300 font-semibold flex items-center gap-1.5">
-              <Activity className="h-3 w-3" aria-hidden="true" />
-              <span>SIAGA KEMARAU LERENG</span>
+            <span className="text-primary font-semibold flex items-center gap-1.5">
+              <CheckCircle2 className="h-3 w-3 text-primary" aria-hidden="true" />
+              <span>4 DROP-POINT SAMPAH AKTIF</span>
             </span>
           </div>
         </div>
@@ -66,7 +75,7 @@ export default function Navbar({ currentPath = "/" }: NavbarProps) {
           className="flex items-center gap-3 transition-opacity hover:opacity-90 focus:outline-none"
         >
           <div className="flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-sm ring-1 ring-primary/20">
-            <ShieldCheck className="h-5 w-5 sm:h-6 sm:w-6 text-primary-foreground" aria-hidden="true" />
+            <Recycle className="h-5 w-5 sm:h-6 sm:w-6 text-primary-foreground" aria-hidden="true" />
           </div>
           <div className="flex flex-col">
             <span className="text-base font-black tracking-tight text-foreground sm:text-lg">
@@ -84,7 +93,7 @@ export default function Navbar({ currentPath = "/" }: NavbarProps) {
         <nav className="hidden items-center gap-1.5 md:flex" aria-label="Navigasi Utama">
           {NAV_ITEMS.map((item) => {
             const Icon = item.icon;
-            const isActive = currentPath === item.href;
+            const isActive = activePath === item.href;
 
             if (item.alertHighlight) {
               return (
@@ -93,8 +102,8 @@ export default function Navbar({ currentPath = "/" }: NavbarProps) {
                   href={item.href}
                   className={`ml-2 inline-flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-bold uppercase tracking-wider transition-all focus-visible:ring-2 ${
                     isActive
-                      ? "bg-destructive text-destructive-foreground shadow-sm"
-                      : "bg-destructive/10 text-destructive hover:bg-destructive/20 dark:bg-destructive/20 dark:text-red-300 dark:hover:bg-destructive/30"
+                      ? "bg-primary text-primary-foreground shadow-sm"
+                      : "bg-primary/10 text-primary hover:bg-primary/20 dark:bg-primary/20 dark:text-emerald-300 dark:hover:bg-primary/30"
                   }`}
                 >
                   <Icon className="h-4 w-4" aria-hidden="true" />
@@ -120,7 +129,7 @@ export default function Navbar({ currentPath = "/" }: NavbarProps) {
           })}
         </nav>
 
-        {/* Mobile Menu Toggle (Min Tap Target 44px) */}
+        {/* Mobile menu button */}
         <div className="flex items-center md:hidden">
           <Button
             type="button"
@@ -140,32 +149,37 @@ export default function Navbar({ currentPath = "/" }: NavbarProps) {
         </div>
       </div>
 
-      {/* Mobile Drawer Navigation */}
+      {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div
           data-testid="mobile-menu"
-          className="border-b border-border bg-card px-4 pb-6 pt-3 shadow-lg md:hidden"
+          className="border-b border-border bg-card px-4 pb-6 pt-3 shadow-lg md:hidden animate-in slide-in-from-top-2 duration-200"
         >
           <nav className="flex flex-col gap-2" aria-label="Navigasi Mobile">
             {NAV_ITEMS.map((item) => {
               const Icon = item.icon;
-              const isActive = currentPath === item.href;
+              const isActive = activePath === item.href;
 
               return (
                 <Link
                   key={item.href}
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`flex h-12 items-center gap-3 rounded-lg px-4 text-base font-semibold transition-colors ${
+                  className={`flex h-12 items-center justify-between rounded-xl px-4 text-sm font-bold transition-all ${
                     isActive
-                      ? "bg-primary text-primary-foreground"
-                      : item.alertHighlight
-                      ? "bg-destructive/10 text-destructive dark:bg-destructive/20 dark:text-red-300"
+                      ? "bg-primary text-primary-foreground shadow-sm"
                       : "text-foreground hover:bg-muted"
                   }`}
                 >
-                  <Icon className="h-5 w-5 shrink-0" aria-hidden="true" />
-                  <span>{item.label}</span>
+                  <div className="flex items-center gap-3">
+                    <Icon className="h-5 w-5 opacity-90" aria-hidden="true" />
+                    <span>{item.label}</span>
+                  </div>
+                  {item.alertHighlight && (
+                    <Badge variant="secondary" className="text-[10px] font-mono uppercase tracking-wider">
+                      Drop & Redeem
+                    </Badge>
+                  )}
                 </Link>
               );
             })}

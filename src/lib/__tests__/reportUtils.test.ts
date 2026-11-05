@@ -3,9 +3,11 @@ import {
   generateReportId,
   validateReportInput,
   filterSpecies,
+  filterCircularProducts,
+  calculateWasteImpact,
   calculateFireRisk,
 } from "../reportUtils";
-import { SPECIES_SEEDS } from "../constants";
+import { SPECIES_SEEDS, CIRCULAR_PRODUCTS } from "../constants";
 
 describe("reportUtils", () => {
   describe("generateReportId", () => {
@@ -34,9 +36,7 @@ describe("reportUtils", () => {
         reporterContact: "123",
         trail: "PALUTUNGAN",
         locationDetail: "Pos 2",
-        description: "Ada kepulan asap",
-        incidentType: "SMOKE",
-        severity: "MEDIUM",
+        description: "Penyetoran sampah plastik",
       });
       expect(result.isValid).toBe(false);
       expect(result.errors.reporterContact).toBe("Nomor kontak minimal 8 digit angka aktif");
@@ -48,9 +48,7 @@ describe("reportUtils", () => {
         reporterContact: "081234567890",
         trail: "PALUTUNGAN",
         locationDetail: "Sekitar Pos 2 menuju Tanjakan Asoy",
-        description: "Terlihat kepulan asap putih dekat rumpun ilalang",
-        incidentType: "SMOKE",
-        severity: "MEDIUM",
+        description: "Menyetorkan 3 kg botol plastik PET terpilah",
       });
       expect(result.isValid).toBe(true);
       expect(Object.keys(result.errors).length).toBe(0);
@@ -62,13 +60,52 @@ describe("reportUtils", () => {
         reporterContact: "081234567890",
         trail: "APUY",
         locationDetail: "Pos 4",
-        description: "Api kecil di semak",
-        incidentType: "ACTIVE_FIRE",
-        severity: "HIGH",
+        description: "Pengumpulan kaleng gas",
         coordinates: { lat: 100, lng: 200 }, // invalid lat/lng for Indonesia
       });
       expect(invalidCoords.isValid).toBe(false);
       expect(invalidCoords.errors.coordinates).toBeDefined();
+    });
+  });
+
+  describe("calculateWasteImpact", () => {
+    it("should accurately calculate paving blocks, compost, and CO2 reduction", () => {
+      const impact = calculateWasteImpact(10, 8, 4);
+
+      // 10 kg plastic * 0.8 = 8 paving blocks
+      expect(impact.pavingBlocks).toBe(8);
+      // 8 kg organic * 0.45 = 3.6 kg compost
+      expect(impact.compostKg).toBe(3.6);
+      // 4 canisters / 2 = 2 upcycled units
+      expect(impact.canistersUpcycled).toBe(2);
+      // points: 10*10 + 8*5 + 4*15 = 100 + 40 + 60 = 200
+      expect(impact.seedlingPoints).toBe(200);
+      // CO2 reduction > 0
+      expect(impact.co2SavedKg).toBeGreaterThan(15);
+      // Economic value > 0
+      expect(impact.economicValueRp).toBeGreaterThan(50000);
+    });
+
+    it("should handle zero or negative inputs safely without throwing", () => {
+      const impact = calculateWasteImpact(0, -2, -1);
+      expect(impact.pavingBlocks).toBe(0);
+      expect(impact.compostKg).toBe(0);
+      expect(impact.canistersUpcycled).toBe(0);
+      expect(impact.seedlingPoints).toBe(0);
+    });
+  });
+
+  describe("filterCircularProducts", () => {
+    it("should filter products by category", () => {
+      const pavings = filterCircularProducts(CIRCULAR_PRODUCTS, "PAVING", "");
+      expect(pavings.length).toBeGreaterThanOrEqual(1);
+      expect(pavings.every((p) => p.category === "PAVING")).toBe(true);
+    });
+
+    it("should search circular products by material or name", () => {
+      const results = filterCircularProducts(CIRCULAR_PRODUCTS, "ALL", "paving");
+      expect(results.length).toBeGreaterThanOrEqual(1);
+      expect(results[0].name).toContain("Paving");
     });
   });
 
@@ -99,11 +136,9 @@ describe("reportUtils", () => {
 
   describe("calculateFireRisk", () => {
     it("should compute risk level based on weather parameters", () => {
-      // High temp, low humidity, high wind -> EKSTREM or TINGGI
       const severe = calculateFireRisk(34, 30, 25);
       expect(["TINGGI", "EKSTREM"]).toContain(severe.level);
 
-      // Mild temp, high humidity, low wind -> RENDAH
       const mild = calculateFireRisk(20, 85, 5);
       expect(mild.level).toBe("RENDAH");
     });

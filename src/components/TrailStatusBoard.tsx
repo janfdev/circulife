@@ -1,9 +1,10 @@
 import React from "react";
 import Link from "next/link";
 import { TrailCondition } from "@/types";
-import { MapPin, AlertTriangle, ShieldCheck, Clock, Navigation } from "lucide-react";
+import { MapPin, AlertTriangle, ShieldCheck, Clock, Navigation, Recycle, Package } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -19,15 +20,15 @@ export default function TrailStatusBoard({ trails }: TrailStatusBoardProps) {
           <div className="space-y-2">
             <div className="inline-flex items-center gap-2 mb-1">
               <Badge variant="outline" className="gap-2 px-3.5 py-1 text-xs font-mono font-bold uppercase tracking-wider text-primary border-primary/30">
-                <ShieldCheck className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
-                <span>Telemetri Posko Jalur Lapangan</span>
+                <Recycle className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
+                <span>Drop-Point & Bank Sampah 4 Jalur</span>
               </Badge>
             </div>
             <h2 id="trail-status-heading" className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-foreground">
               Status 4 Jalur Pendakian Resmi Ciremai
             </h2>
             <p className="text-sm text-muted-foreground max-w-2xl leading-relaxed">
-              Informasi langsung kondisi jalur resmi Taman Nasional Gunung Ciremai beserta tingkat kerawanan karhutla per posko.
+              Fasilitas penampungan sampah terpilah (TITO), kapasitas drop-point, serta tingkat kesiapsiagaan posko di seluruh pintu masuk TNGC.
             </p>
           </div>
           <Link
@@ -38,7 +39,7 @@ export default function TrailStatusBoard({ trails }: TrailStatusBoardProps) {
             )}
           >
             <Navigation className="h-4 w-4" aria-hidden="true" />
-            <span>Buka Dashboard Cuaca Selengkapnya</span>
+            <span>Kalkulator Nilai Sampah</span>
           </Link>
         </div>
 
@@ -47,6 +48,7 @@ export default function TrailStatusBoard({ trails }: TrailStatusBoardProps) {
             const isOpen = trail.openStatus === "OPEN";
             const isRestricted = trail.openStatus === "RESTRICTED";
             const isHighRisk = trail.fireRiskLevel === "TINGGI" || trail.fireRiskLevel === "EKSTREM";
+            const fillPct = Math.min(100, Math.round((trail.wasteCollectedKg / trail.wasteCapacityKg) * 100));
 
             return (
               <Card
@@ -92,7 +94,7 @@ export default function TrailStatusBoard({ trails }: TrailStatusBoardProps) {
                   </CardHeader>
 
                   <CardContent className="p-5 space-y-4">
-                    {/* Metrics HUD Panel with generous padding */}
+                    {/* Metrics HUD Panel */}
                     <div className="grid grid-cols-2 gap-3 text-xs border border-border/60 p-3 bg-muted/40 rounded-xl font-mono">
                       <div>
                         <span className="text-muted-foreground block text-[10px] uppercase font-bold tracking-wider">Panjang Trek</span>
@@ -102,6 +104,21 @@ export default function TrailStatusBoard({ trails }: TrailStatusBoardProps) {
                         <span className="text-muted-foreground block text-[10px] uppercase font-bold tracking-wider">Elevasi</span>
                         <span className="font-bold text-foreground tabular-nums text-sm mt-0.5 block">{trail.elevationRange}</span>
                       </div>
+                    </div>
+
+                    {/* Waste Drop Point Capacity */}
+                    <div className="p-3 rounded-xl border border-border/60 bg-background/80 space-y-2">
+                      <div className="flex items-center justify-between text-[11px] font-mono">
+                        <span className="flex items-center gap-1.5 text-muted-foreground font-semibold">
+                          <Package className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
+                          <span>Kapasitas Drop-Point</span>
+                        </span>
+                        <span className="font-bold text-foreground tabular-nums">{trail.wasteCollectedKg} / {trail.wasteCapacityKg} kg</span>
+                      </div>
+                      <Progress value={fillPct} className="h-1.5" />
+                      <span className="text-[10px] font-mono text-muted-foreground block">
+                        Mitra: {trail.partnerUnit}
+                      </span>
                     </div>
 
                     {/* Notes */}
@@ -120,7 +137,7 @@ export default function TrailStatusBoard({ trails }: TrailStatusBoardProps) {
                     href={`/lapor?trail=${trail.id}`}
                     className={cn(buttonVariants({ variant: "link", size: "sm" }), "h-auto p-0 font-bold text-primary hover:underline text-[11px] font-mono")}
                   >
-                    Lapor di Jalur Ini
+                    Setor di Posko Ini
                   </Link>
                 </CardFooter>
               </Card>

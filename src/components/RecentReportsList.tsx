@@ -1,15 +1,15 @@
 "use client";
 
 import React, { useState } from "react";
-import { FireReport } from "@/types";
-import { MapPin, Clock, Search, ShieldCheck, FileText } from "lucide-react";
+import { WasteDropReport } from "@/types";
+import { MapPin, Clock, Search, ShieldCheck, FileText, Recycle, Layers, Sprout, Flame } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 interface RecentReportsListProps {
-  reports: FireReport[];
+  reports: WasteDropReport[];
 }
 
 export default function RecentReportsList({ reports }: RecentReportsListProps) {
@@ -17,15 +17,11 @@ export default function RecentReportsList({ reports }: RecentReportsListProps) {
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredReports = reports.filter((r) => {
-    // Type filter
-    if (filterType === "FIRE" && r.incidentType !== "SMOKE" && r.incidentType !== "ACTIVE_FIRE") {
-      return false;
-    }
-    if (filterType === "LITTER" && r.incidentType !== "LITTER_DUMP") {
-      return false;
-    }
-    if (filterType === "LOGGING" && r.incidentType !== "ILLEGAL_LOGGING") {
-      return false;
+    // Category filter
+    if (filterType !== "ALL") {
+      if (r.wasteCategory !== filterType && r.incidentType !== filterType) {
+        return false;
+      }
     }
 
     // Search query filter
@@ -43,45 +39,51 @@ export default function RecentReportsList({ reports }: RecentReportsListProps) {
     return true;
   });
 
-  const getStatusBadge = (status: FireReport["status"]) => {
+  const getStatusBadge = (status: WasteDropReport["status"]) => {
     switch (status) {
       case "PENDING":
         return {
-          label: "Menunggu Verifikasi",
+          label: "Menunggu Penimbangan",
           variant: "secondary" as const,
           cls: "border-amber-500/30 bg-amber-500/10 text-amber-800 dark:text-amber-300",
         };
       case "INVESTIGATING":
         return {
-          label: "Investigasi Lapangan",
+          label: "Proses Pencacahan / Olah",
           variant: "outline" as const,
           cls: "border-blue-500/30 bg-blue-500/10 text-blue-700 dark:text-blue-300",
         };
       case "VERIFIED":
         return {
-          label: "Terverifikasi / Ditangani",
+          label: "Terverifikasi di Posko",
           variant: "secondary" as const,
-          cls: "border-purple-500/30 bg-purple-500/10 text-purple-700 dark:text-purple-300",
+          cls: "border-emerald-500/30 bg-emerald-500/10 text-emerald-800 dark:text-emerald-300",
         };
       case "RESOLVED":
         return {
-          label: "Selesai / Terkendali",
+          label: "Produk Selesai Daur Ulang",
           variant: "outline" as const,
           cls: "border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300",
+        };
+      default:
+        return {
+          label: "Tercatat",
+          variant: "outline" as const,
+          cls: "",
         };
     }
   };
 
-  const getSeverityBadge = (severity: FireReport["severity"]) => {
-    switch (severity) {
-      case "LOW":
-        return { label: "Rendah", variant: "secondary" as const, cls: "text-muted-foreground" };
-      case "MEDIUM":
-        return { label: "Sedang", variant: "outline" as const, cls: "border-amber-500/30 text-amber-800 dark:text-amber-300" };
-      case "HIGH":
-        return { label: "Tinggi", variant: "destructive" as const, cls: "" };
-      case "CRITICAL":
-        return { label: "Kritis", variant: "destructive" as const, cls: "font-black tracking-wide" };
+  const getCategoryBadge = (category?: string) => {
+    switch (category) {
+      case "PLASTIC_PET":
+        return { label: "Plastik PET", cls: "bg-primary/10 text-primary border-primary/20" };
+      case "GAS_CANISTER":
+        return { label: "Kaleng Gas", cls: "bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-500/20" };
+      case "ORGANIC":
+        return { label: "Sampah Organik", cls: "bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-500/20" };
+      default:
+        return { label: "Campur / Lainnya", cls: "bg-muted text-muted-foreground border-border" };
     }
   };
 
@@ -89,42 +91,42 @@ export default function RecentReportsList({ reports }: RecentReportsListProps) {
     <div className="space-y-6">
       {/* Search & Filter Header */}
       <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between">
-        <div className="flex flex-wrap gap-1.5 p-1 rounded-lg bg-muted border border-border">
+        <div className="flex flex-wrap gap-1.5 p-1 rounded-xl bg-muted border border-border">
           <Button
             type="button"
             variant={filterType === "ALL" ? "default" : "ghost"}
             size="sm"
             onClick={() => setFilterType("ALL")}
-            className="h-8 text-xs font-bold uppercase tracking-wider"
+            className="h-8 text-xs font-bold uppercase tracking-wider rounded-lg"
           >
-            Semua Laporan ({reports.length})
+            Semua Setoran ({reports.length})
           </Button>
           <Button
             type="button"
-            variant={filterType === "FIRE" ? "default" : "ghost"}
+            variant={filterType === "PLASTIC_PET" ? "default" : "ghost"}
             size="sm"
-            onClick={() => setFilterType("FIRE")}
-            className="h-8 text-xs font-bold uppercase tracking-wider"
+            onClick={() => setFilterType("PLASTIC_PET")}
+            className="h-8 text-xs font-bold uppercase tracking-wider rounded-lg"
           >
-            Asap / Api
+            Plastik PET
           </Button>
           <Button
             type="button"
-            variant={filterType === "LITTER" ? "default" : "ghost"}
+            variant={filterType === "GAS_CANISTER" ? "default" : "ghost"}
             size="sm"
-            onClick={() => setFilterType("LITTER")}
-            className="h-8 text-xs font-bold uppercase tracking-wider"
+            onClick={() => setFilterType("GAS_CANISTER")}
+            className="h-8 text-xs font-bold uppercase tracking-wider rounded-lg"
           >
-            Sampah
+            Kaleng Gas
           </Button>
           <Button
             type="button"
-            variant={filterType === "LOGGING" ? "default" : "ghost"}
+            variant={filterType === "ORGANIC" ? "default" : "ghost"}
             size="sm"
-            onClick={() => setFilterType("LOGGING")}
-            className="h-8 text-xs font-bold uppercase tracking-wider"
+            onClick={() => setFilterType("ORGANIC")}
+            className="h-8 text-xs font-bold uppercase tracking-wider rounded-lg"
           >
-            Perusakan
+            Organik
           </Button>
         </div>
 
@@ -135,48 +137,48 @@ export default function RecentReportsList({ reports }: RecentReportsListProps) {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Cari nomor tiket atau lokasi..."
-            className="h-9 pl-9 pr-3 text-xs"
+            className="h-9 pl-9 pr-3 text-xs rounded-xl"
           />
         </div>
       </div>
 
       {/* Reports Feed */}
       {filteredReports.length === 0 ? (
-        <Card className="border-dashed p-12 text-center shadow-none">
+        <Card className="border-dashed p-12 text-center shadow-none rounded-2xl">
           <FileText className="mx-auto h-8 w-8 text-muted-foreground mb-3" aria-hidden="true" />
-          <p className="text-sm font-semibold text-foreground">Tidak Ada Laporan yang Cocok</p>
+          <p className="text-sm font-semibold text-foreground">Tidak Ada Catatan Setoran Sampah</p>
           <p className="text-xs text-muted-foreground mt-1">
             {searchQuery
-              ? `Tidak ditemukan laporan dengan kata kunci "${searchQuery}". Coba periksa nomor tiket.`
-              : "Belum ada laporan untuk kategori ini saat ini."}
+              ? `Tidak ditemukan data setoran dengan kata kunci "${searchQuery}". Periksa nomor tiket.`
+              : "Belum ada catatan setoran sampah untuk kategori ini."}
           </p>
         </Card>
       ) : (
         <div className="grid grid-cols-1 gap-4">
           {filteredReports.map((report) => {
             const status = getStatusBadge(report.status);
-            const severity = getSeverityBadge(report.severity);
+            const catBadge = getCategoryBadge(report.wasteCategory);
 
             return (
               <Card
                 key={report.id}
-                className="p-5 shadow-sm transition-all hover:border-primary/50 space-y-3"
+                className="p-5 shadow-sm transition-all hover:border-primary/50 space-y-3 rounded-2xl bg-card"
               >
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <div className="flex items-center gap-2">
                     <span className="font-mono text-sm font-black text-foreground tabular-nums tracking-wide">
                       {report.id}
                     </span>
-                    <Badge variant={status.variant} className={`text-[11px] font-bold uppercase tracking-wider ${status.cls}`}>
+                    <Badge variant={status.variant} className={`text-[11px] font-mono font-bold uppercase tracking-wider ${status.cls}`}>
                       {status.label}
                     </Badge>
                   </div>
 
                   <div className="flex items-center gap-2">
-                    <Badge variant={severity.variant} className={`text-[11px] font-semibold uppercase ${severity.cls}`}>
-                      Ancaman: {severity.label}
+                    <Badge variant="outline" className={`text-[11px] font-mono font-semibold uppercase ${catBadge.cls}`}>
+                      {catBadge.label}
                     </Badge>
-                    <div className="flex items-center gap-1 text-[11px] text-muted-foreground tabular-nums">
+                    <div className="flex items-center gap-1 text-[11px] text-muted-foreground tabular-nums font-mono">
                       <Clock className="h-3 w-3" aria-hidden="true" />
                       <span>{report.timestamp}</span>
                     </div>
@@ -187,7 +189,7 @@ export default function RecentReportsList({ reports }: RecentReportsListProps) {
                   <div className="flex items-center gap-1.5 text-xs font-bold text-foreground mb-1">
                     <MapPin className="h-3.5 w-3.5 text-primary shrink-0" aria-hidden="true" />
                     <span>
-                      {report.locationDetail} (Jalur {report.trail})
+                      {report.locationDetail} (Pos Jalur {report.trail})
                     </span>
                   </div>
                   <p className="text-xs text-muted-foreground leading-relaxed">
@@ -196,10 +198,10 @@ export default function RecentReportsList({ reports }: RecentReportsListProps) {
                 </div>
 
                 {report.adminNote && (
-                  <div className="rounded-lg bg-muted/50 p-3 border border-border/60 text-xs">
-                    <span className="font-bold text-foreground mb-0.5 flex items-center gap-1">
+                  <div className="rounded-xl bg-muted/50 p-3 border border-border/60 text-xs">
+                    <span className="font-bold text-foreground mb-0.5 flex items-center gap-1 font-mono text-[11px] uppercase">
                       <ShieldCheck className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
-                      <span>Catatan Posko Balai :</span>
+                      <span>Verifikasi Posko Registrasi :</span>
                     </span>
                     <p className="text-muted-foreground leading-normal">{report.adminNote}</p>
                   </div>

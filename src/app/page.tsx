@@ -4,7 +4,7 @@ import HeroSection from "@/components/HeroSection";
 import TrailStatusBoard from "@/components/TrailStatusBoard";
 import CampaignActionSection from "@/components/CampaignActionSection";
 import { TRAIL_SEEDS } from "@/lib/constants";
-import { Flame, ShieldAlert, PhoneCall, Radio, CheckCircle, ArrowRight } from "lucide-react";
+import { Recycle, PackageCheck, PhoneCall, Radio, CheckCircle, ArrowRight, Sprout } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -23,7 +23,7 @@ export default function HomePage() {
       {/* 3. Conservation Action Initiatives (BagUI-Inspired Bento Grid Block) */}
       <CampaignActionSection />
 
-      {/* 4. Ecological Defense Dispatch CTA Block (Inspired by BagUI CTA & Dispatch Patterns) */}
+      {/* 4. Circular Economy Mission Dispatch CTA Block (Inspired by BagUI CTA Patterns) */}
       <section className="bg-gradient-to-b from-primary to-primary/95 text-primary-foreground py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-t border-border relative overflow-hidden">
         {/* Subtle radial glow overlay */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_120%,rgba(27,196,131,0.18),transparent)] pointer-events-none" />
@@ -35,33 +35,33 @@ export default function HomePage() {
                 <div className="inline-flex flex-wrap items-center justify-center lg:justify-start gap-2">
                   <Badge variant="outline" className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-300 border-emerald-400/30 rounded-md px-3 py-1 gap-1.5">
                     <Radio className="h-3.5 w-3.5 animate-pulse" aria-hidden="true" />
-                    <span>Sistem Siaga Bencana Karhutla & Darurat Hutan</span>
+                    <span>Inisiatif Zero Waste Gunung Ciremai</span>
                   </Badge>
                   <span className="text-xs font-mono text-primary-foreground/70 hidden sm:inline">
-                    Posko Induk Kuningan & Majalengka
+                    Drop Point 4 Jalur Resmi
                   </span>
                 </div>
 
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.15] text-primary-foreground">
-                  Melihat Titik Asap atau Perusakan Hutan di Jalur Pendakian?
+                  Bawa Turun Sampah Pendakian & Tukarkan Jadi Manfaat Nyata
                 </h2>
 
                 <p className="text-sm sm:text-base text-primary-foreground/85 leading-relaxed">
-                  Laporan cepat Anda diteruskan langsung ke regu patroli Masyarakat Peduli Api (MPA) dan pos registrasi terdekat. Setiap menit sangat berharga untuk mencegah api merambat ke kanopi hutan primer puncak.
+                  Setiap botol plastik PET, kaleng gas, dan sisa makanan yang Anda bawa turun ditimbang di pos registrasi dan diolah menjadi paving block jalan setapak desa serta bibit pohon Saninten oleh KSM lokal lereng.
                 </p>
 
                 <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2 text-xs font-mono text-emerald-200">
                   <div className="flex items-center gap-1.5">
                     <CheckCircle className="h-4 w-4 text-emerald-400" aria-hidden="true" />
-                    <span>Deteksi Koordinat GPS Otomatis</span>
+                    <span>Konversi Paving Block Mandiri</span>
                   </div>
                   <div className="flex items-center gap-1.5">
                     <CheckCircle className="h-4 w-4 text-emerald-400" aria-hidden="true" />
-                    <span>Tiket Audit Pelaporan Terbuka</span>
+                    <span>Tukar Bibit Saninten Siap Tanam</span>
                   </div>
                   <div className="flex items-center gap-1.5">
                     <CheckCircle className="h-4 w-4 text-emerald-400" aria-hidden="true" />
-                    <span>Respon Lapangan 24 Jam</span>
+                    <span>100% Dikelola KSM Desa Penyangga</span>
                   </div>
                 </div>
               </div>
@@ -70,24 +70,24 @@ export default function HomePage() {
                 <Link
                   href="/lapor"
                   className={cn(
-                    buttonVariants({ variant: "destructive", size: "lg" }),
-                    "h-13 px-8 text-xs font-mono font-bold uppercase tracking-wider gap-2.5 shadow-lg rounded-xl hover:scale-[1.02] transition-transform"
+                    buttonVariants({ variant: "default", size: "lg" }),
+                    "h-13 px-8 text-xs font-mono font-bold uppercase tracking-wider gap-2.5 shadow-lg rounded-xl bg-background text-foreground hover:bg-background/90 hover:scale-[1.02] transition-transform"
                   )}
                 >
-                  <Flame className="h-5 w-5" aria-hidden="true" />
-                  <span>Kirim Laporan Cepat Warga</span>
+                  <PackageCheck className="h-5 w-5 text-primary" aria-hidden="true" />
+                  <span>Setor & Timbang Sampah</span>
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
 
                 <a
                   href="tel:0232613158"
                   className={cn(
-                    buttonVariants({ variant: "secondary", size: "lg" }),
-                    "h-13 px-8 text-xs font-mono font-bold uppercase tracking-wider gap-2.5 shadow-md rounded-xl bg-background/95 text-foreground hover:bg-background border border-border"
+                    buttonVariants({ variant: "outline", size: "lg" }),
+                    "h-13 px-8 text-xs font-mono font-bold uppercase tracking-wider gap-2.5 shadow-md rounded-xl border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10"
                   )}
                 >
-                  <PhoneCall className="h-4 w-4 text-primary" aria-hidden="true" />
-                  <span>Telepon Posko : 0232-613158</span>
+                  <PhoneCall className="h-4 w-4" aria-hidden="true" />
+                  <span>Posko Balai : 0232-613158</span>
                 </a>
               </div>
             </div>
