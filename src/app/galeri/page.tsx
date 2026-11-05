@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { CircuLifeMark } from "@/components/CircuLifeLogo";
 import {
   CIRCULIFE_ARTICLES,
   CIRCULIFE_GALLERY,
@@ -43,7 +44,7 @@ export default function GaleriPage() {
       <section className="relative py-16 sm:py-24 border-b border-border bg-gradient-to-b from-primary/10 via-background to-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/20 bg-primary/10 text-primary text-xs font-mono font-bold uppercase tracking-wider">
-            <BookOpen className="h-3.5 w-3.5" />
+            <CircuLifeMark className="h-4 w-4" />
             <span>Pusat Konten, Artikel & Galeri Transformasi</span>
           </div>
 

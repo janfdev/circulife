@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { CircuLifeMark } from "@/components/CircuLifeLogo";
 import { Recycle, PackageCheck, AlertCircle, ArrowDown, Calculator, MapPin, Sparkles, TrendingUp, Layers, CheckCircle2 } from "lucide-react";
 import { CIRCULIFE_INFO } from "@/lib/constants";
 import { buttonVariants } from "@/components/ui/button";
@@ -34,7 +35,7 @@ export default function HeroSection() {
           <div className="lg:col-span-7 space-y-6 sm:space-y-8">
             <div className="space-y-3">
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-primary flex items-center gap-2">
-                <Recycle className="h-4 w-4 text-primary animate-pulse" aria-hidden="true" />
+                <CircuLifeMark className="h-4 w-4" />
                 <span>Ekosistem Sirkular Sampah Terintegrasi</span>
               </span>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-foreground leading-[1.18]">

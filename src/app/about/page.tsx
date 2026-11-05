@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { CircuLifeMark, CircuLifeLogo } from "@/components/CircuLifeLogo";
 import {
   Recycle,
   Target,
@@ -21,7 +22,7 @@ import { cn } from "@/lib/utils";
 import { CIRCULIFE_INFO } from "@/lib/constants";
 
 export const metadata = {
-  title: "Tentang Kami | CircuLife - Digital Zero Waste & Waste-to-Value Hub",
+  title: "Tentang Kami | CircuLife : Digital Zero Waste & Waste-to-Value Hub",
   description:
     "Mengenal visi, misi, dan ekosistem CircuLife dalam merevolusi pengelolaan sampah menjadi produk bernilai tinggi untuk kompetisi EcoDigital.",
 };
@@ -137,6 +138,84 @@ export default function AboutPage() {
                 </li>
               </ul>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Filosofi Identitas & Logo Mark CircuLife */}
+      <section className="py-16 sm:py-20 border-b border-border bg-gradient-to-b from-card/30 to-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          <div className="text-center max-w-3xl mx-auto space-y-3">
+            <Badge variant="outline" className="font-mono text-xs uppercase border-primary/30 text-primary">
+              Sistem Identitas Visual
+            </Badge>
+            <h2 className="text-2xl sm:text-4xl font-black text-foreground tracking-tight">
+              Filosofi Logo & Makna Geometri Sirkularitas
+            </h2>
+            <p className="text-sm sm:text-base text-muted-foreground">
+              Konstruksi visual CircuLife dirancang secara matematis merepresentasikan siklus daur ulang tanpa akhir (closed-loop) dan pertumbuhan kehidupan baru.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            {/* Logo Presentation Tile */}
+            <div className="lg:col-span-5 flex flex-col items-center justify-center p-8 sm:p-12 rounded-3xl bg-card border border-border/80 shadow-md relative overflow-hidden group">
+              <div className="absolute inset-0 bg-radial-gradient from-primary/10 via-transparent to-transparent opacity-60 group-hover:opacity-100 transition-opacity pointer-events-none" />
+              <div className="h-32 w-32 sm:h-40 sm:w-40 rounded-3xl bg-background border-2 border-primary/30 flex items-center justify-center shadow-lg transition-transform group-hover:scale-105">
+                <CircuLifeMark className="h-24 w-24 sm:h-28 sm:w-28" />
+              </div>
+              <div className="mt-6 text-center space-y-1">
+                <span className="text-xl font-black tracking-tight text-foreground font-sans block">
+                  CIRCULIFE
+                </span>
+                <span className="text-xs font-mono font-semibold tracking-wider text-primary uppercase block">
+                  Closed-Loop Vector Mark v1.0
+                </span>
+              </div>
+            </div>
+
+            {/* Geometric Anatomy Cards */}
+            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="p-5 rounded-2xl bg-card border border-border/80 space-y-2">
+                <span className="text-xs font-mono font-bold uppercase text-primary block">
+                  01. Kurva Möbius Huruf "C"
+                </span>
+                <h4 className="text-sm font-bold text-foreground">Alur Tertutup Closed-Loop</h4>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Garis melengkung kontinu melambangkan rantai pasok sampah tanpa kebocoran: dari residu hulu kembali menjadi bahan baku bernilai.
+                </p>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-card border border-border/80 space-y-2">
+                <span className="text-xs font-mono font-bold uppercase text-primary block">
+                  02. Tunas Biosfer (Sprout Node)
+                </span>
+                <h4 className="text-sm font-bold text-foreground">Kelahiran Nilai & Energi</h4>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Ruang negatif di tengah membentuk siluet daun bertumbuh, mengilustrasikan pupuk bio-kasgot dan ekosistem hijau yang pulih.
+                </p>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-card border border-border/80 space-y-2">
+                <span className="text-xs font-mono font-bold uppercase text-primary block">
+                  03. Inti Biokatalis Putih
+                </span>
+                <h4 className="text-sm font-bold text-foreground">Titik Presisi Telemetri</h4>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Pusat lingkaran putih melambangkan transparansi penimbangan digital, pencatatan berat akurat, dan integritas data warga.
+                </p>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-card border border-border/80 space-y-2">
+                <span className="text-xs font-mono font-bold uppercase text-primary block">
+                  04. Palet Civic Forest
+                </span>
+                <h4 className="text-sm font-bold text-foreground">Harmoni Hutan & Telemetri</h4>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Kombinasi Deep Canopy (#0E4436) dan Telemetry Emerald (#1BC483) memberikan kontras tinggi memenuhi standar aksesibilitas WCAG AAA.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

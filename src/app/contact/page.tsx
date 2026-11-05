@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { CircuLifeMark } from "@/components/CircuLifeLogo";
 import {
   Mail,
   Phone,
@@ -205,13 +206,18 @@ export default function ContactPage() {
             {/* Right 5 cols: Direct Contact Info & Network Drop Point */}
             <div className="lg:col-span-5 space-y-6">
               <Card className="rounded-3xl border-border bg-card shadow-sm p-6 space-y-6">
-                <div className="space-y-1">
-                  <Badge variant="outline" className="font-mono text-xs uppercase border-primary/30 text-primary">
-                    Pusat Operasional
-                  </Badge>
-                  <CardTitle className="text-lg font-black text-foreground">
-                    Sentra Koordinasi Sirkular Nasional
-                  </CardTitle>
+                <div className="flex items-start gap-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-card border border-border/80 shadow-sm ring-1 ring-primary/20 shrink-0">
+                    <CircuLifeMark className="h-8 w-8" />
+                  </div>
+                  <div className="space-y-1">
+                    <Badge variant="outline" className="font-mono text-xs uppercase border-primary/30 text-primary">
+                      Pusat Operasional
+                    </Badge>
+                    <CardTitle className="text-lg font-black text-foreground">
+                      Sentra Koordinasi Sirkular Nasional
+                    </CardTitle>
+                  </div>
                 </div>
 
                 <div className="space-y-4 text-xs">
@@ -220,7 +226,7 @@ export default function ContactPage() {
                     <div>
                       <span className="font-bold text-foreground block font-mono">Kantor Sekretariat:</span>
                       <p className="text-muted-foreground mt-0.5 leading-relaxed">
-                        Jl. Lingkungan Resik No. 12, Kompleks Sentra Inovasi Lingkungan, Cirebon - Jawa Barat 45153
+                        Jl. Lingkungan Resik No. 12, Kompleks Sentra Inovasi Lingkungan, Jawa Barat 45153
                       </p>
                     </div>
                   </div>

@@ -48,7 +48,7 @@ export function CircuLifeMark({ className }: { className?: string }) {
   );
 }
 
-export default function CircuLifeLogo({
+export function CircuLifeLogo({
   className,
   size = "md",
   showWordmark = false,
@@ -87,3 +87,5 @@ export default function CircuLifeLogo({
     </div>
   );
 }
+
+export default CircuLifeLogo;
