@@ -15,11 +15,10 @@ import {
   X,
   CheckCircle2,
   Sparkles,
-  Sun,
-  Moon,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 
 interface NavbarProps {
   currentPath?: string;
@@ -36,7 +35,6 @@ export const NAV_ITEMS = [
 
 export default function Navbar({ currentPath }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isDark, setIsDark] = useState(true);
   let pathname = "/";
   try {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -45,25 +43,6 @@ export default function Navbar({ currentPath }: NavbarProps) {
     pathname = "/";
   }
   const activePath = currentPath ?? pathname;
-
-  useEffect(() => {
-    if (typeof document !== "undefined") {
-      setIsDark(document.documentElement.classList.contains("dark"));
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    if (typeof document === "undefined") return;
-    const newDark = !document.documentElement.classList.contains("dark");
-    if (newDark) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
-    setIsDark(newDark);
-  };
 
   // Close mobile menu on Escape key
   useEffect(() => {
@@ -164,38 +143,22 @@ export default function Navbar({ currentPath }: NavbarProps) {
           })}
 
           {/* Theme Toggle Button Desktop */}
-          <Button
-            type="button"
-            variant="ghost"
-            size="icon"
-            onClick={toggleTheme}
-            aria-label={isDark ? "Ganti ke mode terang" : "Ganti ke mode gelap"}
-            className="ml-1 h-9 w-9 rounded-xl text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
-          >
-            {isDark ? (
-              <Sun className="h-4 w-4 text-emerald-400" aria-hidden="true" />
-            ) : (
-              <Moon className="h-4 w-4 text-slate-700" aria-hidden="true" />
-            )}
-          </Button>
+          <AnimatedThemeToggler
+            variant="circle"
+            duration={450}
+            aria-label="Toggle tema gelap atau terang"
+            className="ml-1 h-9 w-9 rounded-xl flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted transition-colors border border-border/50 [&_svg]:h-4 [&_svg]:w-4 dark:[&_svg]:text-emerald-400"
+          />
         </nav>
 
         {/* Mobile menu and theme buttons */}
         <div className="flex items-center gap-2 md:hidden">
-          <Button
-            type="button"
-            variant="ghost"
-            size="icon"
-            onClick={toggleTheme}
-            aria-label={isDark ? "Ganti ke mode terang" : "Ganti ke mode gelap"}
-            className="h-10 w-10 rounded-lg text-muted-foreground"
-          >
-            {isDark ? (
-              <Sun className="h-4 w-4 text-emerald-400" aria-hidden="true" />
-            ) : (
-              <Moon className="h-4 w-4 text-slate-700" aria-hidden="true" />
-            )}
-          </Button>
+          <AnimatedThemeToggler
+            variant="circle"
+            duration={450}
+            aria-label="Toggle tema gelap atau terang"
+            className="h-10 w-10 rounded-lg flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted transition-colors border border-border/50 [&_svg]:h-4 [&_svg]:w-4 dark:[&_svg]:text-emerald-400"
+          />
 
           <Button
             type="button"

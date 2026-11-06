@@ -193,3 +193,7 @@
 [aria-expanded="true"] [data-slot="accordion-trigger-icon"] {
   transform: rotate(180deg);
 }
+  ::view-transition-old(root), ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+}
