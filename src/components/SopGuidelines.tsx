@@ -132,7 +132,7 @@ export default function SopGuidelines() {
                 </div>
 
                 <div
-                  className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-border transition-transform duration-300 ${
+                  className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-border transition-transform duration-350 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                     isOpen ? "rotate-180 bg-primary/10 text-primary border-primary/30" : "text-muted-foreground"
                   }`}
                   aria-hidden="true"
@@ -141,38 +141,44 @@ export default function SopGuidelines() {
                 </div>
               </button>
 
-              {/* Accordion Content Body */}
-              {isOpen && (
-                <div className="px-6 pb-6 pt-0 border-t border-border/40 mt-2 space-y-5 animate-in fade-in-50 duration-200">
-                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed pt-4">
-                    {item.description}
-                  </p>
-
-                  <div className="p-4 rounded-xl bg-muted/40 border border-border/60 space-y-3 font-mono">
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-foreground block">
-                      Aturan Wajib Lapangan :
-                    </span>
-                    <ul className="space-y-2 text-xs text-muted-foreground">
-                      {item.keyRules.map((rule, rIdx) => (
-                        <li key={rIdx} className="flex items-start gap-2">
-                          <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden="true" />
-                          <span className="leading-relaxed">{rule}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="p-4 rounded-xl bg-primary/5 border border-primary/20 space-y-1.5">
-                    <div className="flex items-center gap-2 text-primary font-bold text-xs font-mono uppercase tracking-wider">
-                      <HelpCircle className="h-4 w-4 shrink-0" aria-hidden="true" />
-                      <span>F.A.Q Lapangan :</span>
-                    </div>
-                    <p className="text-xs text-muted-foreground leading-relaxed">
-                      {item.faqs}
+              {/* Accordion Content Body with Smooth Expand & Collapse */}
+              <div
+                className={`grid transition-[grid-template-rows,opacity] duration-350 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                  isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0 pointer-events-none"
+                }`}
+              >
+                <div className="overflow-hidden">
+                  <div className="px-6 pb-6 pt-0 border-t border-border/40 mt-2 space-y-5">
+                    <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed pt-4">
+                      {item.description}
                     </p>
+
+                    <div className="p-4 rounded-xl bg-muted/40 border border-border/60 space-y-3 font-mono">
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-foreground block">
+                        Aturan Wajib Lapangan :
+                      </span>
+                      <ul className="space-y-2 text-xs text-muted-foreground">
+                        {item.keyRules.map((rule, rIdx) => (
+                          <li key={rIdx} className="flex items-start gap-2">
+                            <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden="true" />
+                            <span className="leading-relaxed">{rule}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="p-4 rounded-xl bg-primary/5 border border-primary/20 space-y-1.5">
+                      <div className="flex items-center gap-2 text-primary font-bold text-xs font-mono uppercase tracking-wider">
+                        <HelpCircle className="h-4 w-4 shrink-0" aria-hidden="true" />
+                        <span>F.A.Q Lapangan :</span>
+                      </div>
+                      <p className="text-xs text-muted-foreground leading-relaxed">
+                        {item.faqs}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              )}
+              </div>
             </Card>
           );
         })}
