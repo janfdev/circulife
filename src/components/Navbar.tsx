@@ -19,6 +19,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
+import { AnnouncementBanner } from "@/components/blocks/announcement/AnnouncementBanner";
 
 interface NavbarProps {
   currentPath?: string;
@@ -57,30 +58,8 @@ export default function Navbar({ currentPath }: NavbarProps) {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/80 bg-background/95 backdrop-blur-md transition-colors">
-      {/* Telemetry Strip */}
-      <div className="hidden sm:block border-b border-border/60 bg-muted/40 px-4 sm:px-6 lg:px-8 py-2 text-[11px] text-muted-foreground font-mono">
-        <div className="mx-auto flex max-w-7xl items-center justify-between">
-          <div className="flex items-center gap-3">
-            <span className="flex items-center gap-1.5 font-bold text-foreground">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-              </span>
-              <span>CIRCULIFE HUB : ZERO WASTE</span>
-            </span>
-            <span className="text-border">|</span>
-            <span className="tabular-nums">184.6 TON SAMPAH TERKELOLA</span>
-            <span className="text-border">|</span>
-            <span className="tabular-nums">132.8 TON REDUKSI CO2e</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-primary font-semibold flex items-center gap-1.5">
-              <CheckCircle2 className="h-3 w-3 text-primary" aria-hidden="true" />
-              <span>24 DROP-POINT NASIONAL AKTIF</span>
-            </span>
-          </div>
-        </div>
-      </div>
+      {/* Dynamic Announcement Banner (uipkge.dev) */}
+      <AnnouncementBanner variant="interactive-ticker" />
 
       <div className="mx-auto flex h-16 sm:h-18 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand & Identity */}
