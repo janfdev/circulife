@@ -33,7 +33,7 @@ export default function CampaignActionSection() {
         {/* Bento Grid layout inspired by BagUI Feature blocks */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
           {/* Bento Item 1: Alur Plastik PET & Sachet (Featured Wide Block - 7 cols) */}
-          <Card className="lg:col-span-7 flex flex-col justify-between rounded-2xl border border-border/80 bg-card shadow-sm hover:shadow-md transition-all duration-300 hover:border-primary/50 overflow-hidden group">
+          <Card className="lg:col-span-7 flex flex-col justify-between rounded-2xl border border-border/80 bg-card shadow-sm hover:shadow-md transition-all duration-300 hover:border-primary/50 overflow-hidden group glow-card">
             <CardHeader className="p-6 sm:p-8 pb-4 border-b border-border/40 bg-muted/15">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary ring-1 ring-primary/20 group-hover:scale-105 transition-transform">
@@ -91,7 +91,7 @@ export default function CampaignActionSection() {
           </Card>
 
           {/* Bento Item 2: Alur Logam Kaleng Gas (5 cols) */}
-          <Card className="lg:col-span-5 flex flex-col justify-between rounded-2xl border border-border/80 bg-card shadow-sm hover:shadow-md transition-all duration-300 hover:border-primary/50 overflow-hidden group">
+          <Card className="lg:col-span-5 flex flex-col justify-between rounded-2xl border border-border/80 bg-card shadow-sm hover:shadow-md transition-all duration-300 hover:border-primary/50 overflow-hidden group glow-card">
             <CardHeader className="p-6 sm:p-8 pb-4 border-b border-border/40 bg-muted/15">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600 ring-1 ring-amber-500/20 group-hover:scale-105 transition-transform">
@@ -143,7 +143,7 @@ export default function CampaignActionSection() {
           </Card>
 
           {/* Bento Item 3: Alur Organik Biokonversi Kasgot (Full Width 12 cols) */}
-          <Card className="lg:col-span-12 rounded-2xl border border-border/80 bg-gradient-to-r from-card via-card to-primary/5 shadow-sm hover:shadow-md transition-all duration-300 hover:border-primary/50 overflow-hidden p-6 sm:p-8">
+          <Card className="lg:col-span-12 rounded-2xl border border-border/80 bg-gradient-to-r from-card via-card to-primary/5 shadow-sm hover:shadow-md transition-all duration-300 hover:border-primary/50 overflow-hidden p-6 sm:p-8 glow-card">
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
               <div className="flex items-start gap-4">
                 <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary ring-1 ring-primary/20">

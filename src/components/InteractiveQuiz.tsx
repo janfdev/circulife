@@ -74,12 +74,12 @@ export default function InteractiveQuiz({ questions }: InteractiveQuizProps) {
             Hasil Uji Kesiapsiagaan
           </Badge>
           <CardTitle className="text-2xl sm:text-3xl font-black text-foreground">
-            {isPass ? "Lulus : Duta Rimba Siaga Api Ciremai" : "Perlu Pendalaman Materi Konservasi"}
+            {isPass ? "Lulus : Duta Lingkungan Sirkular CircuLife" : "Perlu Pendalaman Materi Konservasi"}
           </CardTitle>
-          <p className="text-sm text-muted-foreground mt-2 max-w-md mx-auto">
+          <p className="text-sm text-muted-foreground leading-relaxed">
             {isPass
-              ? "Luar biasa! Pemahaman Anda mengenai mitigasi kebakaran hutan dan etika pendakian di lereng Ciremai sangat baik."
-              : "Tetap semangat! Pelajari kembali SOP Rimba Bebas Api sebelum melakukan pendakian ke kawasan puncak Ciremai."}
+              ? "Luar biasa! Pemahaman Anda mengenai mitigasi pencemaran limbah dan etika pengelolaan sampah sirkular sangat baik."
+              : "Tetap semangat! Pelajari kembali SOP CircuLife sebelum melakukan pemilahan dan penyetoran ke drop-point."}
           </p>
         </div>
 

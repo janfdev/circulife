@@ -120,7 +120,7 @@ export default function GaleriPage() {
               {CIRCULIFE_GALLERY.map((item) => (
                 <Card
                   key={item.id}
-                  className="rounded-3xl border-border bg-card overflow-hidden shadow-sm hover:shadow-md transition-all group flex flex-col justify-between"
+                  className="rounded-3xl border-border bg-card overflow-hidden shadow-sm hover:shadow-md transition-all group flex flex-col justify-between glow-card"
                 >
                   <div>
                     {/* Visual Media Header */}
@@ -214,7 +214,7 @@ export default function GaleriPage() {
               {filteredArticles.map((article) => (
                 <Card
                   key={article.id}
-                  className="rounded-3xl border-border bg-card overflow-hidden hover:border-primary/40 transition-colors shadow-sm flex flex-col justify-between group"
+                  className="rounded-3xl border-border bg-card overflow-hidden hover:border-primary/40 transition-colors shadow-sm flex flex-col justify-between group glow-card"
                 >
                   {article.imageUrl && (
                     <div className="h-48 w-full bg-muted overflow-hidden relative border-b border-border/60">

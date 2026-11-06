@@ -23,7 +23,7 @@ export default function EdukasiPage() {
             Edukasi Zero Waste Rimba & Kuis Sirkularitas
           </h1>
           <p className="text-sm sm:text-base text-muted-foreground max-w-3xl leading-relaxed">
-            Menjaga kebersihan dan kelestarian ekosistem Gunung Ciremai dimulai dari manajemen logistik pendaki. Pelajari protokol pemilahan sampah TITO dan uji wawasan Anda sebelum mendaki.
+            Menjaga kebersihan dan kelestarian ekosistem lingkungan dimulai dari manajemen logistik mandiri. Pelajari protokol pemilahan sampah TITO dan uji wawasan Anda sebelum menyetorkan sampah.
           </p>
         </div>
 

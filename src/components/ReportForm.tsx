@@ -262,10 +262,10 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
           </Badge>
         </div>
         <CardTitle className="text-xl sm:text-2xl font-black text-foreground">
-          Catat & Tukar Sampah Terpilah Gunung Ciremai
+          Catat & Tukar Sampah Terpilah CircuLife
         </CardTitle>
         <CardDescription className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-          Setiap botol plastik, kaleng gas, dan sisa makanan yang Anda bawa turun ditimbang di pos registrasi dan dikonversi menjadi bibit pohon atau paving block komunitas.
+          Setiap botol plastik, kaleng gas, dan sisa makanan yang Anda bawa ditimbang di pos registrasi dan dikonversi menjadi bibit pohon atau paving block komunitas.
         </CardDescription>
       </CardHeader>
 
@@ -391,8 +391,8 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
             >
               <option value="PAVING_BLOCK" className="bg-popover text-popover-foreground">Eco-Paving Block Jalan Setapak Desa</option>
               <option value="UPCYCLED_METAL" className="bg-popover text-popover-foreground">Tungku Ultralight & Asbak Kaleng Gas</option>
-              <option value="COMPOST" className="bg-popover text-popover-foreground">Kompos Organik Persemaian Saninten</option>
-              <option value="ECO_SOUVENIR" className="bg-popover text-popover-foreground">Tas Etnik Anyaman Sachet Ciremai</option>
+              <option value="COMPOST" className="bg-popover text-popover-foreground">Kompos Organik Persemaian Bibit</option>
+              <option value="ECO_SOUVENIR" className="bg-popover text-popover-foreground">Tas Etnik Anyaman Sachet Ramah Lingkungan</option>
             </select>
           </div>
         </div>

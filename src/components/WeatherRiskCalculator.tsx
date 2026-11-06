@@ -80,7 +80,7 @@ export default function WeatherRiskCalculator() {
             </Badge>
           </div>
           <CardDescription className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-            Hitung potensi produk olahan bernilai ekonomi dan reduksi karbon dari sampah yang Anda bawa turun dari Gunung Ciremai.
+            Hitung potensi produk olahan bernilai ekonomi dan reduksi karbon dari sampah terpilah yang Anda setorkan ke sentra CircuLife.
           </CardDescription>
         </CardHeader>
 
@@ -266,7 +266,7 @@ export default function WeatherRiskCalculator() {
             </Badge>
           </div>
           <CardDescription className="text-xs text-muted-foreground">
-            Kalkulasi dinamis indeks kemudahan kebakaran berdasarkan kelembapan serasah dan angin lereng Ciremai.
+            Kalkulasi dinamis indeks kemudahan kebakaran berdasarkan kelembapan serasah dan angin sentra lingkungan.
           </CardDescription>
         </CardHeader>
 

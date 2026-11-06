@@ -57,7 +57,7 @@ export function validateReportInput(input: Partial<WasteDropReport>): ReportVali
       errors.coordinates = "Koordinat harus berupa angka valid";
     } else if (lat < -11 || lat > 6 || lng < 95 || lng > 141) {
       // Diluar rentang Indonesia
-      errors.coordinates = "Koordinat harus berada dalam wilayah Indonesia (kawasan Gunung Ciremai)";
+      errors.coordinates = "Koordinat harus berada dalam wilayah Indonesia";
     }
   }
 

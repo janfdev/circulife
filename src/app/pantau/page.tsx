@@ -19,10 +19,10 @@ export default function PantauPage() {
             <span>Kalkulator Sirkular & Pemantauan Lingkungan</span>
           </Badge>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-foreground leading-[1.2]">
-            Hitung Nilai Sampah, Reduksi Emisi & Pantau Iklim Lereng
+            Hitung Nilai Sampah, Reduksi Emisi & Pantau Kesiapan Sentra
           </h1>
           <p className="text-sm sm:text-base text-muted-foreground max-w-3xl leading-relaxed">
-            Hitung potensi konversi sampah botol plastik dan sisa makanan menjadi paving block serta pupuk kompos, sekaligus pantau indeks kekeringan dan cuaca lereng Ciremai.
+            Hitung potensi konversi sampah botol plastik dan sisa makanan menjadi paving block serta pupuk kompos, sekaligus pantau indikator kapasitas dan cuaca di seluruh sentra mitra CircuLife.
           </p>
         </div>
 
@@ -44,10 +44,10 @@ export default function PantauPage() {
             </div>
             <div className="space-y-1">
               <h3 className="text-base sm:text-lg font-black text-foreground">
-                Membawa Turun Sampah dari Jalur Pendakian Ciremai?
+                Membawa Timbulan Sampah Terpilah ke Drop-Point?
               </h3>
               <AlertDescription className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                Timbang dan catat setoran sampah Anda di pos registrasi terdekat. Tukarkan dengan bibit pohon Saninten atau sertifikat pendaki lestari.
+                Timbang dan catat setoran sampah Anda di posko registrasi terdekat. Tukarkan dengan bibit pohon penghijauan atau poin reward produk sirkular CircuLife.
               </AlertDescription>
             </div>
           </div>

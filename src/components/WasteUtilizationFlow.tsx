@@ -70,8 +70,12 @@ export default function WasteUtilizationFlow() {
           </p>
         </div>
 
-        {/* 4 Steps Stepper Navigation (BagUI Horizontal Stepper) */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+        {/* 4 Steps Stepper Navigation (BagUI Horizontal Stepper with Connected Rail) */}
+        <div className="relative">
+          {/* Subtle connecting rail behind steps on desktop */}
+          <div className="hidden md:block absolute top-1/2 left-8 right-8 h-0.5 -translate-y-1/2 bg-border/60 -z-0" aria-hidden="true" />
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 relative z-10">
           {WASTE_FLOW_STAGES.map((stage) => {
             const isActive = stage.step === activeStep;
             const isCompleted = stage.step < activeStep;
@@ -84,14 +88,14 @@ export default function WasteUtilizationFlow() {
                 className={cn(
                   "p-3.5 sm:p-5 rounded-2xl border text-left transition-all relative overflow-hidden flex flex-col justify-between group",
                   isActive
-                    ? "border-primary bg-card shadow-md ring-2 ring-primary/20"
-                    : "border-border/80 bg-card/60 hover:border-primary/40 hover:bg-card"
+                    ? "border-primary bg-card shadow-lg ring-2 ring-primary/30 glow-card"
+                    : "border-border/80 bg-card/70 hover:border-primary/50 hover:bg-card"
                 )}
               >
                 {/* Active Indicator Bar */}
                 {isActive && (
                   <div
-                    className="absolute top-0 left-0 right-0 h-1 bg-primary"
+                    className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-emerald-400 to-primary"
                     aria-hidden="true"
                   />
                 )}
@@ -100,9 +104,9 @@ export default function WasteUtilizationFlow() {
                   <div className="flex items-center justify-between">
                     <span
                       className={cn(
-                        "h-8 w-8 rounded-xl flex items-center justify-center font-mono font-bold text-xs transition-colors",
+                        "h-8 w-8 rounded-xl flex items-center justify-center font-mono font-bold text-xs transition-colors shadow-xs",
                         isActive
-                          ? "bg-primary text-primary-foreground"
+                          ? "bg-primary text-primary-foreground ring-2 ring-primary/40"
                           : isCompleted
                           ? "bg-primary/20 text-primary"
                           : "bg-muted text-muted-foreground group-hover:text-foreground"
@@ -115,8 +119,9 @@ export default function WasteUtilizationFlow() {
                       )}
                     </span>
 
-                    <span className="text-[10px] font-mono font-bold uppercase text-muted-foreground">
-                      Langkah {stage.step}/4
+                    <span className="text-[10px] font-mono font-bold uppercase text-muted-foreground flex items-center gap-1">
+                      {isActive && <span className="h-1.5 w-1.5 rounded-full bg-primary animate-ping" />}
+                      <span>Langkah {stage.step}/4</span>
                     </span>
                   </div>
 
@@ -150,10 +155,11 @@ export default function WasteUtilizationFlow() {
               </button>
             );
           })}
+          </div>
         </div>
 
         {/* Active Stage Detailed Bento Presentation (BagUI Presentation Card) */}
-        <Card className="rounded-3xl border-border bg-card shadow-lg overflow-hidden">
+        <Card className="rounded-3xl border-border bg-card/95 shadow-xl overflow-hidden glow-card">
           <CardHeader className="p-6 sm:p-8 border-b border-border/60 bg-muted/20">
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div className="flex items-center gap-3">

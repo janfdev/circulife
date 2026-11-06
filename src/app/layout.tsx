@@ -94,11 +94,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className={cn("scroll-smooth", poppins.variable, "font-sans")}>
+    <html lang="id" className={cn("dark scroll-smooth", poppins.variable, "font-sans")} suppressHydrationWarning>
       <head>
         <meta name="theme-color" content="#0E4436" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='light'){document.documentElement.classList.remove('dark')}else{document.documentElement.classList.add('dark')}}catch(e){}})();`,
+          }}
+        />
       </head>
       <body className="antialiased flex flex-col min-h-screen font-sans bg-background text-foreground">
         <a href="#main-content" className="skip-link">

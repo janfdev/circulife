@@ -59,7 +59,7 @@ export default function RestorationTracker() {
           Peta Perkembangan Restorasi Lahan Bekas Karhutla
         </h2>
         <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-          Pantauan nyata reboisasi pohon endemik di 3 zona rehabilitasi kritis Balai Taman Nasional Gunung Ciremai.
+          Pantauan nyata reboisasi pohon endemik di 3 zona rehabilitasi kritis mitra komunitas CircuLife.
         </p>
       </div>
 
