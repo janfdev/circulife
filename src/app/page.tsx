@@ -1,9 +1,12 @@
 import React from "react";
 import Link from "next/link";
 import HeroSection from "@/components/HeroSection";
+import WasteImpactSimulator from "@/components/WasteImpactSimulator";
 import WasteUtilizationFlow from "@/components/WasteUtilizationFlow";
-import TrailStatusBoard from "@/components/TrailStatusBoard";
+import EnvironmentalComparisonSlider from "@/components/EnvironmentalComparisonSlider";
 import CampaignActionSection from "@/components/CampaignActionSection";
+import TrailStatusBoard from "@/components/TrailStatusBoard";
+import HomeFaqSection from "@/components/HomeFaqSection";
 import { TRAIL_SEEDS, CIRCULIFE_INFO } from "@/lib/constants";
 import { Recycle, PackageCheck, PhoneCall, Radio, CheckCircle, ArrowRight, Sprout, Sparkles } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -13,21 +16,30 @@ import { cn } from "@/lib/utils";
 export default function HomePage() {
   return (
     <div className="flex flex-col">
-      {/* 1. Hero Section */}
+      {/* 1. Hero Section with Biosphere Console & Mini Telemetry */}
       <HeroSection />
 
-      {/* 2. Interactive Waste-to-Value Utilization Flow (Core Feature) */}
+      {/* 2. Interactive Waste-to-Value & Carbon Reduction Simulator */}
+      <WasteImpactSimulator />
+
+      {/* 3. Interactive Waste-to-Value Utilization Flow (4-Stage Core Process) */}
       <WasteUtilizationFlow />
 
-      {/* 3. Conservation Action Initiatives (BagUI-Inspired Bento Grid Block) */}
+      {/* 4. Interactive Before-After Environmental Restoration Split Slider */}
+      <EnvironmentalComparisonSlider />
+
+      {/* 5. Conservation Action Initiatives (Bento Grid 3 Circular Pillars) */}
       <CampaignActionSection />
 
-      {/* 4. Drop-Point & Bank Sampah Status Board (Anchor: #jalur-status) */}
+      {/* 6. Drop-Point & Bank Sampah Status Board (Anchor: #jalur-status) */}
       <div id="jalur-status">
         <TrailStatusBoard trails={TRAIL_SEEDS} />
       </div>
 
-      {/* 5. Circular Economy Mission Dispatch CTA Block (Inspired by BagUI CTA Patterns) */}
+      {/* 7. Interactive Accordion FAQ & Operational Transparency */}
+      <HomeFaqSection />
+
+      {/* 8. Circular Economy Mission Dispatch CTA Block */}
       <section className="bg-gradient-to-b from-primary to-primary/95 text-primary-foreground py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-t border-border relative overflow-hidden">
         {/* Subtle radial glow overlay */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_120%,rgba(27,196,131,0.18),transparent)] pointer-events-none" />

@@ -107,8 +107,8 @@ export default function HeroSection() {
                 <Layers className="h-5 w-5 text-primary" aria-hidden="true" />
                 <span>Pelajari Alur Pemanfaatan</span>
               </a>
-              <Link
-                href="/pantau"
+              <a
+                href="#simulator-dampak"
                 className={cn(
                   buttonVariants({ variant: "ghost", size: "lg" }),
                   "h-13 px-5 text-sm font-bold inline-flex items-center justify-center gap-2 rounded-xl text-muted-foreground hover:text-foreground"
@@ -116,7 +116,7 @@ export default function HeroSection() {
               >
                 <Calculator className="h-4 w-4" aria-hidden="true" />
                 <span>Simulator Nilai</span>
-              </Link>
+              </a>
             </div>
 
             {/* Footprint Highlights */}
