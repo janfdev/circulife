@@ -70,7 +70,7 @@ export default function TrailStatusBoard({ trails }: TrailStatusBoardProps) {
                         }`}
                       >
                         <span className="h-1.5 w-1.5 rounded-full bg-current animate-pulse" aria-hidden="true" />
-                        {isOpen ? "Jalur Dibuka" : isRestricted ? "Jalur Terbatas" : "Jalur Ditutup"}
+                        {isOpen ? "Posko Buka" : isRestricted ? "Kapasitas Terbatas" : "Posko Tutup"}
                       </Badge>
 
                       <Badge
@@ -116,9 +116,17 @@ export default function TrailStatusBoard({ trails }: TrailStatusBoardProps) {
                         <span className="font-bold text-foreground tabular-nums">{trail.wasteCollectedKg} / {trail.wasteCapacityKg} kg</span>
                       </div>
                       <Progress value={fillPct} className="h-1.5" />
-                      <span className="text-[10px] font-mono text-muted-foreground block">
-                        Mitra: {trail.partnerUnit}
-                      </span>
+                      <div className="flex items-center justify-between text-[10px] font-mono text-muted-foreground">
+                        <span className="truncate max-w-[140px]">Mitra: {trail.partnerUnit}</span>
+                        <span className={cn(
+                          "px-1.5 py-0.5 rounded text-[9px] font-bold uppercase shrink-0",
+                          trail.dropPointStatus === "SIAP_TERIMA"
+                            ? "bg-emerald-500/10 text-emerald-700 dark:text-emerald-300"
+                            : "bg-amber-500/10 text-amber-700 dark:text-amber-300"
+                        )}>
+                          {trail.dropPointStatus === "SIAP_TERIMA" ? "Siap Terima" : "Distribusi Logistik"}
+                        </span>
+                      </div>
                     </div>
 
                     {/* Notes */}

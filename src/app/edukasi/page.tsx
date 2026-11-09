@@ -20,7 +20,7 @@ export default function EdukasiPage() {
             <span>Pusat Edukasi Sirkularitas & Pengurangan Sampah</span>
           </Badge>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-foreground leading-[1.2]">
-            Edukasi Zero Waste Rimba & Kuis Sirkularitas
+            Edukasi Zero Waste & Kuis Sirkularitas Komunitas
           </h1>
           <p className="text-sm sm:text-base text-muted-foreground max-w-3xl leading-relaxed">
             Menjaga kebersihan dan kelestarian ekosistem lingkungan dimulai dari manajemen logistik mandiri. Pelajari protokol pemilahan sampah TITO dan uji wawasan Anda sebelum menyetorkan sampah.
@@ -36,7 +36,7 @@ export default function EdukasiPage() {
         <section className="pt-10 border-t border-border" aria-labelledby="quiz-section">
           <div className="mb-8 space-y-2">
             <Badge variant="outline" className="mb-1 text-xs font-mono font-bold uppercase tracking-wider text-primary border-primary/30">
-              Uji Wawasan Rimba
+              Kuis Literasi Sirkularitas
             </Badge>
             <h2 id="quiz-section" className="text-2xl sm:text-3xl font-black text-foreground">
               Kuis Pengetahuan Pengolahan Sampah & Daur Ulang

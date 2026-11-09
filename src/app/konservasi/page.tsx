@@ -34,7 +34,7 @@ export default function KonservasiPage() {
               Produk Olahan Daur Ulang Mandiri Komunitas
             </h2>
             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-              Katalog resmi produk hasil daur ulang limbah pendakian yang diproduksi oleh 4 KSM mitra di posko jalur resmi.
+              Katalog resmi produk hasil daur ulang sampah terpilah yang diproduksi oleh KSM mitra sirkularitas di sentra pengolahan komunitas.
             </p>
           </div>
           <CircularProductCatalog />

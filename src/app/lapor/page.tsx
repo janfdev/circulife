@@ -1,11 +1,12 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import ReportForm from "@/components/ReportForm";
 import RecentReportsList from "@/components/RecentReportsList";
-import { INITIAL_REPORTS } from "@/lib/constants";
+import { INITIAL_REPORTS, TRAIL_SEEDS } from "@/lib/constants";
 import { WasteDropReport } from "@/types";
-import { Recycle, PackageCheck, ListFilter, PlusCircle, PhoneCall, Sprout, ArrowRight } from "lucide-react";
+import { Recycle, PackageCheck, ListFilter, PlusCircle, PhoneCall, Sprout, ArrowRight, MapPin } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -117,6 +118,34 @@ export default function LaporPage() {
                   Setiap setoran minimal 2 kg botol plastik atau 5 kaleng gas berhak mendapatkan 1 bibit pohon penghijauan binaan CircuLife.
                 </AlertDescription>
               </Alert>
+
+              {/* Drop-Point Hub Quick Reference */}
+              <Card className="p-5 shadow-sm space-y-3 rounded-2xl border-border bg-card">
+                <CardHeader className="p-0">
+                  <CardTitle className="text-xs font-bold text-foreground uppercase tracking-wider flex items-center justify-between font-mono">
+                    <span className="flex items-center gap-1.5">
+                      <MapPin className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
+                      <span>Posko Drop-Point Terdekat</span>
+                    </span>
+                    <Link href="/pantau" className="text-[11px] text-primary hover:underline font-mono">
+                      Pantau Status
+                    </Link>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="p-0 space-y-2 pt-1 font-mono text-xs">
+                  {TRAIL_SEEDS.map((t) => (
+                    <div key={t.id} className="flex items-center justify-between p-2 rounded-lg bg-muted/40 border border-border/50">
+                      <div>
+                        <span className="font-bold text-foreground block text-[11px]">{t.name}</span>
+                        <span className="text-[10px] text-muted-foreground">{t.regency}</span>
+                      </div>
+                      <Badge variant="outline" className="text-[9px] px-1.5 py-0.5 border-emerald-500/30 bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 font-bold uppercase">
+                        {t.dropPointStatus === "SIAP_TERIMA" ? "Siap Terima" : "Distribusi"}
+                      </Badge>
+                    </div>
+                  ))}
+                </CardContent>
+              </Card>
             </div>
           </div>
         ) : (

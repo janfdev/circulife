@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { WasteDropReport, TrailId, WasteCategory, CircularTargetProduct } from "@/types";
-import { validateReportInput, generateReportId } from "@/lib/reportUtils";
+import { validateReportInput, generateReportId, calculateWasteImpact } from "@/lib/reportUtils";
 import { TRAIL_SEEDS } from "@/lib/constants";
 import { Recycle, PackageCheck, MapPin, AlertCircle, CheckCircle2, Loader2, Navigation, Copy, Check, Sprout, Sparkles } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
@@ -355,6 +355,97 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
             </select>
           </div>
         </div>
+
+        {/* Row 2.5: Weight & Canister Count */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label htmlFor="weightKg" className="block text-xs font-bold uppercase tracking-wider text-foreground mb-1.5">
+              Estimasi Berat Sampah (kg)
+            </label>
+            <Input
+              id="weightKg"
+              type="number"
+              step="0.1"
+              min="0.1"
+              value={formData.weightKg}
+              onChange={(e) => setFormData({ ...formData, weightKg: e.target.value })}
+              placeholder="Contoh: 2.5"
+              className="h-11 tabular-nums"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="canisterCount" className="block text-xs font-bold uppercase tracking-wider text-foreground mb-1.5">
+              Jumlah Kaleng Gas (Unit)
+            </label>
+            <Input
+              id="canisterCount"
+              type="number"
+              min="0"
+              value={formData.canisterCount}
+              onChange={(e) => setFormData({ ...formData, canisterCount: e.target.value })}
+              placeholder="Contoh: 2"
+              className="h-11 tabular-nums"
+            />
+          </div>
+        </div>
+
+        {/* Live Circular Impact Preview HUD */}
+        {(() => {
+          const parsedWeight = parseFloat(formData.weightKg) || 0;
+          const parsedCanister = parseInt(formData.canisterCount, 10) || 0;
+          const plasticKg =
+            formData.wasteCategory === "ORGANIC"
+              ? 0
+              : formData.wasteCategory === "MIXED_ANORGANIC"
+              ? parsedWeight * 0.7
+              : formData.wasteCategory === "PLASTIC_PET"
+              ? parsedWeight
+              : 0;
+          const organicKg = formData.wasteCategory === "ORGANIC" ? parsedWeight : 0;
+          const liveImpact = calculateWasteImpact(plasticKg, organicKg, parsedCanister);
+
+          return (
+            <div className="p-4 rounded-xl border border-primary/20 bg-primary/5 space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono font-bold uppercase tracking-wider text-primary flex items-center gap-1.5">
+                  <Recycle className="h-3.5 w-3.5" aria-hidden="true" />
+                  <span>Estimasi Dampak Sirkular Langsung</span>
+                </span>
+                <Badge variant="outline" className="text-[10px] font-mono border-primary/30 text-primary">
+                  Live Preview
+                </Badge>
+              </div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-center">
+                <div className="p-2.5 rounded-lg bg-background/80 border border-border/60">
+                  <span className="block text-[10px] font-mono text-muted-foreground uppercase font-bold">Paving Block</span>
+                  <span className="text-base font-black text-foreground font-mono tabular-nums">
+                    {liveImpact.pavingBlocks} <span className="text-[10px] font-normal text-muted-foreground">unit</span>
+                  </span>
+                </div>
+                <div className="p-2.5 rounded-lg bg-background/80 border border-border/60">
+                  <span className="block text-[10px] font-mono text-muted-foreground uppercase font-bold">Pupuk Kompos</span>
+                  <span className="text-base font-black text-foreground font-mono tabular-nums">
+                    {liveImpact.compostKg} <span className="text-[10px] font-normal text-muted-foreground">kg</span>
+                  </span>
+                </div>
+                <div className="p-2.5 rounded-lg bg-background/80 border border-border/60">
+                  <span className="block text-[10px] font-mono text-muted-foreground uppercase font-bold">Reduksi CO2e</span>
+                  <span className="text-base font-black text-foreground font-mono tabular-nums">
+                    {liveImpact.co2SavedKg} <span className="text-[10px] font-normal text-muted-foreground">kg</span>
+                  </span>
+                </div>
+                <div className="p-2.5 rounded-lg bg-background/80 border border-border/60">
+                  <span className="block text-[10px] font-mono text-muted-foreground uppercase font-bold">Poin Hijau</span>
+                  <span className="text-base font-black text-emerald-800 dark:text-emerald-300 font-mono tabular-nums">
+                    +{liveImpact.seedlingPoints} <span className="text-[10px] font-normal text-muted-foreground">pts</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          );
+        })()}
 
         {/* Row 3: Weight, Target Product & Location detail */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
