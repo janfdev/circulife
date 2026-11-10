@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import HeroSection from "@/components/HeroSection";
+import WasteMachineAnatomy from "@/components/WasteMachineAnatomy";
 import WasteImpactSimulator from "@/components/WasteImpactSimulator";
 import WasteUtilizationFlow from "@/components/WasteUtilizationFlow";
 import EnvironmentalComparisonSlider from "@/components/EnvironmentalComparisonSlider";
@@ -18,6 +19,24 @@ export default function HomePage() {
     <div className="flex flex-col">
       {/* 1. Hero Section with Biosphere Console & Mini Telemetry */}
       <HeroSection />
+
+      {/* 1.5 Standalone Anatomy Rig Section: Direct Physical Machine Explainer */}
+      <section className="py-12 sm:py-16 border-b border-border/80 bg-background/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-8 max-w-3xl space-y-2">
+            <span className="text-xs font-mono font-bold uppercase tracking-wider text-primary">
+              Hardware Architecture &amp; Pabrikasi
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-black text-foreground tracking-tight">
+              Anatomi Mesin Ekstrusi &amp; Pres Paving Block Plastik K-250
+            </h2>
+            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+              Mekanisme fisik transformasi cacahan botol plastik PET menjadi paving block jalan lingkungan berdaya tekan 200 Bar tanpa emisi dioksin.
+            </p>
+          </div>
+          <WasteMachineAnatomy />
+        </div>
+      </section>
 
       {/* 2. Interactive Waste-to-Value & Carbon Reduction Simulator */}
       <WasteImpactSimulator />
