@@ -91,31 +91,31 @@ export default function HeroSection() {
                 href="/lapor"
                 className={cn(
                   buttonVariants({ variant: "default", size: "lg" }),
-                  "h-13 px-7 text-sm font-bold shadow-lg shadow-primary/20 inline-flex items-center justify-center gap-2.5 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 transition-all hover:scale-[1.02]"
+                  "h-12 px-7 text-sm font-bold shadow-md shadow-primary/20 inline-flex items-center justify-center gap-2.5 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all hover:scale-[1.02]"
                 )}
               >
-                <PackageCheck className="h-5 w-5" aria-hidden="true" />
-                <span>Setor Sampah & Tukar Reward</span>
+                <PackageCheck className="h-4 w-4" aria-hidden="true" />
+                <span>Mulai Pilah & Setor</span>
               </Link>
               <a
                 href="#alur-sirkular"
                 className={cn(
                   buttonVariants({ variant: "outline", size: "lg" }),
-                  "h-13 px-7 text-sm font-bold inline-flex items-center justify-center gap-2.5 rounded-xl border-primary/30 hover:bg-primary/10 hover:border-primary/50 text-foreground transition-all"
+                  "h-12 px-6 text-sm font-bold inline-flex items-center justify-center gap-2.5 rounded-full border-border/80 hover:bg-muted text-foreground transition-all"
                 )}
               >
-                <Layers className="h-5 w-5 text-primary" aria-hidden="true" />
-                <span>Pelajari Alur Pemanfaatan</span>
+                <Layers className="h-4 w-4 text-primary" aria-hidden="true" />
+                <span>Alur Daur Ulang</span>
               </a>
               <a
                 href="#simulator-dampak"
                 className={cn(
                   buttonVariants({ variant: "ghost", size: "lg" }),
-                  "h-13 px-5 text-sm font-bold inline-flex items-center justify-center gap-2 rounded-xl text-muted-foreground hover:text-foreground"
+                  "h-12 px-5 text-sm font-bold inline-flex items-center justify-center gap-2 rounded-full text-muted-foreground hover:text-foreground"
                 )}
               >
                 <Calculator className="h-4 w-4" aria-hidden="true" />
-                <span>Simulator Nilai</span>
+                <span>Kalkulasi Dampak</span>
               </a>
             </div>
 

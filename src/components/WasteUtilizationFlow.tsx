@@ -20,6 +20,7 @@ import {
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
+import { WasteMachineAnatomy } from "@/components/WasteMachineAnatomy";
 import { cn } from "@/lib/utils";
 
 export default function WasteUtilizationFlow() {
@@ -210,6 +211,13 @@ export default function WasteUtilizationFlow() {
             <p className="text-sm sm:text-base text-foreground leading-relaxed">
               {currentStage.description}
             </p>
+
+            {/* Embedded Anatomy Isometric Technical Rig (Stage 3 Highlight) */}
+            {activeStep === 3 && (
+              <div className="pt-2 pb-2">
+                <WasteMachineAnatomy />
+              </div>
+            )}
 
             {/* 3 Pillars Bento Inside Stage */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">

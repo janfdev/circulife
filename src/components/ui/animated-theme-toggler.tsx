@@ -240,7 +240,9 @@ export const AnimatedThemeToggler = ({
         onThemeChange?.(newTheme ? "dark" : "light")
       } else {
         setInternalIsDark(newTheme)
-        localStorage.setItem("theme", newTheme ? "dark" : "light")
+        if (typeof window !== "undefined" && window.localStorage) {
+          window.localStorage.setItem("theme", newTheme ? "dark" : "light")
+        }
       }
     }
 
