@@ -26,11 +26,13 @@ interface NavbarProps {
 
 export const NAV_ITEMS = [
   { href: "/", label: "Beranda", icon: Recycle },
+  { href: "/konservasi", label: "Katalog Sirkular", icon: PackageCheck },
+  { href: "/pantau", label: "Simulator Dampak", icon: Calculator },
+  { href: "/edukasi", label: "Edukasi & Kuis", icon: BookOpen },
+  { href: "/galeri", label: "Galeri & Artikel", icon: Info },
   { href: "/about", label: "Tentang Kami", icon: Info },
-  { href: "/galeri", label: "Artikel & Galeri", icon: BookOpen },
   { href: "/contact", label: "Kontak", icon: Mail },
   { href: "/lapor", label: "Setor Sampah", icon: PackageCheck, isAction: true },
-  { href: "/pantau", label: "Kalkulator Nilai", icon: Calculator },
 ];
 
 export default function Navbar({ currentPath }: NavbarProps) {

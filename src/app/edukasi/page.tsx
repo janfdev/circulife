@@ -11,16 +11,22 @@ import { cn } from "@/lib/utils";
 
 export default function EdukasiPage() {
   return (
-    <div className="py-12 sm:py-20">
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 space-y-16">
+    <div className="py-12 sm:py-20 relative overflow-hidden">
+      {/* Subtle futuristic backdrop grid */}
+      <div 
+        className="absolute inset-0 bg-[radial-gradient(#22a06b_1px,transparent_1px)] [background-size:32px_32px] opacity-[0.05] pointer-events-none"
+        aria-hidden="true" 
+      />
+
+      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 space-y-16 relative z-10">
         {/* Header */}
-        <div className="border-b border-border pb-8 space-y-3">
-          <Badge variant="secondary" className="gap-2 px-3.5 py-1 text-xs font-bold uppercase tracking-wider mb-1">
+        <div className="border-b border-border/70 pb-8 space-y-4">
+          <Badge variant="outline" className="gap-2 px-3.5 py-1 text-xs font-mono font-bold uppercase tracking-wider text-primary border-primary/30 rounded-full">
             <BookOpen className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
-            <span>Pusat Edukasi Sirkularitas & Pengurangan Sampah</span>
+            <span>Pusat Edukasi &amp; Akselerator Pengetahuan Zero Waste</span>
           </Badge>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-foreground leading-[1.2]">
-            Edukasi Zero Waste Rimba & Kuis Sirkularitas
+          <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-foreground leading-[1.15]">
+            Protokol Edukasi Sirkular &amp; Evaluasi Wawasan Lingkungan
           </h1>
           <p className="text-sm sm:text-base text-muted-foreground max-w-3xl leading-relaxed">
             Menjaga kebersihan dan kelestarian ekosistem lingkungan dimulai dari manajemen logistik mandiri. Pelajari protokol pemilahan sampah TITO dan uji wawasan Anda sebelum menyetorkan sampah.

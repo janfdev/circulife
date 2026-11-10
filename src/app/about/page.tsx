@@ -29,27 +29,33 @@ export const metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen relative overflow-hidden">
+      {/* Subtle futuristic backdrop grid */}
+      <div 
+        className="absolute inset-0 bg-[radial-gradient(#22a06b_1px,transparent_1px)] [background-size:32px_32px] opacity-[0.05] pointer-events-none"
+        aria-hidden="true" 
+      />
+
       {/* Header Banner */}
-      <section className="relative py-16 sm:py-24 border-b border-border bg-gradient-to-b from-primary/10 via-background to-background overflow-hidden">
+      <section className="relative py-16 sm:py-24 border-b border-border/70 bg-gradient-to-b from-primary/10 via-background to-background overflow-hidden z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/20 bg-primary/10 text-primary text-xs font-mono font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-primary/20 bg-primary/10 text-primary text-xs font-mono font-bold uppercase tracking-wider">
             <Globe2 className="h-3.5 w-3.5" />
-            <span>EcoDigital Web Design Competition 2026</span>
+            <span>EcoDigital Web Innovation 2026</span>
           </div>
 
           <div className="max-w-3xl space-y-4">
-            <h1 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight leading-tight">
+            <h1 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight leading-[1.15]">
               Membangun Ekosistem Zero Waste Menuju Masa Depan Sirkular
             </h1>
             <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-              CircuLife lahir sebagai solusi digital terintegrasi untuk mengatasi krisis timbulan sampah nasional. Kami menghubungkan pemilahan di tingkat rumah tangga dengan sentra pengolahan komunitas berbasis teknologi tepat guna.
+              CircuLife lahir sebagai platform terintegrasi untuk mengubah krisis sampah menjadi peluang ekonomi sirkular: menghubungkan pemilahan di hulu dengan pabrikasi paving block K-250 dan pupuk bio-kasgot di hilir.
             </p>
           </div>
 
           {/* Quick Metrics Strip */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 border-t border-border/60">
-            <div className="p-4 rounded-2xl bg-card border border-border/80">
+            <div className="p-5 rounded-3xl bg-card border border-border/80 shadow-xs">
               <span className="text-[10px] font-mono font-bold uppercase text-muted-foreground">
                 Total Sampah Terolah
               </span>
@@ -59,7 +65,7 @@ export default function AboutPage() {
               <span className="text-xs text-muted-foreground mt-0.5 block">Akumulasi nasional</span>
             </div>
 
-            <div className="p-4 rounded-2xl bg-card border border-border/80">
+            <div className="p-5 rounded-3xl bg-card border border-border/80 shadow-xs">
               <span className="text-[10px] font-mono font-bold uppercase text-muted-foreground">
                 Eco-Paving Terpasang
               </span>
@@ -69,7 +75,7 @@ export default function AboutPage() {
               <span className="text-xs text-muted-foreground mt-0.5 block">Kekuatan K-250 teruji</span>
             </div>
 
-            <div className="p-4 rounded-2xl bg-card border border-border/80">
+            <div className="p-5 rounded-3xl bg-card border border-border/80 shadow-xs">
               <span className="text-[10px] font-mono font-bold uppercase text-muted-foreground">
                 Mitra KSM Komunitas
               </span>
@@ -79,11 +85,11 @@ export default function AboutPage() {
               <span className="text-xs text-muted-foreground mt-0.5 block">Pemberdayaan warga</span>
             </div>
 
-            <div className="p-4 rounded-2xl bg-card border border-border/80">
+            <div className="p-5 rounded-3xl bg-card border border-border/80 shadow-xs">
               <span className="text-[10px] font-mono font-bold uppercase text-muted-foreground">
                 Reduksi Jejak Karbon
               </span>
-              <span className="text-2xl font-black text-emerald-600 dark:text-emerald-400 font-mono block mt-1 tabular-nums">
+              <span className="text-2xl font-black text-emerald-500 font-mono block mt-1 tabular-nums">
                 {CIRCULIFE_INFO.co2eReductionTons} Ton
               </span>
               <span className="text-xs text-muted-foreground mt-0.5 block">CO2e terhindar</span>
@@ -291,14 +297,14 @@ export default function AboutPage() {
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/contact"
-              className={cn(buttonVariants({ variant: "default", size: "lg" }), "rounded-xl font-bold gap-2")}
+              className={cn(buttonVariants({ variant: "default", size: "lg" }), "rounded-full h-11 px-6 font-bold gap-2")}
             >
               <HeartHandshake className="h-4 w-4" />
               <span>Hubungi Tim Kemitraan</span>
             </Link>
             <Link
               href="/galeri"
-              className={cn(buttonVariants({ variant: "outline", size: "lg" }), "rounded-xl font-bold gap-2")}
+              className={cn(buttonVariants({ variant: "outline", size: "lg" }), "rounded-full h-11 px-6 font-bold gap-2 border-border/80")}
             >
               <span>Jelajahi Galeri Produk</span>
               <ArrowRight className="h-4 w-4" />
