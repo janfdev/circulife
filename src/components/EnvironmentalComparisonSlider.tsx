@@ -103,7 +103,7 @@ export default function EnvironmentalComparisonSlider() {
         </div>
 
         {/* Visual Comparison Split Box */}
-        <Card className="rounded-3xl border border-border/80 bg-card overflow-hidden shadow-xl ring-1 ring-border/80 glow-card">
+        <Card className="rounded-3xl border border-border/80 bg-card overflow-hidden shadow-sm">
           <div
             ref={containerRef}
             className="relative select-none h-[380px] sm:h-[460px] lg:h-[520px] w-full overflow-hidden cursor-ew-resize bg-muted"

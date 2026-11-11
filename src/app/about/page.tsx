@@ -29,13 +29,7 @@ export const metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="flex flex-col min-h-screen relative overflow-hidden">
-      {/* Subtle futuristic backdrop grid */}
-      <div 
-        className="absolute inset-0 bg-[radial-gradient(#22a06b_1px,transparent_1px)] [background-size:32px_32px] opacity-[0.05] pointer-events-none"
-        aria-hidden="true" 
-      />
-
+    <div className="flex flex-col min-h-screen">
       {/* Header Banner */}
       <section className="relative py-16 sm:py-24 border-b border-border/70 bg-gradient-to-b from-primary/10 via-background to-background overflow-hidden z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">

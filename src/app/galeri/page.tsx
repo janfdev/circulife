@@ -39,13 +39,7 @@ export default function GaleriPage() {
   const articleCategories = ["ALL", "PANDUAN", "TEKNOLOGI", "ORGANIK", "UPCYCLING"];
 
   return (
-    <div className="flex flex-col min-h-screen relative overflow-hidden">
-      {/* Subtle futuristic backdrop grid */}
-      <div 
-        className="absolute inset-0 bg-[radial-gradient(#22a06b_1px,transparent_1px)] [background-size:32px_32px] opacity-[0.05] pointer-events-none"
-        aria-hidden="true" 
-      />
-
+    <div className="flex flex-col min-h-screen">
       {/* Header Banner */}
       <section className="relative py-16 sm:py-24 border-b border-border/70 bg-gradient-to-b from-primary/10 via-background to-background relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
@@ -126,7 +120,7 @@ export default function GaleriPage() {
               {CIRCULIFE_GALLERY.map((item) => (
                 <Card
                   key={item.id}
-                  className="rounded-3xl border-border bg-card overflow-hidden shadow-sm hover:shadow-md transition-all group flex flex-col justify-between glow-card"
+                  className="rounded-3xl border-border bg-card overflow-hidden shadow-xs hover:border-border/90 transition-all group flex flex-col justify-between"
                 >
                   <div>
                     {/* Visual Media Header */}
@@ -220,7 +214,7 @@ export default function GaleriPage() {
               {filteredArticles.map((article) => (
                 <Card
                   key={article.id}
-                  className="rounded-3xl border-border bg-card overflow-hidden hover:border-primary/40 transition-colors shadow-sm flex flex-col justify-between group glow-card"
+                  className="rounded-3xl border-border bg-card overflow-hidden hover:border-border/90 transition-colors shadow-xs flex flex-col justify-between group"
                 >
                   {article.imageUrl && (
                     <div className="h-48 w-full bg-muted overflow-hidden relative border-b border-border/60">

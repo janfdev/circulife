@@ -7,7 +7,7 @@ describe("Navbar Component", () => {
   it("should render the brand title CIRCULIFE and telemetry indicators", () => {
     render(<Navbar currentPath="/" />);
     expect(screen.getByText("CIRCULIFE")).toBeInTheDocument();
-    expect(screen.getByText(/Digital Zero Waste & Value Hub/i)).toBeInTheDocument();
+    expect(screen.getByText(/Inisiatif Zero Waste/i)).toBeInTheDocument();
   });
 
   it("should render mandatory competition navigation links with valid routes", () => {

@@ -26,10 +26,10 @@ interface NavbarProps {
 
 export const NAV_ITEMS = [
   { href: "/", label: "Beranda", icon: Recycle },
-  { href: "/konservasi", label: "Katalog Sirkular", icon: PackageCheck },
-  { href: "/pantau", label: "Simulator Dampak", icon: Calculator },
-  { href: "/edukasi", label: "Edukasi & Kuis", icon: BookOpen },
-  { href: "/galeri", label: "Galeri & Artikel", icon: Info },
+  { href: "/konservasi", label: "Produk Olahan", icon: PackageCheck },
+  { href: "/pantau", label: "Hitung Dampak", icon: Calculator },
+  { href: "/edukasi", label: "Panduan & Kuis", icon: BookOpen },
+  { href: "/galeri", label: "Dokumentasi", icon: Info },
   { href: "/about", label: "Tentang Kami", icon: Info },
   { href: "/contact", label: "Kontak", icon: Mail },
   { href: "/lapor", label: "Setor Sampah", icon: PackageCheck, isAction: true },
@@ -59,7 +59,6 @@ export default function Navbar({ currentPath }: NavbarProps) {
 
   return (
     <NavbarDarkShadow
-      banner={<AnnouncementBanner variant="interactive-ticker" />}
       mobileMenuOpen={mobileMenuOpen}
       brand={
         <Link
@@ -78,7 +77,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
                 variant="outline"
                 className="h-4 border-primary/30 px-1.5 py-0 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground tabular-nums font-mono"
               >
-                Digital Zero Waste & Value Hub
+                Inisiatif Zero Waste
               </Badge>
             </div>
           </div>

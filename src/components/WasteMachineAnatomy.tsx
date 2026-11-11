@@ -42,10 +42,10 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
       </div>
 
       {/* Main Isometric Visual Workspace */}
-      <div className="relative rounded-2xl border border-border/80 bg-gradient-to-b from-card via-card/90 to-muted/20 p-4 sm:p-6 shadow-xs overflow-hidden">
-        {/* Subtle grid backdrop */}
+      <div className="relative rounded-2xl border border-border/80 bg-card p-4 sm:p-6 shadow-xs overflow-hidden">
+        {/* Subtle architectural grid */}
         <div 
-          className="absolute inset-0 bg-[radial-gradient(#22a06b_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.07] pointer-events-none"
+          className="absolute inset-0 bg-[linear-gradient(to_right,#8080800d_1px,transparent_1px),linear-gradient(to_bottom,#8080800d_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"
           aria-hidden="true" 
         />
 

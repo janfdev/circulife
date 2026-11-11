@@ -289,7 +289,7 @@ export default function ContactPage() {
               <AccordionItem
                 key={faq.id || `faq-${idx}`}
                 value={faq.id || `faq-${idx}`}
-                className="glow-card rounded-2xl border border-border/80 bg-card/80 px-5 py-1.5 transition-all data-open:border-primary/50 data-[state=open]:border-primary/50 data-open:bg-card"
+                className="rounded-2xl border border-border/80 bg-card px-5 py-1.5 transition-all data-open:border-primary/50 data-[state=open]:border-primary/50"
               >
                 <AccordionTrigger className="text-left font-bold text-sm sm:text-base text-foreground hover:no-underline py-4">
                   <span className="flex items-center gap-2.5">

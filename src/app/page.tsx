@@ -21,17 +21,17 @@ export default function HomePage() {
       <HeroSection />
 
       {/* 1.5 Standalone Anatomy Rig Section: Direct Physical Machine Explainer */}
-      <section className="py-12 sm:py-16 border-b border-border/80 bg-background/50">
+      <section className="py-14 sm:py-20 border-b border-border/80 bg-background" id="mesin-ekstrusi">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-8 max-w-3xl space-y-2">
             <span className="text-xs font-mono font-bold uppercase tracking-wider text-primary">
-              Hardware Architecture &amp; Pabrikasi
+              Teknologi Tepat Guna Komunitas
             </span>
-            <h2 className="text-2xl sm:text-3xl font-black text-foreground tracking-tight">
-              Anatomi Mesin Ekstrusi &amp; Pres Paving Block Plastik K-250
+            <h2 className="text-2xl sm:text-4xl font-black text-foreground tracking-tight">
+              Anatomi Alat Pencetak Paving &amp; Kompos Mandiri
             </h2>
-            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-              Mekanisme fisik transformasi cacahan botol plastik PET menjadi paving block jalan lingkungan berdaya tekan 200 Bar tanpa emisi dioksin.
+            <p className="text-sm sm:text-base text-muted-foreground">
+              Mesin pres hidrolik dan tungku peleleh dirancang dengan komponen lokal yang mudah dirawat oleh kelompok warga, menghasilkan paving block standar K-250 tanpa polusi asap pekat.
             </p>
           </div>
           <WasteMachineAnatomy />
@@ -59,12 +59,9 @@ export default function HomePage() {
       <HomeFaqSection />
 
       {/* 8. Circular Economy Mission Dispatch CTA Block */}
-      <section className="bg-gradient-to-b from-primary to-primary/95 text-primary-foreground py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-t border-border relative overflow-hidden">
-        {/* Subtle radial glow overlay */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_120%,rgba(27,196,131,0.18),transparent)] pointer-events-none" />
-
+      <section className="bg-primary text-primary-foreground py-16 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-border relative overflow-hidden">
         <div className="relative mx-auto max-w-7xl">
-          <div className="rounded-3xl border border-primary-foreground/15 bg-primary/40 backdrop-blur-sm p-8 sm:p-12 lg:p-16 shadow-xl">
+          <div className="rounded-3xl border border-primary-foreground/20 bg-primary/20 p-8 sm:p-12 lg:p-16">
             <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
               <div className="space-y-4 text-center lg:text-left max-w-3xl">
                 <div className="inline-flex flex-wrap items-center justify-center lg:justify-start gap-2">

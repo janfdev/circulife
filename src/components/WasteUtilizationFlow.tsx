@@ -48,26 +48,20 @@ export default function WasteUtilizationFlow() {
       id="alur-sirkular"
       className="py-16 sm:py-24 border-t border-border/80 bg-background/50 relative overflow-hidden"
     >
-      {/* Decorative gradient glow */}
-      <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-primary/5 rounded-full blur-3xl pointer-events-none -z-10"
-        aria-hidden="true"
-      />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Header Section */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/20 bg-primary/10 text-primary text-xs font-mono font-bold uppercase tracking-wider">
             <Sparkles className="h-3.5 w-3.5" />
-            <span>Alur Sirkularitas End-to-End</span>
+            <span>Alur Sirkularitas Nyata</span>
           </div>
 
           <h2 className="text-2xl sm:text-4xl font-black text-foreground tracking-tight leading-tight">
-            Bagaimana CircuLife Mengubah Sampah Menjadi Nilai Nyata?
+            Bagaimana Sampah Menjadi Barang Bernilai?
           </h2>
 
           <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-            Dari pemilahan awal di tangan warga, penimbangan digital presisi, pabrikasi ramah lingkungan, hingga produk sirkular bernilai ekonomi tinggi. Telusuri 4 tahap siklus tertutup berikut:
+            Dari pemilahan awal di tangan warga, penimbangan di posko, pencacahan dan pelelehan ramah lingkungan, hingga menjadi produk jadi yang langsung digunakan masyarakat.
           </p>
         </div>
 
@@ -89,7 +83,7 @@ export default function WasteUtilizationFlow() {
                 className={cn(
                   "p-3.5 sm:p-5 rounded-2xl border text-left transition-all relative overflow-hidden flex flex-col justify-between group",
                   isActive
-                    ? "border-primary bg-card shadow-lg ring-2 ring-primary/30 glow-card"
+                    ? "border-primary bg-card shadow-sm ring-1 ring-primary/40"
                     : "border-border/80 bg-card/70 hover:border-primary/50 hover:bg-card"
                 )}
               >
@@ -120,8 +114,8 @@ export default function WasteUtilizationFlow() {
                       )}
                     </span>
 
-                    <span className="text-[10px] font-mono font-bold uppercase text-muted-foreground flex items-center gap-1">
-                      {isActive && <span className="h-1.5 w-1.5 rounded-full bg-primary animate-ping" />}
+                    <span className="text-[10px] font-mono font-bold uppercase text-muted-foreground flex items-center gap-1.5">
+                      {isActive && <span className="h-1.5 w-1.5 rounded-full bg-primary" />}
                       <span>Langkah {stage.step}/4</span>
                     </span>
                   </div>
@@ -160,7 +154,7 @@ export default function WasteUtilizationFlow() {
         </div>
 
         {/* Active Stage Detailed Bento Presentation (BagUI Presentation Card) */}
-        <Card className="rounded-3xl border-border bg-card/95 shadow-xl overflow-hidden glow-card">
+        <Card className="rounded-3xl border border-border/80 bg-card shadow-sm overflow-hidden">
           <CardHeader className="p-6 sm:p-8 border-b border-border/60 bg-muted/20">
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div className="flex items-center gap-3">

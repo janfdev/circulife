@@ -199,7 +199,7 @@ export default function WasteImpactSimulator() {
         </div>
 
         {/* Interactive Console Card */}
-        <Card className="rounded-3xl border border-border/80 bg-card/95 shadow-xl overflow-hidden ring-1 ring-border/80 glow-card">
+        <Card className="rounded-3xl border border-border/80 bg-card shadow-sm overflow-hidden">
           {/* Top Material Selector Tabs */}
           <div className="grid grid-cols-2 md:grid-cols-4 border-b border-border/70 bg-muted/40 p-2 gap-2">
             {MATERIALS.map((mat) => {

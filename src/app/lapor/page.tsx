@@ -36,14 +36,8 @@ export default function LaporPage() {
   };
 
   return (
-    <div className="py-12 sm:py-20 relative overflow-hidden">
-      {/* Subtle futuristic backdrop grid */}
-      <div 
-        className="absolute inset-0 bg-[radial-gradient(#22a06b_1px,transparent_1px)] [background-size:32px_32px] opacity-[0.05] pointer-events-none"
-        aria-hidden="true" 
-      />
-
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 space-y-10 relative z-10">
+    <div className="py-12 sm:py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Page Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-border/70 pb-8">
           <div className="space-y-3">

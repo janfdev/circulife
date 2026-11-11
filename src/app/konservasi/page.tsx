@@ -8,14 +8,8 @@ import { Badge } from "@/components/ui/badge";
 
 export default function KonservasiPage() {
   return (
-    <div className="py-12 sm:py-20 relative overflow-hidden">
-      {/* Subtle futuristic backdrop grid */}
-      <div 
-        className="absolute inset-0 bg-[radial-gradient(#22a06b_1px,transparent_1px)] [background-size:32px_32px] opacity-[0.05] pointer-events-none"
-        aria-hidden="true" 
-      />
-
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-16 relative z-10">
+    <div className="py-12 sm:py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-16">
         {/* Header */}
         <div className="border-b border-border/70 pb-8 space-y-4">
           <Badge variant="outline" className="gap-2 px-3.5 py-1 text-xs font-mono font-bold uppercase tracking-wider text-primary border-primary/30 rounded-full">

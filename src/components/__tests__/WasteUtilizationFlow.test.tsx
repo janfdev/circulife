@@ -8,7 +8,7 @@ describe("WasteUtilizationFlow Component", () => {
     render(<WasteUtilizationFlow />);
 
     expect(
-      screen.getByText(/Bagaimana CircuLife Mengubah Sampah Menjadi Nilai Nyata\?/i)
+      screen.getByText(/Bagaimana Sampah Menjadi Barang Bernilai\?/i)
     ).toBeInTheDocument();
 
     expect(screen.getByText("Pemilahan di Sumber")).toBeInTheDocument();
