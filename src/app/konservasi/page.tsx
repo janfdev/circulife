@@ -6,6 +6,11 @@ import { SPECIES_SEEDS } from "@/lib/constants";
 import { Recycle, TreePine, Sparkles, Layers } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
+export const metadata = {
+  title: "Produk Olahan Sirkular & Restorasi Lingkungan | CircuLife",
+  description: "Katalog material konstruksi eco-paving block K-250, pupuk bio-kasgot, dan produk daur ulang ramah lingkungan binaan CircuLife.",
+};
+
 export default function KonservasiPage() {
   return (
     <div className="py-12 sm:py-20">

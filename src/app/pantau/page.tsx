@@ -8,6 +8,11 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
+export const metadata = {
+  title: "Pantau Status & Kalkulator Sirkularitas | CircuLife",
+  description: "Pantau kesiapan posko drop-point, kapasitas penyimpanan sampah, dan hitung estimasi reduksi emisi karbon secara live.",
+};
+
 export default function PantauPage() {
   return (
     <div className="py-12 sm:py-20">

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { WasteDropReport, TrailId, WasteCategory, CircularTargetProduct } from "@/types";
 import { validateReportInput, generateReportId, calculateWasteImpact } from "@/lib/reportUtils";
 import { TRAIL_SEEDS } from "@/lib/constants";
-import { Recycle, PackageCheck, MapPin, AlertCircle, CheckCircle2, Loader2, Navigation, Copy, Check, Sprout, Sparkles } from "lucide-react";
+import { Recycle, PackageCheck, MapPin, AlertCircle, CheckCircle2, Loader2, Navigation, Copy, Check, Sprout, Sparkles, Printer } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -145,6 +145,10 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
     setTimeout(() => setCopiedTicket(false), 2000);
   };
 
+  const handlePrintTicket = () => {
+    window.print();
+  };
+
   const handleResetForm = () => {
     setSubmittedReport(null);
     setFormData({
@@ -181,7 +185,7 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
           </div>
         </div>
 
-        <Card className="my-6 border-emerald-200 bg-white p-5 dark:border-emerald-900 dark:bg-card rounded-xl">
+        <Card className="my-6 border-emerald-200 bg-white p-5 dark:border-emerald-900 dark:bg-card rounded-xl print:border-2 print:border-black print:text-black">
           <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground block mb-1">
             Nomor Tiket Penyetoran & Daur Ulang
           </span>
@@ -189,25 +193,37 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
             <span className="text-2xl sm:text-3xl font-black text-foreground tabular-nums tracking-wider font-mono">
               {submittedReport.id}
             </span>
-            <Button
-              type="button"
-              variant="outline"
-              size="sm"
-              onClick={handleCopyTicket}
-              className="gap-1.5 text-xs font-bold"
-            >
-              {copiedTicket ? (
-                <>
-                  <Check className="h-4 w-4 text-emerald-600" aria-hidden="true" />
-                  <span>Tersalin!</span>
-                </>
-              ) : (
-                <>
-                  <Copy className="h-4 w-4" aria-hidden="true" />
-                  <span>Salin Tiket</span>
-                </>
-              )}
-            </Button>
+            <div className="flex items-center gap-2 print:hidden">
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                onClick={handlePrintTicket}
+                className="gap-1.5 text-xs font-bold"
+              >
+                <Printer className="h-4 w-4" aria-hidden="true" />
+                <span>Cetak Bukti</span>
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                onClick={handleCopyTicket}
+                className="gap-1.5 text-xs font-bold"
+              >
+                {copiedTicket ? (
+                  <>
+                    <Check className="h-4 w-4 text-emerald-600" aria-hidden="true" />
+                    <span>Tersalin!</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="h-4 w-4" aria-hidden="true" />
+                    <span>Salin Tiket</span>
+                  </>
+                )}
+              </Button>
+            </div>
           </div>
 
           <div className="mt-4 pt-4 border-t border-border grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono">
@@ -233,7 +249,7 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
           </div>
         </Card>
 
-        <div className="flex flex-col sm:flex-row gap-3">
+        <div className="flex flex-col sm:flex-row gap-3 print:hidden">
           <Button
             type="button"
             onClick={handleResetForm}

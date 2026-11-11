@@ -9,6 +9,11 @@ import { Card } from "@/components/ui/card";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
+export const metadata = {
+  title: "Pusat Edukasi Sirkular & Uji Wawasan | CircuLife",
+  description: "Panduan pemilahan sampah TITO, materi biokonversi maggot BSF, dan uji kuis wawasan sirkularitas komunitas.",
+};
+
 export default function EdukasiPage() {
   return (
     <div className="py-12 sm:py-20">
