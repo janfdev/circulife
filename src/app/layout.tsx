@@ -2,13 +2,20 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Poppins } from "next/font/google";
+import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import { cn } from "@/lib/utils";
 
-const poppins = Poppins({
+const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
-  variable: "--font-poppins",
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-mono",
   display: "swap",
 });
 
@@ -94,7 +101,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className={cn("dark scroll-smooth", poppins.variable, "font-sans")} suppressHydrationWarning>
+    <html
+      lang="id"
+      className={cn(
+        "dark scroll-smooth",
+        plusJakartaSans.variable,
+        jetbrainsMono.variable,
+        "font-sans"
+      )}
+      suppressHydrationWarning
+    >
       <head>
         <meta name="theme-color" content="#0E4436" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
