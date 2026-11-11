@@ -122,18 +122,20 @@ export default function Navbar({ currentPath }: NavbarProps) {
             </DropdownMenuTrigger>
             <DropdownMenuContent
               align="start"
-              className="w-56 p-1.5 rounded-2xl border border-border/80 bg-card shadow-lg"
+              className="w-60 p-2 rounded-2xl border border-border/80 bg-popover text-popover-foreground shadow-xl"
             >
               <DropdownMenuItem
                 render={
                   <Link
                     href="/pantau"
-                    className="flex items-center gap-2.5 px-3 py-2 text-xs font-medium rounded-xl hover:bg-muted cursor-pointer"
+                    className="flex items-center gap-3 px-3 py-2.5 text-xs font-medium rounded-xl transition-colors cursor-pointer w-full group/item"
                   >
-                    <Calculator className="h-4 w-4 text-primary shrink-0" />
+                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary group-hover/item:bg-primary group-hover/item:text-primary-foreground transition-colors shrink-0">
+                      <Calculator className="h-4 w-4" />
+                    </div>
                     <div>
-                      <span className="font-bold block text-foreground">Hitung Dampak</span>
-                      <span className="text-[10px] text-muted-foreground block">Kalkulator konversi limbah</span>
+                      <span className="font-bold block text-foreground leading-tight">Hitung Dampak</span>
+                      <span className="text-[11px] text-muted-foreground block mt-0.5">Kalkulator konversi limbah</span>
                     </div>
                   </Link>
                 }
@@ -142,12 +144,14 @@ export default function Navbar({ currentPath }: NavbarProps) {
                 render={
                   <Link
                     href="/edukasi"
-                    className="flex items-center gap-2.5 px-3 py-2 text-xs font-medium rounded-xl hover:bg-muted cursor-pointer"
+                    className="flex items-center gap-3 px-3 py-2.5 text-xs font-medium rounded-xl transition-colors cursor-pointer w-full group/item"
                   >
-                    <BookOpen className="h-4 w-4 text-primary shrink-0" />
+                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary group-hover/item:bg-primary group-hover/item:text-primary-foreground transition-colors shrink-0">
+                      <BookOpen className="h-4 w-4" />
+                    </div>
                     <div>
-                      <span className="font-bold block text-foreground">Panduan &amp; Kuis</span>
-                      <span className="text-[10px] text-muted-foreground block">Modul pemilahan zero waste</span>
+                      <span className="font-bold block text-foreground leading-tight">Panduan &amp; Kuis</span>
+                      <span className="text-[11px] text-muted-foreground block mt-0.5">Modul pemilahan zero waste</span>
                     </div>
                   </Link>
                 }
@@ -156,12 +160,14 @@ export default function Navbar({ currentPath }: NavbarProps) {
                 render={
                   <Link
                     href="/galeri"
-                    className="flex items-center gap-2.5 px-3 py-2 text-xs font-medium rounded-xl hover:bg-muted cursor-pointer"
+                    className="flex items-center gap-3 px-3 py-2.5 text-xs font-medium rounded-xl transition-colors cursor-pointer w-full group/item"
                   >
-                    <ImageIcon className="h-4 w-4 text-primary shrink-0" />
+                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary group-hover/item:bg-primary group-hover/item:text-primary-foreground transition-colors shrink-0">
+                      <ImageIcon className="h-4 w-4" />
+                    </div>
                     <div>
-                      <span className="font-bold block text-foreground">Dokumentasi</span>
-                      <span className="text-[10px] text-muted-foreground block">Foto transformasi fisik</span>
+                      <span className="font-bold block text-foreground leading-tight">Dokumentasi</span>
+                      <span className="text-[11px] text-muted-foreground block mt-0.5">Foto transformasi fisik</span>
                     </div>
                   </Link>
                 }
