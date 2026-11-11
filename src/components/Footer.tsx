@@ -18,7 +18,7 @@ export default function Footer() {
           </div>
           <Link
             href="/contact"
-            className={cn(buttonVariants({ variant: "outline", size: "sm" }), "h-10 px-4 gap-2 font-bold shadow-sm rounded-xl border-primary/30 text-primary")}
+            className={cn(buttonVariants({ variant: "outline", size: "sm" }), "h-9 px-4 gap-2 font-bold shadow-xs rounded-full border-primary/30 text-primary")}
           >
             <PhoneCall className="h-4 w-4" aria-hidden="true" />
             <span>Hubungi Kami</span>

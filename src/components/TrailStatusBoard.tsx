@@ -53,7 +53,7 @@ export default function TrailStatusBoard({ trails }: TrailStatusBoardProps) {
             return (
               <Card
                 key={trail.id}
-                className="flex flex-col justify-between transition-all hover:border-primary/50 shadow-sm rounded-2xl overflow-hidden bg-card/95 hover:shadow-lg glow-card"
+                className="flex flex-col justify-between transition-all hover:border-border/90 shadow-xs rounded-2xl overflow-hidden bg-card border border-border/80"
               >
                 <div>
                   <CardHeader className="p-5 pb-4 space-y-3.5 border-b border-border/60 bg-muted/20">

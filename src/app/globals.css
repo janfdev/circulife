@@ -4,73 +4,73 @@
 
 @layer base {
   :root {
-    /* Highland Mist Surface */
-    --background: 140 12% 97%; /* #F4F7F4 */
-    --foreground: 154 28% 8%; /* #0F1A15 */
+    /* Astryx Warm Minimalist Canvas - Ecru / Parchment */
+    --background: 48 20% 96%; /* #F8F7F2 */
+    --foreground: 0 0% 10%; /* #1A1A18 */
 
     --card: 0 0% 100%;
-    --card-foreground: 154 28% 8%;
+    --card-foreground: 0 0% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 154 28% 8%;
+    --popover-foreground: 0 0% 10%;
 
-    /* Deep Canopy Boreal Spruce */
-    --primary: 163 66% 16%; /* #0E4436 */
-    --primary-foreground: 140 20% 98%;
+    /* Deep Forest Emerald / Earthy Moss */
+    --primary: 160 55% 18%; /* #144837 */
+    --primary-foreground: 48 20% 98%;
 
-    /* Action Foliage */
-    --secondary: 158 50% 28%; /* #236C52 */
-    --secondary-foreground: 140 20% 98%;
+    /* Active Circular Foliage */
+    --secondary: 154 35% 32%; /* #356E58 */
+    --secondary-foreground: 48 20% 98%;
 
-    /* Telemetry Layer & Muted */
-    --muted: 140 15% 93%; /* #EAF0EC */
-    --muted-foreground: 150 14% 38%; /* #536A5E */
+    /* Minimalist Muted */
+    --muted: 45 15% 91%; /* #ECEAE3 */
+    --muted-foreground: 40 5% 42%; /* #6E6D67 */
 
-    /* Active Telemetry Phosphor */
-    --accent: 156 78% 40%; /* #16A36E */
-    --accent-foreground: 140 20% 98%;
+    /* Active Bio-Phosphor Accent */
+    --accent: 154 65% 38%; /* #22A06B */
+    --accent-foreground: 48 20% 98%;
 
-    /* Crimson Fire Alert */
+    /* Alert / Warning */
     --destructive: 0 75% 50%; /* #DC2626 */
     --destructive-foreground: 0 0% 100%;
 
-    --border: 150 15% 86%; /* #D6E4DC */
-    --input: 150 15% 86%;
-    --ring: 163 66% 16%;
+    --border: 45 10% 86%; /* #DDDCD5 */
+    --input: 45 10% 86%;
+    --ring: 160 55% 18%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
   }
 
   .dark {
-    /* Deep Andesite Crater */
-    --background: 154 28% 5%; /* #090E0C */
-    --foreground: 140 20% 96%; /* #F2F7F4 */
+    /* Astryx Deep Charcoal Obsidian Canvas */
+    --background: 150 15% 6%; /* #0B110E */
+    --foreground: 45 15% 95%; /* #F4F3ED */
 
-    --card: 154 25% 8%; /* #0E1714 */
-    --card-foreground: 140 20% 96%;
+    --card: 150 15% 9%; /* #111A15 */
+    --card-foreground: 45 15% 95%;
 
-    --popover: 154 25% 8%;
-    --popover-foreground: 140 20% 96%;
+    --popover: 150 15% 9%;
+    --popover-foreground: 45 15% 95%;
 
-    /* Glowing Bio-Phosphor */
-    --primary: 156 75% 42%; /* #1BC483 */
-    --primary-foreground: 154 28% 5%;
+    /* Luminous Bio-Emerald */
+    --primary: 154 70% 46%; /* #24C783 */
+    --primary-foreground: 150 20% 5%;
 
-    --secondary: 158 35% 20%; /* #214436 */
-    --secondary-foreground: 140 20% 96%;
+    --secondary: 150 25% 20%; /* #264033 */
+    --secondary-foreground: 45 15% 95%;
 
-    --muted: 154 20% 12%; /* #14211C */
-    --muted-foreground: 144 14% 65%; /* #93B2A1 */
+    --muted: 150 12% 14%; /* #1B2520 */
+    --muted-foreground: 140 10% 64%; /* #9CAE9F */
 
-    --accent: 156 78% 54%; /* #2EE59D */
-    --accent-foreground: 154 28% 5%;
+    --accent: 154 75% 55%; /* #37E598 */
+    --accent-foreground: 150 20% 5%;
 
     --destructive: 0 84% 60%; /* #EF4444 */
     --destructive-foreground: 0 0% 100%;
 
-    --border: 154 20% 18%; /* #1C2D27 */
-    --input: 154 20% 18%;
-    --ring: 156 75% 42%;
+    --border: 150 12% 18%; /* #25332C */
+    --input: 150 12% 18%;
+    --ring: 154 70% 46%;
   }
 
   * {
@@ -79,10 +79,15 @@
 
   body {
     @apply bg-background text-foreground antialiased selection:bg-primary/20 selection:text-foreground;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    letter-spacing: -0.015em;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    letter-spacing: -0.025em;
   }
 }
 
@@ -139,9 +144,9 @@
   text-transform: uppercase;
 }
 
+/* Clean Editorial Grid */
 .telemetry-grid {
-  background-image: radial-gradient(circle, hsl(var(--primary) / 0.1) 1px, transparent 1px);
-  background-size: 24px 24px;
+  background-size: 32px 32px;
 }
 
 .glass-telemetry {
@@ -152,12 +157,12 @@
 }
 
 .glow-card {
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glow-card:hover {
-  border-color: hsl(var(--primary) / 0.5);
-  box-shadow: 0 0 25px -5px hsl(var(--primary) / 0.18);
+  border-color: hsl(var(--border));
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.05);
 }
 
 @keyframes flowDash {

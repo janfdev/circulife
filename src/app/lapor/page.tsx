@@ -38,16 +38,16 @@ export default function LaporPage() {
 
   return (
     <div className="py-12 sm:py-20">
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 space-y-10">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Page Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-border pb-8">
-          <div className="space-y-2">
-            <Badge variant="outline" className="gap-2 px-3.5 py-1 text-xs font-mono font-bold uppercase tracking-wider mb-1 text-primary border-primary/30">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-border/70 pb-8">
+          <div className="space-y-3">
+            <Badge variant="outline" className="gap-2 px-3.5 py-1 text-xs font-mono font-bold uppercase tracking-wider text-primary border-primary/30 rounded-full">
               <Recycle className="h-3.5 w-3.5" aria-hidden="true" />
-              <span>Sistem Setor & Daur Ulang Mandiri (TITO)</span>
+              <span>Sistem Penyetoran &amp; Verifikasi Sirkular (TITO)</span>
             </Badge>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-foreground leading-[1.2]">
-              Setor Sampah Terpilah & Tukar Bibit Saninten
+            <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-foreground leading-[1.15]">
+              Setor Sampah Terpilah &amp; Klaim Reward Lingkungan
             </h1>
             <p className="text-sm sm:text-base text-muted-foreground max-w-2xl leading-relaxed">
               Catat sampah anorganik dan organik bawaan Anda untuk disetorkan ke drop-point terdekat. Dapatkan tiket verifikasi digital untuk ditukar bibit pohon atau poin komunitas.
@@ -56,22 +56,22 @@ export default function LaporPage() {
 
           <a
             href="tel:081299002026"
-            className={cn(buttonVariants({ variant: "outline", size: "sm" }), "h-11 px-5 gap-2 text-xs font-bold shrink-0 self-start md:self-auto rounded-xl border-primary/30 text-primary")}
+            className={cn(buttonVariants({ variant: "outline", size: "sm" }), "h-10 px-5 gap-2 text-xs font-mono font-bold shrink-0 self-start md:self-auto rounded-full border-border/80 text-foreground hover:bg-muted")}
           >
-            <PhoneCall className="h-4 w-4" aria-hidden="true" />
-            <span className="font-mono">Hotline CircuLife: 0812-9900-2026</span>
+            <PhoneCall className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
+            <span>Hotline: 0812-9900-2026</span>
           </a>
         </div>
 
         {/* Tab Controls using shadcn Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full max-w-md grid-cols-2 h-12 p-1.5 rounded-xl">
-            <TabsTrigger value="FORM" className="gap-2 text-xs font-bold rounded-lg">
-              <PlusCircle className="h-4 w-4" aria-hidden="true" />
+          <TabsList className="grid w-full max-w-md grid-cols-2 h-11 p-1 rounded-full border border-border/80 bg-muted/60">
+            <TabsTrigger value="FORM" className="gap-2 text-xs font-bold rounded-full">
+              <PlusCircle className="h-3.5 w-3.5" aria-hidden="true" />
               <span>Setor Sampah Baru</span>
             </TabsTrigger>
-            <TabsTrigger value="LIST" className="gap-2 text-xs font-bold rounded-lg">
-              <ListFilter className="h-4 w-4" aria-hidden="true" />
+            <TabsTrigger value="LIST" className="gap-2 text-xs font-bold rounded-full">
+              <ListFilter className="h-3.5 w-3.5" aria-hidden="true" />
               <span>Riwayat Setoran ({reports.length})</span>
             </TabsTrigger>
           </TabsList>

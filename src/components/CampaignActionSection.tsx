@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { Flame, Sprout, ArrowUpRight, CheckCircle2, Layers, ShieldCheck, Sparkles } from "lucide-react";
+import { Flame, Sprout, ArrowUpRight, ArrowRight, CheckCircle2, Layers, ShieldCheck, Sparkles } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
@@ -33,7 +33,20 @@ export default function CampaignActionSection() {
         {/* Bento Grid layout inspired by BagUI Feature blocks */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
           {/* Bento Item 1: Alur Plastik PET & Sachet (Featured Wide Block - 7 cols) */}
-          <Card className="lg:col-span-7 flex flex-col justify-between rounded-2xl border border-border/80 bg-card shadow-sm hover:shadow-md transition-all duration-300 hover:border-primary/50 overflow-hidden group glow-card">
+          <Card className="lg:col-span-7 flex flex-col justify-between rounded-2xl border border-border/80 bg-card shadow-xs hover:border-border transition-all overflow-hidden group">
+            <div className="relative aspect-[16/9] w-full overflow-hidden bg-muted border-b border-border/70">
+              <img
+                src="/images/gallery/paving-molding.jpg"
+                alt="Proses pencetakan paving block dari lelehan plastik PET daur ulang"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute top-3 left-3">
+                <Badge variant="secondary" className="text-xs font-mono font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-card/90 backdrop-blur-sm border-border/60">
+                  Dokumentasi Lapangan: Cetak Paving
+                </Badge>
+              </div>
+            </div>
+
             <CardHeader className="p-6 sm:p-8 pb-4 border-b border-border/40 bg-muted/15">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary ring-1 ring-primary/20 group-hover:scale-105 transition-transform">
@@ -91,7 +104,20 @@ export default function CampaignActionSection() {
           </Card>
 
           {/* Bento Item 2: Alur Logam Kaleng Gas (5 cols) */}
-          <Card className="lg:col-span-5 flex flex-col justify-between rounded-2xl border border-border/80 bg-card shadow-sm hover:shadow-md transition-all duration-300 hover:border-primary/50 overflow-hidden group glow-card">
+          <Card className="lg:col-span-5 flex flex-col justify-between rounded-2xl border border-border/80 bg-card shadow-xs hover:border-border transition-all overflow-hidden group">
+            <div className="relative aspect-[16/9] w-full overflow-hidden bg-muted border-b border-border/70">
+              <img
+                src="/images/gallery/stove-upcycling.jpg"
+                alt="Tungku biomassa hemat bahan bakar hasil upcycling kaleng gas bekas"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute top-3 left-3">
+                <Badge variant="outline" className="text-xs font-mono font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-card/90 backdrop-blur-sm text-amber-600 border-amber-500/30">
+                  Dokumentasi: Tungku Kaleng
+                </Badge>
+              </div>
+            </div>
+
             <CardHeader className="p-6 sm:p-8 pb-4 border-b border-border/40 bg-muted/15">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600 ring-1 ring-amber-500/20 group-hover:scale-105 transition-transform">
@@ -142,40 +168,56 @@ export default function CampaignActionSection() {
             </CardFooter>
           </Card>
 
-          {/* Bento Item 3: Alur Organik Biokonversi Kasgot (Full Width 12 cols) */}
-          <Card className="lg:col-span-12 rounded-2xl border border-border/80 bg-gradient-to-r from-card via-card to-primary/5 shadow-sm hover:shadow-md transition-all duration-300 hover:border-primary/50 overflow-hidden p-6 sm:p-8 glow-card">
-            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-              <div className="flex items-start gap-4">
-                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary ring-1 ring-primary/20">
-                  <Sprout className="h-7 w-7" aria-hidden="true" />
-                </div>
-                <div className="space-y-1.5">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <Badge variant="default" className="text-[10px] font-mono font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-primary text-primary-foreground">
-                      Program Unggulan
-                    </Badge>
-                    <span className="text-xs font-mono text-muted-foreground">Tukar Sampah Jadi Bibit & Poin</span>
-                  </div>
-                  <h3 className="text-xl sm:text-2xl font-black text-foreground tracking-tight">
-                    Kompos Bio-Kasgot & Penukaran Sampah dengan Bibit Tanaman
-                  </h3>
-                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed max-w-3xl">
-                    Setiap 5 kg sampah terpilah yang disetorkan ke drop-point dapat langsung ditukarkan dengan 1 bibit tanaman siap tanam atau produk daur ulang. Sampah organik difermentasi bersama kasgot maggot BSF untuk menyuburkan persemaian tanaman komunitas.
-                  </p>
+          {/* Bento Item 3: Alur Organik Biokonversi Maggot BSF (Full Width 12 cols) */}
+          <Card className="lg:col-span-12 rounded-2xl border border-border/80 bg-card shadow-xs hover:border-border transition-all overflow-hidden">
+            <div className="grid grid-cols-1 md:grid-cols-12 items-center">
+              <div className="md:col-span-4 h-56 md:h-full relative overflow-hidden bg-muted border-b md:border-b-0 md:border-r border-border/70 min-h-[220px]">
+                <img
+                  src="/images/gallery/kasgot-harvest.jpg"
+                  alt="Panen pupuk kasgot hasil biokonversi sampah organik oleh larva maggot BSF"
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                />
+                <div className="absolute top-3 left-3">
+                  <Badge variant="secondary" className="text-xs font-mono font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-card/90 backdrop-blur-sm border-border/60">
+                    Dokumentasi: Panen Kasgot BSF
+                  </Badge>
                 </div>
               </div>
+              <div className="md:col-span-8 p-6 sm:p-8">
+                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary ring-1 ring-primary/20">
+                      <Sprout className="h-6 w-6" aria-hidden="true" />
+                    </div>
+                    <div className="space-y-1.5">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <Badge variant="outline" className="text-xs font-mono font-bold uppercase tracking-wider border-primary/30 text-primary">
+                          Alur Organik : Biokonversi
+                        </Badge>
+                        <span className="text-xs font-mono text-muted-foreground">Siklus 14 Hari</span>
+                      </div>
+                      <h3 className="text-xl sm:text-2xl font-black text-foreground tracking-tight">
+                        Kompos Bio-Kasgot &amp; Penukaran Sampah dengan Bibit Tanaman
+                      </h3>
+                      <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed max-w-3xl">
+                        Setiap 5 kg sampah terpilah yang disetorkan ke drop-point dapat langsung ditukarkan dengan 1 bibit tanaman siap tanam atau produk daur ulang. Sampah organik diurai larva maggot BSF untuk nutrisi tanah tanpa bau menyengat.
+                      </p>
+                    </div>
+                  </div>
 
-              <div className="flex flex-wrap items-center gap-3 shrink-0">
-                <Link
-                  href="/lapor"
-                  className={cn(
-                    buttonVariants({ variant: "default", size: "lg" }),
-                    "h-11 px-5 text-xs font-mono font-bold uppercase tracking-wider rounded-xl gap-2 shadow-sm"
-                  )}
-                >
-                  <Sparkles className="h-4 w-4" aria-hidden="true" />
-                  <span>Setor Sampah & Klaim Reward</span>
-                </Link>
+                  <div className="shrink-0 flex items-center">
+                    <Link
+                      href="/konservasi"
+                      className={cn(
+                        buttonVariants({ variant: "outline", size: "sm" }),
+                        "h-11 px-6 text-xs font-mono font-bold uppercase tracking-wider rounded-xl gap-2 border-border/80 hover:bg-muted text-foreground"
+                      )}
+                    >
+                      <span>Pelajari Kasgot</span>
+                      <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                    </Link>
+                  </div>
+                </div>
               </div>
             </div>
           </Card>

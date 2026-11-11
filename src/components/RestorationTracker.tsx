@@ -56,10 +56,10 @@ export default function RestorationTracker() {
           Program Pemulihan Ekosistem
         </Badge>
         <h2 className="text-2xl sm:text-3xl font-black text-foreground tracking-tight">
-          Peta Perkembangan Restorasi Lahan Bekas Karhutla
+          Peta Perkembangan Restorasi Lahan & Penghijauan Sirkular
         </h2>
         <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-          Pantauan nyata reboisasi pohon endemik di 3 zona rehabilitasi kritis mitra komunitas CircuLife.
+          Pantauan nyata reboisasi pohon endemik dan pemulihan lahan kritis dengan pupuk organik kasgot mitra CircuLife.
         </p>
       </div>
 

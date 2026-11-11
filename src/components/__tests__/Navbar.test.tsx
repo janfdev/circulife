@@ -4,14 +4,16 @@ import React from "react";
 import Navbar from "../Navbar";
 
 describe("Navbar Component", () => {
-  it("should render the brand title CIRCULIFE and telemetry indicators", () => {
+  it("should render the brand title CIRCULIFE", () => {
     render(<Navbar currentPath="/" />);
     expect(screen.getByText("CIRCULIFE")).toBeInTheDocument();
-    expect(screen.getByText(/Digital Zero Waste & Value Hub/i)).toBeInTheDocument();
   });
 
   it("should render mandatory competition navigation links with valid routes", () => {
     render(<Navbar currentPath="/" />);
+    const toggleButton = screen.getByRole("button", { name: /buka menu navigasi|menu navigasi/i });
+    fireEvent.click(toggleButton);
+
     const links = screen.getAllByRole("link");
     const hrefs = links.map((l) => l.getAttribute("href"));
 

@@ -13,13 +13,13 @@ export default function PantauPage() {
     <div className="py-12 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-16">
         {/* Header */}
-        <div className="border-b border-border pb-8 space-y-3">
-          <Badge variant="secondary" className="gap-2 px-3.5 py-1 text-xs font-bold uppercase tracking-wider mb-1">
+        <div className="border-b border-border/70 pb-8 space-y-4">
+          <Badge variant="outline" className="gap-2 px-3.5 py-1 text-xs font-mono font-bold uppercase tracking-wider text-primary border-primary/30 rounded-full">
             <Recycle className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
-            <span>Kalkulator Sirkular & Pemantauan Lingkungan</span>
+            <span>Kalkulator Sirkularitas &amp; Pemantauan Real-Time</span>
           </Badge>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-foreground leading-[1.2]">
-            Hitung Nilai Sampah, Reduksi Emisi & Pantau Kesiapan Sentra
+          <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-foreground leading-[1.15]">
+            Hitung Nilai Sampah, Reduksi Emisi &amp; Pantau Kesiapan Sentra
           </h1>
           <p className="text-sm sm:text-base text-muted-foreground max-w-3xl leading-relaxed">
             Hitung potensi konversi sampah botol plastik dan sisa makanan menjadi paving block serta pupuk kompos, sekaligus pantau indikator kapasitas dan cuaca di seluruh sentra mitra CircuLife.

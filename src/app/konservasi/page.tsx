@@ -11,13 +11,13 @@ export default function KonservasiPage() {
     <div className="py-12 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-16">
         {/* Header */}
-        <div className="border-b border-border pb-8 space-y-3">
-          <Badge variant="secondary" className="gap-2 px-3.5 py-1 text-xs font-bold uppercase tracking-wider mb-1">
+        <div className="border-b border-border/70 pb-8 space-y-4">
+          <Badge variant="outline" className="gap-2 px-3.5 py-1 text-xs font-mono font-bold uppercase tracking-wider text-primary border-primary/30 rounded-full">
             <Recycle className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
-            <span>Ekonomi Sirkular & Konservasi Lingkungan</span>
+            <span>Ekonomi Sirkular &amp; Konservasi Lingkungan</span>
           </Badge>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-foreground leading-[1.2]">
-            Katalog Produk Olahan Sampah & Konservasi Terpadu
+          <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-foreground leading-[1.15]">
+            Katalog Produk Olahan Sampah &amp; Restorasi Berkelanjutan
           </h1>
           <p className="text-sm sm:text-base text-muted-foreground max-w-3xl leading-relaxed">
             Mengubah sampah anorganik terpilah menjadi material konstruksi jalan setapak ramah lingkungan, pupuk persemaian bibit penghijauan, dan produk upcycling bernilai tambah tinggi.

@@ -41,16 +41,16 @@ export default function GaleriPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Header Banner */}
-      <section className="relative py-16 sm:py-24 border-b border-border bg-gradient-to-b from-primary/10 via-background to-background">
+      <section className="relative py-16 sm:py-24 border-b border-border/70 bg-gradient-to-b from-primary/10 via-background to-background relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/20 bg-primary/10 text-primary text-xs font-mono font-bold uppercase tracking-wider">
-            <CircuLifeMark className="h-4 w-4" />
-            <span>Pusat Konten, Artikel & Galeri Transformasi</span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-primary/20 bg-primary/10 text-primary text-xs font-mono font-bold uppercase tracking-wider">
+            <CircuLifeMark className="h-3.5 w-3.5" />
+            <span>Pusat Inovasi &amp; Dokumentasi Visual Sirkular</span>
           </div>
 
           <div className="max-w-3xl space-y-4">
-            <h1 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight leading-tight">
-              Eksplorasi Inovasi, Dokumentasi & Produk Zero Waste
+            <h1 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight leading-[1.15]">
+              Eksplorasi Inovasi, Dokumentasi &amp; Produk Zero Waste
             </h1>
             <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
               Jelajahi panduan praktis gaya hidup minim sampah, dokumentasi proses pengolahan limbah menjadi material bernilai tinggi, dan etalase karya sirkular komunitas binaan CircuLife.
@@ -63,7 +63,7 @@ export default function GaleriPage() {
               variant={activeTab === "semua" ? "default" : "outline"}
               size="sm"
               onClick={() => setActiveTab("semua")}
-              className="rounded-xl text-xs font-bold font-mono"
+              className="rounded-full text-xs font-bold font-mono h-9 px-4 border-border/80"
             >
               Semua Konten ({CIRCULIFE_ARTICLES.length + CIRCULIFE_GALLERY.length + CIRCULAR_PRODUCTS.length})
             </Button>
@@ -71,7 +71,7 @@ export default function GaleriPage() {
               variant={activeTab === "galeri" ? "default" : "outline"}
               size="sm"
               onClick={() => setActiveTab("galeri")}
-              className="rounded-xl text-xs font-bold font-mono gap-1.5"
+              className="rounded-full text-xs font-bold font-mono gap-1.5 h-9 px-4 border-border/80"
             >
               <ImageIcon className="h-3.5 w-3.5" />
               <span>Galeri Transformasi ({CIRCULIFE_GALLERY.length})</span>
@@ -80,16 +80,16 @@ export default function GaleriPage() {
               variant={activeTab === "artikel" ? "default" : "outline"}
               size="sm"
               onClick={() => setActiveTab("artikel")}
-              className="rounded-xl text-xs font-bold font-mono gap-1.5"
+              className="rounded-full text-xs font-bold font-mono gap-1.5 h-9 px-4 border-border/80"
             >
               <BookOpen className="h-3.5 w-3.5" />
-              <span>Artikel & Panduan ({CIRCULIFE_ARTICLES.length})</span>
+              <span>Artikel &amp; Panduan ({CIRCULIFE_ARTICLES.length})</span>
             </Button>
             <Button
               variant={activeTab === "produk" ? "default" : "outline"}
               size="sm"
               onClick={() => setActiveTab("produk")}
-              className="rounded-xl text-xs font-bold font-mono gap-1.5"
+              className="rounded-full text-xs font-bold font-mono gap-1.5 h-9 px-4 border-border/80"
             >
               <Layers className="h-3.5 w-3.5" />
               <span>Katalog Produk ({CIRCULAR_PRODUCTS.length})</span>
@@ -120,7 +120,7 @@ export default function GaleriPage() {
               {CIRCULIFE_GALLERY.map((item) => (
                 <Card
                   key={item.id}
-                  className="rounded-3xl border-border bg-card overflow-hidden shadow-sm hover:shadow-md transition-all group flex flex-col justify-between glow-card"
+                  className="rounded-3xl border-border bg-card overflow-hidden shadow-xs hover:border-border/90 transition-all group flex flex-col justify-between"
                 >
                   <div>
                     {/* Visual Media Header */}
@@ -214,7 +214,7 @@ export default function GaleriPage() {
               {filteredArticles.map((article) => (
                 <Card
                   key={article.id}
-                  className="rounded-3xl border-border bg-card overflow-hidden hover:border-primary/40 transition-colors shadow-sm flex flex-col justify-between group glow-card"
+                  className="rounded-3xl border-border bg-card overflow-hidden hover:border-border/90 transition-colors shadow-xs flex flex-col justify-between group"
                 >
                   {article.imageUrl && (
                     <div className="h-48 w-full bg-muted overflow-hidden relative border-b border-border/60">

@@ -83,7 +83,7 @@ export default function CircularProductCatalog() {
         {filteredProducts.map((p) => (
           <Card
             key={p.id}
-            className="flex flex-col justify-between rounded-2xl border-border bg-card shadow-sm hover:border-primary/40 transition-all hover:shadow-md overflow-hidden group glow-card"
+            className="flex flex-col justify-between rounded-2xl border-border bg-card shadow-xs hover:border-border/90 transition-all overflow-hidden group"
           >
             <div>
               {p.imageUrl && (
