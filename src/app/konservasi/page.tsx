@@ -2,6 +2,7 @@ import React from "react";
 import SpeciesDirectory from "@/components/SpeciesDirectory";
 import RestorationTracker from "@/components/RestorationTracker";
 import CircularProductCatalog from "@/components/CircularProductCatalog";
+import BioDigesterAnatomy from "@/components/BioDigesterAnatomy";
 import { SPECIES_SEEDS } from "@/lib/constants";
 import { Recycle, TreePine, Sparkles, Layers } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -28,6 +29,22 @@ export default function KonservasiPage() {
             Mengubah sampah anorganik terpilah menjadi material konstruksi jalan setapak ramah lingkungan, pupuk persemaian bibit penghijauan, dan produk upcycling bernilai tambah tinggi.
           </p>
         </div>
+
+        {/* 0. Standalone Bio-Digester Anatomy Section */}
+        <section aria-labelledby="biodigester-heading" className="space-y-4">
+          <div className="mb-2 space-y-2">
+            <Badge variant="outline" className="mb-1 text-xs font-bold uppercase tracking-wider text-primary border-primary/30">
+              Anatomi Alat Daur Ulang Organik
+            </Badge>
+            <h2 id="biodigester-heading" className="text-2xl sm:text-3xl font-black text-foreground">
+              Anatomi Bioreaktor Anaerobik &amp; Pengolah Bio-Slurry
+            </h2>
+            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed max-w-3xl">
+              Teknologi tepat guna pengolahan limbah organik pasar dan sisa makanan menjadi energi biogas metana bersih serta pupuk cair bio-slurry penyubur bibit konservasi.
+            </p>
+          </div>
+          <BioDigesterAnatomy />
+        </section>
 
         {/* 1. Circular Product Catalog Section */}
         <section aria-labelledby="circular-heading">

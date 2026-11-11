@@ -20,6 +20,11 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
   const estimatedPavingUnits = Math.max(1, Math.round(shreddedFlakesKg * 0.8));
   const compressionRatio = (pressureBar / 200).toFixed(2);
 
+  // Calibrated Needle Angle (-135deg at 0 Bar, +135deg at 200 Bar)
+  const needleAngle = -135 + (pressureBar / 200) * 270;
+  // Dynamic Platen Vertical Offset in SVG space (0 at 0 Bar to 18px down at 200 Bar)
+  const platenOffsetY = Math.round((pressureBar / 200) * 18);
+
   return (
     <div className={cn("w-full space-y-4", className)}>
       {/* Instrument Frame Card Header */}
@@ -196,9 +201,36 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
 
               {/* 4. Hydraulic Press Column & Compression Piston */}
               <g id="press-assembly">
-                {/* Heavy Dual Vertical Guide Columns */}
+                {/* Heavy Dual Vertical Guide Columns with Stroke Measurement Ruler Ticks */}
                 <rect x="420" y="80" width="10" height="150" fill="#64748B" stroke="#334155" rx="2" />
                 <rect x="470" y="110" width="10" height="150" fill="#475569" stroke="#334155" rx="2" />
+                {[...Array(8)].map((_, i) => (
+                  <line
+                    key={`stroke-tick-${i}`}
+                    x1="427"
+                    y1={95 + i * 15}
+                    x2={i % 2 === 0 ? "433" : "430"}
+                    y2={95 + i * 15}
+                    stroke="#E2E8F0"
+                    strokeWidth="0.8"
+                  />
+                ))}
+
+                {/* Recoil Springs along Left and Right Guide Columns */}
+                <path
+                  d="M425,100 C430,105 420,110 425,115 C430,120 420,125 425,130 C430,135 420,140 425,145 C430,150 420,155 425,160 C430,165 420,170 425,175"
+                  fill="none"
+                  stroke="#334155"
+                  strokeWidth="2.2"
+                  strokeLinecap="round"
+                />
+                <path
+                  d="M475,130 C480,135 470,140 475,145 C480,150 470,155 475,160 C480,165 470,170 475,175 C480,180 470,185 475,190"
+                  fill="none"
+                  stroke="#334155"
+                  strokeWidth="2.2"
+                  strokeLinecap="round"
+                />
 
                 {/* Top Cross-Head Frame */}
                 <polygon
@@ -219,30 +251,44 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
                   stroke="#0F172A"
                   strokeWidth="1.5"
                 />
+                {/* Cross-head corner screws with bevel rings */}
+                <circle cx="420" cy="85" r="1.5" fill="#94A3B8" />
+                <circle cx="420" cy="85" r="2.5" fill="none" stroke="#64748B" strokeWidth="0.5" />
+                <circle cx="488" cy="65" r="1.5" fill="#94A3B8" />
+                <circle cx="488" cy="65" r="2.5" fill="none" stroke="#64748B" strokeWidth="0.5" />
 
                 {/* Hydraulic Cylinder Chamber (Central) */}
                 <rect x="440" y="85" width="22" height="55" fill="#0E4436" stroke="#16A36E" strokeWidth="1.5" rx="3" />
                 <line x1="440" y1="102" x2="462" y2="102" stroke="#22A06B" strokeWidth="2" />
 
-                {/* Ram / Plunger Platen (Moving downwards based on pressure) */}
-                <polygon
-                  points="405,215 465,180 515,208 455,243"
-                  fill="#334155"
-                  stroke="#0F172A"
-                  strokeWidth="1.5"
-                />
-                <polygon
-                  points="405,215 455,243 455,255 405,227"
-                  fill="#1E293B"
-                  stroke="#0F172A"
-                  strokeWidth="1.5"
-                />
-                <polygon
-                  points="455,243 515,208 515,220 455,255"
-                  fill="#0F172A"
-                  stroke="#0F172A"
-                  strokeWidth="1.5"
-                />
+                {/* Hydraulic Ram & Platen Assembly (Moving with calibrated stroke offset) */}
+                <g style={{ transform: `translateY(${platenOffsetY}px)`, transition: "transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)" }}>
+                  {/* Chrome Cylinder Ram Shaft */}
+                  <rect x="448" y="140" width="6" height={70 - platenOffsetY} fill="#E2E8F0" stroke="#94A3B8" strokeWidth="1" />
+
+                  {/* Heavy Compression Platen */}
+                  <polygon
+                    points="405,215 465,180 515,208 455,243"
+                    fill="#334155"
+                    stroke="#0F172A"
+                    strokeWidth="1.5"
+                  />
+                  <polygon
+                    points="405,215 455,243 455,255 405,227"
+                    fill="#1E293B"
+                    stroke="#0F172A"
+                    strokeWidth="1.5"
+                  />
+                  <polygon
+                    points="455,243 515,208 515,220 455,255"
+                    fill="#0F172A"
+                    stroke="#0F172A"
+                    strokeWidth="1.5"
+                  />
+                  {/* Bushing sleeve corners */}
+                  <circle cx="425" cy="223" r="2.2" fill="#0F172A" />
+                  <circle cx="475" cy="216" r="2.2" fill="#0F172A" />
+                </g>
               </g>
 
               {/* 5. Hexagonal Mold Bed & Finished Eco-Paving Block K-250 */}
@@ -285,17 +331,43 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
 
               {/* 6. Technical Dial Gauge Instrument (Live Pressure Readout) */}
               <g id="dial-gauge" transform="translate(480, 115)">
-                {/* Gauge Case */}
-                <circle cx="28" cy="28" r="24" fill="#0F172A" stroke="#22A06B" strokeWidth="2" />
+                {/* Knurled Outer Bezel Ring */}
+                <circle cx="28" cy="28" r="26" fill="#1E293B" stroke="#0F172A" strokeWidth="1.5" />
+                <circle cx="28" cy="28" r="23" fill="#0F172A" stroke="#22A06B" strokeWidth="1.5" />
                 <circle cx="28" cy="28" r="21" fill="#F8FAFC" />
-                {/* Radial Ticks */}
-                <line x1="28" y1="9" x2="28" y2="13" stroke="#0F172A" strokeWidth="1.5" />
-                <line x1="13" y1="28" x2="17" y2="28" stroke="#0F172A" strokeWidth="1.5" />
-                <line x1="43" y1="28" x2="39" y2="28" stroke="#0F172A" strokeWidth="1.5" />
-                {/* Dial Needle (Rotated towards ~185 bar) */}
-                <line x1="28" y1="28" x2="38" y2="15" stroke="#DC2626" strokeWidth="2" strokeLinecap="round" />
-                <circle cx="28" cy="28" r="3" fill="#0F172A" />
-                <text x="28" y="38" fontSize="7" fontWeight="bold" textAnchor="middle" fill="#0F172A" fontFamily="monospace">
+
+                {/* Calibrated Radial Ticks */}
+                {[...Array(12)].map((_, i) => {
+                  const angle = (-135 + i * (270 / 11)) * (Math.PI / 180);
+                  const isMajor = i % 2 === 0;
+                  const r1 = 20;
+                  const r2 = isMajor ? 15 : 17;
+                  const x1 = 28 + r1 * Math.cos(angle);
+                  const y1 = 28 + r1 * Math.sin(angle);
+                  const x2 = 28 + r2 * Math.cos(angle);
+                  const y2 = 28 + r2 * Math.sin(angle);
+                  return (
+                    <line
+                      key={`dial-tick-${i}`}
+                      x1={x1}
+                      y1={y1}
+                      x2={x2}
+                      y2={y2}
+                      stroke={i >= 9 ? "#DC2626" : "#0F172A"}
+                      strokeWidth={isMajor ? "1.4" : "0.8"}
+                    />
+                  );
+                })}
+
+                {/* Dynamic Dial Needle with Calm Transition */}
+                <g style={{ transform: `rotate(${needleAngle}deg)`, transformOrigin: "28px 28px", transition: "transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)" }}>
+                  <line x1="28" y1="28" x2="28" y2="12" stroke="#DC2626" strokeWidth="2" strokeLinecap="round" />
+                  <line x1="28" y1="28" x2="28" y2="33" stroke="#DC2626" strokeWidth="1.2" strokeLinecap="round" />
+                </g>
+
+                {/* Hub Cap */}
+                <circle cx="28" cy="28" r="3.5" fill="#0F172A" stroke="#DC2626" strokeWidth="1" />
+                <text x="28" y="40" fontSize="6.5" fontWeight="bold" textAnchor="middle" fill="#0F172A" fontFamily="monospace">
                   BAR
                 </text>
               </g>
