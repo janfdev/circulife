@@ -1,6 +1,9 @@
 import React from "react";
-import WeatherRiskCalculator from "@/components/WeatherRiskCalculator";
+import WasteImpactSimulator from "@/components/WasteImpactSimulator";
+import TrailStatusBoard from "@/components/TrailStatusBoard";
+import RestorationTracker from "@/components/RestorationTracker";
 import HotlineDirectory from "@/components/HotlineDirectory";
+import { TRAIL_SEEDS } from "@/lib/constants";
 import { Activity, Recycle, PackageCheck } from "lucide-react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
@@ -31,12 +34,22 @@ export default function PantauPage() {
           </p>
         </div>
 
-        {/* 1. Simulator Indeks Nilai Sampah & Cuaca */}
-        <section aria-labelledby="calculator-heading">
-          <WeatherRiskCalculator />
+        {/* 1. Simulator Konversi Dampak & Reduksi Karbon */}
+        <section aria-labelledby="simulator-heading">
+          <WasteImpactSimulator />
         </section>
 
-        {/* 2. Hotline Directory Section */}
+        {/* 2. Status Kapasitas Drop-Point Terintegrasi */}
+        <section aria-labelledby="drop-point-heading">
+          <TrailStatusBoard trails={TRAIL_SEEDS} />
+        </section>
+
+        {/* 3. Tracker Restorasi Ekosistem & Pemanfaatan Pupuk Kasgot */}
+        <section aria-labelledby="restoration-heading">
+          <RestorationTracker />
+        </section>
+
+        {/* 4. Direktori Posko Resmi & Hotline */}
         <section className="pt-10 border-t border-border" aria-labelledby="hotline-heading">
           <HotlineDirectory />
         </section>

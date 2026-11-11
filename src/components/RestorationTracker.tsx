@@ -19,7 +19,7 @@ export default function RestorationTracker() {
       progressPercent: 82,
       speciesUsed: ["Saninten", "Rasamala", "Puspa", "Kihujan"],
       status: "Tahap Pemeliharaan Intensif",
-      notes: "Kawasan pulih dari dampak kebakaran 2023. Tingkat kelangsungan hidup bibit mencapai 88%.",
+      notes: "Kawasan pulih dari degradasi lahan. Tingkat kelangsungan hidup bibit mencapai 88%.",
     },
     {
       id: "cileutik-sadarehe",
@@ -32,7 +32,7 @@ export default function RestorationTracker() {
       progressPercent: 68,
       speciesUsed: ["Cemara Gunung", "Pinus Merkusii", "Cantigi"],
       status: "Pengkayaan Kanopi & Penahan Longsor",
-      notes: "Fokus pada lereng curam bekas savana terbakar untuk mengunci lapisan tanah vulkanik.",
+      notes: "Fokus pada lereng curam untuk mengunci lapisan tanah vulkanik dan menahan erosi.",
     },
     {
       id: "lambosir",
