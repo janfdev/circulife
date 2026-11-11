@@ -77,19 +77,9 @@ export default function Navbar({ currentPath }: NavbarProps) {
           <div className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-card border border-border/80 shadow-[0_1px_2px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.15)] ring-1 ring-primary/20 transition-transform group-hover:scale-105">
             <CircuLifeMark className="h-5 w-5 sm:h-6 sm:w-6" />
           </div>
-          <div className="flex flex-col">
-            <span className="text-base font-black tracking-tight text-foreground sm:text-lg">
-              CIRCULIFE
-            </span>
-            <div className="flex items-center gap-1.5">
-              <Badge
-                variant="outline"
-                className="h-4 border-primary/30 px-1.5 py-0 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground tabular-nums font-mono"
-              >
-                Inisiatif Zero Waste
-              </Badge>
-            </div>
-          </div>
+          <span className="text-base font-black tracking-tight text-foreground sm:text-lg">
+            CIRCULIFE
+          </span>
         </Link>
       }
       desktopNav={
