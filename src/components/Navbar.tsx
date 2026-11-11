@@ -5,34 +5,38 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CircuLifeMark } from "@/components/CircuLifeLogo";
 import {
-  Recycle,
-  Info,
-  BookOpen,
-  Mail,
-  PackageCheck,
-  Calculator,
   Menu,
   X,
+  PackageCheck,
+  ChevronDown,
+  Calculator,
+  BookOpen,
+  Image as ImageIcon,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu";
 import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
-import { AnnouncementBanner } from "@/components/blocks/announcement/AnnouncementBanner";
 import { NavbarDarkShadow } from "@/components/ui/navbar-dark-shadow";
 
-interface NavbarProps {
+export interface NavbarProps {
   currentPath?: string;
 }
 
 export const NAV_ITEMS = [
-  { href: "/", label: "Beranda", icon: Recycle },
-  { href: "/konservasi", label: "Produk Olahan", icon: PackageCheck },
-  { href: "/pantau", label: "Hitung Dampak", icon: Calculator },
-  { href: "/edukasi", label: "Panduan & Kuis", icon: BookOpen },
-  { href: "/galeri", label: "Dokumentasi", icon: Info },
-  { href: "/about", label: "Tentang Kami", icon: Info },
-  { href: "/contact", label: "Kontak", icon: Mail },
-  { href: "/lapor", label: "Setor Sampah", icon: PackageCheck, isAction: true },
+  { href: "/", label: "Beranda" },
+  { href: "/konservasi", label: "Produk Olahan" },
+  { href: "/pantau", label: "Hitung Dampak" },
+  { href: "/edukasi", label: "Panduan" },
+  { href: "/galeri", label: "Dokumentasi" },
+  { href: "/about", label: "Tentang Kami" },
+  { href: "/contact", label: "Kontak" },
+  { href: "/lapor", label: "Setor Sampah", isAction: true },
 ];
 
 export default function Navbar({ currentPath }: NavbarProps) {
@@ -45,6 +49,11 @@ export default function Navbar({ currentPath }: NavbarProps) {
     pathname = "/";
   }
   const activePath = currentPath ?? pathname;
+
+  const isEcosystemActive =
+    activePath === "/pantau" ||
+    activePath === "/edukasi" ||
+    activePath === "/galeri";
 
   // Close mobile menu on Escape key
   useEffect(() => {
@@ -84,49 +93,123 @@ export default function Navbar({ currentPath }: NavbarProps) {
         </Link>
       }
       desktopNav={
-        <nav className="flex items-center gap-1" aria-label="Navigasi Utama">
-          {NAV_ITEMS.map((item) => {
-            const Icon = item.icon;
-            const isActive = activePath === item.href;
+        <nav className="flex items-center gap-1.5" aria-label="Navigasi Utama">
+          {/* 1. Beranda */}
+          <Link
+            href="/"
+            className={`px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider rounded-full transition-all ${
+              activePath === "/"
+                ? "bg-primary/10 text-primary font-black"
+                : "text-muted-foreground hover:text-foreground hover:bg-muted/60"
+            }`}
+          >
+            Beranda
+          </Link>
 
-            if (item.isAction) {
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`ml-2 inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-bold uppercase tracking-wider transition-all focus-visible:ring-2 ${
-                    isActive
-                      ? "bg-primary text-primary-foreground shadow-[0_2px_6px_rgba(16,185,129,0.35),inset_0_1px_0_rgba(255,255,255,0.3),inset_0_-1px_0_rgba(0,0,0,0.4)]"
-                      : "bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_2px_4px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.25),inset_0_-1px_0_rgba(0,0,0,0.4)] hover:shadow-[0_4px_12px_rgba(16,185,129,0.4),inset_0_1px_0_rgba(255,255,255,0.35),inset_0_-1px_0_rgba(0,0,0,0.5)] active:translate-y-0.5"
-                  }`}
-                >
-                  <Icon className="h-3.5 w-3.5" aria-hidden="true" />
-                  <span>{item.label}</span>
-                </Link>
-              );
-            }
+          {/* 2. Produk Olahan */}
+          <Link
+            href="/konservasi"
+            className={`px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider rounded-full transition-all ${
+              activePath === "/konservasi"
+                ? "bg-primary/10 text-primary font-black"
+                : "text-muted-foreground hover:text-foreground hover:bg-muted/60"
+            }`}
+          >
+            Produk Olahan
+          </Link>
 
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`inline-flex items-center gap-1.5 rounded-xl px-3.5 py-1.5 text-xs font-bold tracking-wide uppercase transition-all focus-visible:ring-2 ${
-                  isActive
-                    ? "bg-primary/10 text-primary font-extrabold shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
-                    : "text-foreground/80 hover:bg-muted/70 hover:text-foreground dark:hover:bg-white/10 dark:hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
-                }`}
-              >
-                <Icon className="h-3.5 w-3.5 opacity-80" aria-hidden="true" />
-                <span>{item.label}</span>
-              </Link>
-            );
-          })}
+          {/* 3. Dropdown Menu: Wawasan & Fitur */}
+          <DropdownMenu>
+            <DropdownMenuTrigger
+              className={`inline-flex items-center gap-1 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider rounded-full transition-all cursor-pointer outline-none ${
+                isEcosystemActive
+                  ? "bg-primary/10 text-primary font-black"
+                  : "text-muted-foreground hover:text-foreground hover:bg-muted/60"
+              }`}
+            >
+              <span>Fitur &amp; Wawasan</span>
+              <ChevronDown className="h-3.5 w-3.5 opacity-60" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              align="start"
+              className="w-56 p-1.5 rounded-2xl border border-border/80 bg-card shadow-lg"
+            >
+              <DropdownMenuItem
+                render={
+                  <Link
+                    href="/pantau"
+                    className="flex items-center gap-2.5 px-3 py-2 text-xs font-medium rounded-xl hover:bg-muted cursor-pointer"
+                  >
+                    <Calculator className="h-4 w-4 text-primary shrink-0" />
+                    <div>
+                      <span className="font-bold block text-foreground">Hitung Dampak</span>
+                      <span className="text-[10px] text-muted-foreground block">Kalkulator konversi limbah</span>
+                    </div>
+                  </Link>
+                }
+              />
+              <DropdownMenuItem
+                render={
+                  <Link
+                    href="/edukasi"
+                    className="flex items-center gap-2.5 px-3 py-2 text-xs font-medium rounded-xl hover:bg-muted cursor-pointer"
+                  >
+                    <BookOpen className="h-4 w-4 text-primary shrink-0" />
+                    <div>
+                      <span className="font-bold block text-foreground">Panduan &amp; Kuis</span>
+                      <span className="text-[10px] text-muted-foreground block">Modul pemilahan zero waste</span>
+                    </div>
+                  </Link>
+                }
+              />
+              <DropdownMenuItem
+                render={
+                  <Link
+                    href="/galeri"
+                    className="flex items-center gap-2.5 px-3 py-2 text-xs font-medium rounded-xl hover:bg-muted cursor-pointer"
+                  >
+                    <ImageIcon className="h-4 w-4 text-primary shrink-0" />
+                    <div>
+                      <span className="font-bold block text-foreground">Dokumentasi</span>
+                      <span className="text-[10px] text-muted-foreground block">Foto transformasi fisik</span>
+                    </div>
+                  </Link>
+                }
+              />
+            </DropdownMenuContent>
+          </DropdownMenu>
 
+          {/* 4. Tentang Kami */}
+          <Link
+            href="/about"
+            className={`px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider rounded-full transition-all ${
+              activePath === "/about"
+                ? "bg-primary/10 text-primary font-black"
+                : "text-muted-foreground hover:text-foreground hover:bg-muted/60"
+            }`}
+          >
+            Tentang
+          </Link>
+
+          {/* Action Button: Setor Sampah */}
+          <Link
+            href="/lapor"
+            className={`ml-1.5 inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-xs font-bold uppercase tracking-wider transition-all shadow-sm ${
+              activePath === "/lapor"
+                ? "bg-primary text-primary-foreground shadow-md"
+                : "bg-primary text-primary-foreground hover:bg-primary/90"
+            }`}
+          >
+            <PackageCheck className="h-3.5 w-3.5" aria-hidden="true" />
+            <span>Setor Sampah</span>
+          </Link>
+
+          {/* Theme Toggler */}
           <AnimatedThemeToggler
             variant="circle"
             duration={450}
             aria-label="Toggle tema gelap atau terang"
-            className="ml-1 h-9 w-9 rounded-xl flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted/80 dark:hover:bg-white/10 transition-colors border border-border/50 dark:border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] [&_svg]:h-4 [&_svg]:w-4 dark:[&_svg]:text-emerald-400"
+            className="ml-1 h-9 w-9 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted/80 transition-colors border border-border/80 [&_svg]:h-4 [&_svg]:w-4"
           />
         </nav>
       }
@@ -136,7 +219,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
             variant="circle"
             duration={450}
             aria-label="Toggle tema gelap atau terang"
-            className="h-10 w-10 rounded-lg flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted transition-colors border border-border/50 [&_svg]:h-4 [&_svg]:w-4 dark:[&_svg]:text-emerald-400"
+            className="h-9 w-9 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted transition-colors border border-border/80 [&_svg]:h-4 [&_svg]:w-4"
           />
 
           <Button
@@ -146,12 +229,12 @@ export default function Navbar({ currentPath }: NavbarProps) {
             onClick={() => setMobileMenuOpen((prev) => !prev)}
             aria-label={mobileMenuOpen ? "Tutup menu navigasi" : "Buka menu navigasi"}
             aria-expanded={mobileMenuOpen}
-            className="h-10 w-10 rounded-xl border-border/80 dark:border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]"
+            className="h-9 w-9 rounded-full border-border/80 shadow-xs"
           >
             {mobileMenuOpen ? (
-              <X className="h-5 w-5" aria-hidden="true" />
+              <X className="h-4 w-4" aria-hidden="true" />
             ) : (
-              <Menu className="h-5 w-5" aria-hidden="true" />
+              <Menu className="h-4 w-4" aria-hidden="true" />
             )}
           </Button>
         </div>
@@ -159,7 +242,6 @@ export default function Navbar({ currentPath }: NavbarProps) {
       mobileMenu={
         <nav className="flex flex-col gap-2" aria-label="Navigasi Mobile">
           {NAV_ITEMS.map((item) => {
-            const Icon = item.icon;
             const isActive = activePath === item.href;
 
             return (
@@ -167,19 +249,16 @@ export default function Navbar({ currentPath }: NavbarProps) {
                 key={item.href}
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className={`flex h-12 items-center justify-between rounded-xl px-4 text-sm font-bold transition-all ${
+                className={`flex h-11 items-center justify-between rounded-xl px-4 text-sm font-bold transition-all ${
                   isActive
-                    ? "bg-primary text-primary-foreground shadow-[0_2px_4px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.25)]"
-                    : "text-foreground hover:bg-muted/70 dark:hover:bg-white/5"
+                    ? "bg-primary text-primary-foreground shadow-sm"
+                    : "text-foreground hover:bg-muted/70"
                 }`}
               >
-                <div className="flex items-center gap-3">
-                  <Icon className="h-5 w-5 opacity-90" aria-hidden="true" />
-                  <span>{item.label}</span>
-                </div>
+                <span>{item.label}</span>
                 {item.isAction && (
-                  <Badge variant="secondary" className="text-[10px] font-mono uppercase tracking-wider">
-                    Setor & Tukar
+                  <Badge variant="secondary" className="text-[10px] font-mono uppercase tracking-wider rounded-full">
+                    Aksi Warga
                   </Badge>
                 )}
               </Link>

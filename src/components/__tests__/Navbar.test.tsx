@@ -12,6 +12,9 @@ describe("Navbar Component", () => {
 
   it("should render mandatory competition navigation links with valid routes", () => {
     render(<Navbar currentPath="/" />);
+    const toggleButton = screen.getByRole("button", { name: /buka menu navigasi|menu navigasi/i });
+    fireEvent.click(toggleButton);
+
     const links = screen.getAllByRole("link");
     const hrefs = links.map((l) => l.getAttribute("href"));
 
