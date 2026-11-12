@@ -29,4 +29,26 @@ describe("CircularProductCatalog Component", () => {
     expect(screen.getByText(/Pupuk Kompos Bio-Organik Kasgot/i)).toBeInTheDocument();
     expect(screen.queryByText("Eco-Paving Block Plastik PET K-250")).not.toBeInTheDocument();
   });
+
+  it("should open and close the technical lab spec modal when clicking Uji Lab", () => {
+    render(<CircularProductCatalog />);
+
+    // Click Uji Lab button for the first product
+    const labButtons = screen.getAllByRole("button", { name: /uji lab/i });
+    expect(labButtons.length).toBeGreaterThan(0);
+    fireEvent.click(labButtons[0]);
+
+    // Check modal contents
+    expect(screen.getByRole("dialog")).toBeInTheDocument();
+    expect(screen.getByText(/Verifikasi Mutu & Laboratorium/i)).toBeInTheDocument();
+    expect(screen.getByText(/SNI 03-0691-1996/i)).toBeInTheDocument();
+    expect(screen.getByText(/25.8 MPa \(K-250 Equivalent\)/i)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /ajukan kemitraan/i })).toBeInTheDocument();
+
+    // Close modal
+    const closeBtn = screen.getByRole("button", { name: /tutup lembar uji lab/i });
+    fireEvent.click(closeBtn);
+
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+  });
 });

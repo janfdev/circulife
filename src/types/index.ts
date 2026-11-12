@@ -53,6 +53,18 @@ export interface TrailCondition {
 
 export type ProductCategory = "PAVING" | "COMPOST" | "UPCYCLING" | "CRAFT";
 
+export interface TechnicalLabSpec {
+  standardCompliance: string;
+  compressiveStrength?: string;
+  waterAbsorption?: string;
+  compositionRatio: string;
+  expectedLifespan: string;
+  labTestAgency: string;
+  testDate: string;
+  qualityGrade: string;
+  safetyCert: string;
+}
+
 export interface CircularProduct {
   id: string;
   name: string;
@@ -65,6 +77,7 @@ export interface CircularProduct {
   description: string;
   application: string;
   imageUrl?: string;
+  labSpec?: TechnicalLabSpec;
 }
 
 // Alur Pemanfaatan Sampah Types

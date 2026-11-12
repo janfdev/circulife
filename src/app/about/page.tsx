@@ -14,6 +14,11 @@ import {
   Layers,
   HeartHandshake,
   CheckCircle2,
+  Leaf,
+  Factory,
+  TreePine,
+  RefreshCcw,
+  FileCheck2,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
@@ -274,6 +279,257 @@ export default function AboutPage() {
               <p className="text-xs text-muted-foreground leading-relaxed">
                 Konversi otomatis metrik sampah ke reduksi gas rumah kaca (CO2e equivalent) sesuai standar metodologi IPCC lingkungan.
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Matriks Keselarasan SDG PBB */}
+      <section className="py-16 sm:py-24 border-b border-border bg-card/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          <div className="text-center max-w-3xl mx-auto space-y-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/20 bg-primary/10 text-primary text-xs font-mono font-bold uppercase tracking-wider">
+              <Globe2 className="h-3.5 w-3.5" />
+              <span>Agenda Pembangunan Berkelanjutan Global 2030</span>
+            </div>
+            <h2 className="text-2xl sm:text-4xl font-black text-foreground tracking-tight">
+              Matriks Keselarasan SDG PBB
+            </h2>
+            <p className="text-sm sm:text-base text-muted-foreground">
+              CircuLife merancang setiap modul operasional agar terukur langsung terhadap target indikator Sustainable Development Goals PBB.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* SDG 12 */}
+            <Card className="rounded-3xl border-border bg-card p-6 sm:p-7 flex flex-col justify-between space-y-6 relative overflow-hidden">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="h-12 w-12 rounded-2xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center font-black font-mono text-lg">
+                    12
+                  </div>
+                  <Badge variant="outline" className="font-mono text-[10px] font-bold uppercase border-amber-500/30 text-amber-600 dark:text-amber-400">
+                    Target 12.5
+                  </Badge>
+                </div>
+                <div className="space-y-1.5">
+                  <h3 className="text-base sm:text-lg font-black text-foreground leading-snug">
+                    SDG 12: Konsumsi & Produksi Bertanggung Jawab
+                  </h3>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    Substansial mengurangi timbulan sampah melalui pencegahan, pengurangan, daur ulang, dan penggunaan kembali.
+                  </p>
+                </div>
+
+                <div className="p-3.5 rounded-2xl bg-muted/50 border border-border/70 space-y-2">
+                  <div className="flex items-center justify-between text-xs font-mono">
+                    <span className="text-muted-foreground font-bold">Landfill Diversion :</span>
+                    <span className="font-black text-foreground">78.4%</span>
+                  </div>
+                  <div className="w-full bg-border/60 h-2 rounded-full overflow-hidden">
+                    <div className="bg-amber-500 h-full rounded-full" style={{ width: "78.4%" }} />
+                  </div>
+                  <span className="text-[11px] text-muted-foreground block">
+                    142.5 Ton sampah dialihkan menjadi 18.400 paving block K-250 dan pupuk organik.
+                  </span>
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-border/70 flex items-center gap-2 text-xs font-semibold text-foreground">
+                <CheckCircle2 className="h-4 w-4 text-amber-600 dark:text-amber-400 shrink-0" />
+                <span>Pencatatan hulu transparan via bank sampah digital</span>
+              </div>
+            </Card>
+
+            {/* SDG 13 */}
+            <Card className="rounded-3xl border-border bg-card p-6 sm:p-7 flex flex-col justify-between space-y-6 relative overflow-hidden">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="h-12 w-12 rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-black font-mono text-lg">
+                    13
+                  </div>
+                  <Badge variant="outline" className="font-mono text-[10px] font-bold uppercase border-emerald-500/30 text-emerald-600 dark:text-emerald-400">
+                    Target 13.3
+                  </Badge>
+                </div>
+                <div className="space-y-1.5">
+                  <h3 className="text-base sm:text-lg font-black text-foreground leading-snug">
+                    SDG 13: Penanganan Perubahan Iklim
+                  </h3>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    Meningkatkan pendidikan, penumbuhan kesadaran, serta kapasitas manusia dan institusi dalam mitigasi dampak iklim.
+                  </p>
+                </div>
+
+                <div className="p-3.5 rounded-2xl bg-muted/50 border border-border/70 space-y-2">
+                  <div className="flex items-center justify-between text-xs font-mono">
+                    <span className="text-muted-foreground font-bold">Reduksi Emisi CO2e :</span>
+                    <span className="font-black text-emerald-600 dark:text-emerald-400">68.2 Ton</span>
+                  </div>
+                  <div className="w-full bg-border/60 h-2 rounded-full overflow-hidden">
+                    <div className="bg-emerald-500 h-full rounded-full" style={{ width: "85%" }} />
+                  </div>
+                  <span className="text-[11px] text-muted-foreground block">
+                    Penangkapan gas metana bio-digester dan penghentian pembakaran sampah terbuka liar.
+                  </span>
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-border/70 flex items-center gap-2 text-xs font-semibold text-foreground">
+                <CheckCircle2 className="h-4 w-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                <span>Kalkulasi otomatis metodologi IPCC emisi karbon</span>
+              </div>
+            </Card>
+
+            {/* SDG 15 */}
+            <Card className="rounded-3xl border-border bg-card p-6 sm:p-7 flex flex-col justify-between space-y-6 relative overflow-hidden">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="h-12 w-12 rounded-2xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center font-black font-mono text-lg">
+                    15
+                  </div>
+                  <Badge variant="outline" className="font-mono text-[10px] font-bold uppercase border-blue-500/30 text-blue-600 dark:text-blue-400">
+                    Target 15.2
+                  </Badge>
+                </div>
+                <div className="space-y-1.5">
+                  <h3 className="text-base sm:text-lg font-black text-foreground leading-snug">
+                    SDG 15: Ekosistem Daratan & Konservasi
+                  </h3>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    Menghentikan deforestasi, memulihkan lahan kritis terdegradasi, dan mencegah kepunahan satwa flora endemik.
+                  </p>
+                </div>
+
+                <div className="p-3.5 rounded-2xl bg-muted/50 border border-border/70 space-y-2">
+                  <div className="flex items-center justify-between text-xs font-mono">
+                    <span className="text-muted-foreground font-bold">Bibit Pohon Tertanam :</span>
+                    <span className="font-black text-blue-600 dark:text-blue-400">1.250 Pohon</span>
+                  </div>
+                  <div className="w-full bg-border/60 h-2 rounded-full overflow-hidden">
+                    <div className="bg-blue-500 h-full rounded-full" style={{ width: "92%" }} />
+                  </div>
+                  <span className="text-[11px] text-muted-foreground block">
+                    Penghijauan koridor tangkapan air memakai pupuk bio-kasgot bernutrisi makro tinggi.
+                  </span>
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-border/70 flex items-center gap-2 text-xs font-semibold text-foreground">
+                <CheckCircle2 className="h-4 w-4 text-blue-600 dark:text-blue-400 shrink-0" />
+                <span>Restorasi vegetasi tanah tanpa residu pupuk kimia sintetis</span>
+              </div>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Arsitektur Alur Sistem Sirkular Tertutup */}
+      <section className="py-16 sm:py-24 border-b border-border bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          <div className="text-center max-w-3xl mx-auto space-y-3">
+            <Badge variant="outline" className="font-mono text-xs uppercase border-primary/30 text-primary">
+              Rantai Pasok Tertutup Tanpa Residu
+            </Badge>
+            <h2 className="text-2xl sm:text-4xl font-black text-foreground tracking-tight">
+              Arsitektur Alur Sistem Sirkular Tertutup
+            </h2>
+            <p className="text-sm sm:text-base text-muted-foreground">
+              Bagaimana material sampah bergerak dari limbah domestik hulu hingga kembali ke masyarakat sebagai infrastruktur dan energi terbarukan.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 relative">
+            {/* Step 1 */}
+            <div className="p-5 rounded-3xl bg-card border border-border/80 space-y-3 flex flex-col justify-between">
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <div className="h-10 w-10 rounded-2xl bg-primary/10 text-primary flex items-center justify-center">
+                    <Leaf className="h-5 w-5" />
+                  </div>
+                  <span className="text-[10px] font-mono font-bold uppercase text-primary px-2 py-0.5 rounded-full bg-primary/10">
+                    Fase 01
+                  </span>
+                </div>
+                <h3 className="text-sm font-bold text-foreground">
+                  Sumber Hulu & Pemilahan Warga
+                </h3>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Penyetoran sampah terpilah di drop point komunitas. Penimbangan akurat dengan konversi poin transparan.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-border/60 text-[11px] font-mono text-muted-foreground">
+                Output: Sampah PET bersih, sachet, & residu organik
+              </div>
+            </div>
+
+            {/* Step 2 */}
+            <div className="p-5 rounded-3xl bg-card border border-border/80 space-y-3 flex flex-col justify-between">
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <div className="h-10 w-10 rounded-2xl bg-primary/10 text-primary flex items-center justify-center">
+                    <Factory className="h-5 w-5" />
+                  </div>
+                  <span className="text-[10px] font-mono font-bold uppercase text-primary px-2 py-0.5 rounded-full bg-primary/10">
+                    Fase 02
+                  </span>
+                </div>
+                <h3 className="text-sm font-bold text-foreground">
+                  Pabrikasi & Biokonversi Terpadu
+                </h3>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Pelelehan polimer PET suhu 210°C untuk paving block, dan fermentasi anaerobik sisa makanan di reaktor bio-digester.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-border/60 text-[11px] font-mono text-muted-foreground">
+                Output: Paving cetak, pupuk kasgot, & biogas CH4
+              </div>
+            </div>
+
+            {/* Step 3 */}
+            <div className="p-5 rounded-3xl bg-card border border-border/80 space-y-3 flex flex-col justify-between">
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <div className="h-10 w-10 rounded-2xl bg-primary/10 text-primary flex items-center justify-center">
+                    <FileCheck2 className="h-5 w-5" />
+                  </div>
+                  <span className="text-[10px] font-mono font-bold uppercase text-primary px-2 py-0.5 rounded-full bg-primary/10">
+                    Fase 03
+                  </span>
+                </div>
+                <h3 className="text-sm font-bold text-foreground">
+                  Validasi Mutu & Uji Teknis SNI
+                </h3>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Pengujian mekanika tekan 25 MPa (K-250), serapan air di bawah 3%, dan verifikasi bebas racun lindi logam berat TCLP.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-border/60 text-[11px] font-mono text-muted-foreground">
+                Output: Sertifikasi SNI & lembar uji mutu publik
+              </div>
+            </div>
+
+            {/* Step 4 */}
+            <div className="p-5 rounded-3xl bg-card border border-border/80 space-y-3 flex flex-col justify-between">
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <div className="h-10 w-10 rounded-2xl bg-primary/10 text-primary flex items-center justify-center">
+                    <TreePine className="h-5 w-5" />
+                  </div>
+                  <span className="text-[10px] font-mono font-bold uppercase text-primary px-2 py-0.5 rounded-full bg-primary/10">
+                    Fase 04
+                  </span>
+                </div>
+                <h3 className="text-sm font-bold text-foreground">
+                  Pemanfaatan Komunitas & Regenerasi
+                </h3>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Paving block dipasang di jalan setapak desa, pupuk diaplikasikan pada bibit reboisasi mata air, poin ditukar sembako.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-border/60 text-[11px] font-mono text-muted-foreground">
+                Output: Nilai ekonomi warga & perlindungan biosfer
+              </div>
             </div>
           </div>
         </div>

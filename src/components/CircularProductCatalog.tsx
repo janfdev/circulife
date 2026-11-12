@@ -4,7 +4,23 @@ import React, { useState } from "react";
 import { CircularProduct, ProductCategory } from "@/types";
 import { CIRCULAR_PRODUCTS } from "@/lib/constants";
 import { filterCircularProducts } from "@/lib/reportUtils";
-import { Layers, Sprout, Flame, ShoppingBag, ArrowRight, HeartHandshake, CheckCircle2 } from "lucide-react";
+import {
+  Layers,
+  Sprout,
+  Flame,
+  ShoppingBag,
+  ArrowRight,
+  HeartHandshake,
+  CheckCircle2,
+  FileCheck2,
+  X,
+  ShieldCheck,
+  Building2,
+  Calendar,
+  Gauge,
+  Droplets,
+  Microscope,
+} from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -12,6 +28,7 @@ import { cn } from "@/lib/utils";
 
 export default function CircularProductCatalog() {
   const [selectedCategory, setSelectedCategory] = useState<ProductCategory | "ALL">("ALL");
+  const [activeProduct, setActiveProduct] = useState<CircularProduct | null>(null);
   const filteredProducts = filterCircularProducts(CIRCULAR_PRODUCTS, selectedCategory, "");
 
   const getCategoryIcon = (cat: ProductCategory) => {
@@ -153,7 +170,7 @@ export default function CircularProductCatalog() {
               </CardContent>
             </div>
 
-            <CardFooter className="p-4 py-3 border-t border-border/60 bg-muted/15 flex items-center justify-between">
+            <CardFooter className="p-4 py-3 border-t border-border/60 bg-muted/15 flex items-center justify-between gap-2">
               <div>
                 <span className="text-[9px] font-mono uppercase text-muted-foreground block">
                   Nilai Komunitas
@@ -162,17 +179,181 @@ export default function CircularProductCatalog() {
                   Rp {p.priceEstimateRp.toLocaleString("id-ID")}
                 </span>
               </div>
-              <a
-                href="/lapor"
-                className={cn(buttonVariants({ variant: "outline", size: "sm" }), "h-7 px-3 text-xs font-bold gap-1 rounded-lg border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground")}
-              >
-                <span>Tukar</span>
-                <ArrowRight className="h-3 w-3" />
-              </a>
+              <div className="flex items-center gap-1.5">
+                {p.labSpec && (
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setActiveProduct(p)}
+                    className="h-7 px-2 text-xs font-semibold gap-1 text-muted-foreground hover:text-foreground"
+                    title="Buka Lembar Hasil Uji Laboratorium"
+                  >
+                    <FileCheck2 className="h-3.5 w-3.5 text-primary" />
+                    <span>Uji Lab</span>
+                  </Button>
+                )}
+                <a
+                  href="/lapor"
+                  className={cn(buttonVariants({ variant: "outline", size: "sm" }), "h-7 px-3 text-xs font-bold gap-1 rounded-lg border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground")}
+                >
+                  <span>Tukar</span>
+                  <ArrowRight className="h-3 w-3" />
+                </a>
+              </div>
             </CardFooter>
           </Card>
         ))}
       </div>
+
+      {/* Technical Lab Spec Modal Dialog */}
+      {activeProduct && activeProduct.labSpec && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="lab-spec-title"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm animate-in fade-in duration-200"
+          onClick={() => setActiveProduct(null)}
+        >
+          <div
+            className="w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl border border-border bg-card shadow-2xl p-6 sm:p-7 space-y-6 text-foreground"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="flex items-start justify-between gap-4 border-b border-border/70 pb-4">
+              <div className="space-y-1.5">
+                <div className="flex items-center gap-2">
+                  <Badge variant="outline" className="text-[10px] font-mono font-bold uppercase border-primary/40 text-primary">
+                    {activeProduct.labSpec.qualityGrade}
+                  </Badge>
+                  <span className="text-xs font-mono text-muted-foreground">
+                    Verifikasi Mutu & Laboratorium
+                  </span>
+                </div>
+                <h3 id="lab-spec-title" className="text-xl sm:text-2xl font-black text-foreground tracking-tight">
+                  {activeProduct.name}
+                </h3>
+              </div>
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                onClick={() => setActiveProduct(null)}
+                aria-label="Tutup lembar uji lab"
+                className="h-8 w-8 rounded-full text-muted-foreground hover:text-foreground"
+              >
+                <X className="h-4 w-4" />
+              </Button>
+            </div>
+
+            {/* Core Standard Callout */}
+            <div className="p-4 rounded-2xl bg-primary/10 border border-primary/20 space-y-1.5">
+              <div className="flex items-center gap-2 text-primary font-mono text-xs font-bold uppercase">
+                <ShieldCheck className="h-4 w-4" />
+                <span>Kesesuaian Standar Acuan</span>
+              </div>
+              <p className="text-sm font-black text-foreground font-mono">
+                {activeProduct.labSpec.standardCompliance}
+              </p>
+            </div>
+
+            {/* Engineering Grid (4-6 Spec Cards) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              {activeProduct.labSpec.compressiveStrength && (
+                <div className="p-3.5 rounded-2xl bg-muted/40 border border-border/70 space-y-1">
+                  <div className="flex items-center gap-1.5 text-muted-foreground text-[11px] font-mono font-bold uppercase">
+                    <Gauge className="h-3.5 w-3.5 text-primary" />
+                    <span>Karakteristik & Kekuatan</span>
+                  </div>
+                  <p className="text-xs font-bold text-foreground">
+                    {activeProduct.labSpec.compressiveStrength}
+                  </p>
+                </div>
+              )}
+
+              {activeProduct.labSpec.waterAbsorption && (
+                <div className="p-3.5 rounded-2xl bg-muted/40 border border-border/70 space-y-1">
+                  <div className="flex items-center gap-1.5 text-muted-foreground text-[11px] font-mono font-bold uppercase">
+                    <Droplets className="h-3.5 w-3.5 text-primary" />
+                    <span>Serapan / Retensi Air</span>
+                  </div>
+                  <p className="text-xs font-bold text-foreground">
+                    {activeProduct.labSpec.waterAbsorption}
+                  </p>
+                </div>
+              )}
+
+              <div className="p-3.5 rounded-2xl bg-muted/40 border border-border/70 space-y-1 sm:col-span-2">
+                <div className="flex items-center gap-1.5 text-muted-foreground text-[11px] font-mono font-bold uppercase">
+                  <Microscope className="h-3.5 w-3.5 text-primary" />
+                  <span>Rasio Komposisi Formulasi</span>
+                </div>
+                <p className="text-xs font-bold text-foreground">
+                  {activeProduct.labSpec.compositionRatio}
+                </p>
+              </div>
+
+              <div className="p-3.5 rounded-2xl bg-muted/40 border border-border/70 space-y-1">
+                <div className="flex items-center gap-1.5 text-muted-foreground text-[11px] font-mono font-bold uppercase">
+                  <Calendar className="h-3.5 w-3.5 text-primary" />
+                  <span>Estimasi Umur Pakai</span>
+                </div>
+                <p className="text-xs font-bold text-foreground">
+                  {activeProduct.labSpec.expectedLifespan}
+                </p>
+              </div>
+
+              <div className="p-3.5 rounded-2xl bg-muted/40 border border-border/70 space-y-1">
+                <div className="flex items-center gap-1.5 text-muted-foreground text-[11px] font-mono font-bold uppercase">
+                  <Building2 className="h-3.5 w-3.5 text-primary" />
+                  <span>Lembaga Penguji & Tanggal</span>
+                </div>
+                <p className="text-xs font-bold text-foreground leading-snug">
+                  {activeProduct.labSpec.labTestAgency} ({activeProduct.labSpec.testDate})
+                </p>
+              </div>
+            </div>
+
+            {/* Toxicity & Safety Certificate Strip */}
+            <div className="p-3.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-start gap-3">
+              <CheckCircle2 className="h-4 w-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
+              <div className="space-y-0.5">
+                <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-950 dark:text-emerald-300 block">
+                  Sertifikasi Keselamatan Lingkungan
+                </span>
+                <span className="text-xs font-semibold text-emerald-950 dark:text-emerald-200 block">
+                  {activeProduct.labSpec.safetyCert}
+                </span>
+              </div>
+            </div>
+
+            {/* Modal Actions */}
+            <div className="pt-2 border-t border-border/70 flex flex-col sm:flex-row items-center justify-between gap-3">
+              <span className="text-xs text-muted-foreground text-center sm:text-left">
+                Diproduksi oleh: <strong className="text-foreground">{activeProduct.producerUnit}</strong>
+              </span>
+              <div className="flex items-center gap-2 w-full sm:w-auto">
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setActiveProduct(null)}
+                  className="w-full sm:w-auto h-9 text-xs font-bold rounded-xl"
+                >
+                  Tutup
+                </Button>
+                <a
+                  href={`/contact?subject=Kemitraan_${encodeURIComponent(activeProduct.name)}`}
+                  className={cn(buttonVariants({ variant: "default", size: "sm" }), "w-full sm:w-auto h-9 text-xs font-bold gap-1.5 rounded-xl")}
+                >
+                  <span>Ajukan Kemitraan</span>
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
