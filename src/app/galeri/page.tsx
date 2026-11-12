@@ -160,7 +160,7 @@ export default function GaleriPage() {
                   </div>
 
                   <CardFooter className="p-5 pt-3 border-t border-border/40 bg-muted/20 flex items-center justify-between">
-                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
                       Tervalidasi ISO
                     </span>
                     <span className="text-xs font-mono font-bold text-primary">

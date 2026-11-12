@@ -262,7 +262,7 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
                 <line x1="440" y1="102" x2="462" y2="102" stroke="#22A06B" strokeWidth="2" />
 
                 {/* Hydraulic Ram & Platen Assembly (Moving with calibrated stroke offset) */}
-                <g style={{ transform: `translateY(${platenOffsetY}px)`, transition: "transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)" }}>
+                <g style={{ transform: `translateY(${platenOffsetY}px)`, transition: "transform 0.35s cubic-bezier(0.16, 1, 0.3, 1)" }}>
                   {/* Chrome Cylinder Ram Shaft */}
                   <rect x="448" y="140" width="6" height={70 - platenOffsetY} fill="#E2E8F0" stroke="#94A3B8" strokeWidth="1" />
 
@@ -375,24 +375,24 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
               {/* Callout Indicator Labels */}
               <g className="text-[11px] font-mono font-bold" fill="currentColor">
                 {/* Hopper Callout */}
-                <line x1="160" y1="60" x2="200" y2="80" stroke="hsl(var(--primary))" strokeWidth="1" strokeDasharray="3 3" />
-                <circle cx="160" cy="60" r="3" fill="hsl(var(--primary))" />
+                <line x1="120" y1="80" x2="160" y2="120" stroke="hsl(var(--primary))" strokeWidth="1" strokeDasharray="3 3" />
+                <circle cx="120" cy="80" r="3" fill="hsl(var(--primary))" />
                 <text x="75" y="62" fill="hsl(var(--foreground))" className="text-[11px]">
-                  1. Flakes Inflow
+                  1. Masukan Cacahan
                 </text>
 
                 {/* Thermal Barrel Callout */}
                 <line x1="310" y1="170" x2="310" y2="215" stroke="hsl(var(--primary))" strokeWidth="1" strokeDasharray="3 3" />
                 <circle cx="310" cy="170" r="3" fill="hsl(var(--primary))" />
-                <text x="270" y="155" fill="hsl(var(--foreground))" className="text-[11px]">
-                  2. 220°C Thermal Matrix
+                <text x="250" y="155" fill="hsl(var(--foreground))" className="text-[11px]">
+                  2. Pemanas Termal 220°C
                 </text>
 
                 {/* Mold Callout */}
                 <line x1="520" y1="330" x2="475" y2="295" stroke="hsl(var(--primary))" strokeWidth="1" strokeDasharray="3 3" />
                 <circle cx="520" cy="330" r="3" fill="hsl(var(--primary))" />
                 <text x="525" y="334" fill="hsl(var(--foreground))" className="text-[11px]">
-                  3. Paving Block K-250
+                  3. Balok Paving K-250
                 </text>
               </g>
             </svg>
@@ -403,17 +403,17 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
             <div className="rounded-2xl border border-border/80 bg-background/80 p-4 space-y-4 shadow-xs">
               <div className="flex items-center justify-between border-b border-border/60 pb-2.5">
                 <span className="text-xs font-mono font-bold uppercase text-muted-foreground">
-                  Rig Control System
+                  Sistem Kendali Rig
                 </span>
-                <span className="inline-flex items-center gap-1.5 text-xs font-mono text-emerald-600 font-bold">
+                <span className="inline-flex items-center gap-1.5 text-xs font-mono text-emerald-700 dark:text-emerald-400 font-bold">
                   <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                  ACTIVE RUN
+                  OPERASI AKTIF
                 </span>
               </div>
 
               {/* Cycle State Selector */}
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-foreground">Cycle Stage</label>
+                <label className="text-xs font-bold text-foreground">Tahapan Siklus</label>
                 <div className="grid grid-cols-3 gap-1.5 p-1 rounded-xl bg-muted/60 border border-border/60">
                   <button
                     type="button"
@@ -423,11 +423,11 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
                       setTempCelsius(180);
                     }}
                     className={cn(
-                      "py-1.5 text-xs font-bold rounded-lg transition-all",
+                      "py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer",
                       activeCycle === "FEED" ? "bg-card text-foreground shadow-xs" : "text-muted-foreground hover:text-foreground"
                     )}
                   >
-                    1. Feed
+                    1. Masuk
                   </button>
                   <button
                     type="button"
@@ -437,11 +437,11 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
                       setTempCelsius(225);
                     }}
                     className={cn(
-                      "py-1.5 text-xs font-bold rounded-lg transition-all",
+                      "py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer",
                       activeCycle === "MELT" ? "bg-card text-foreground shadow-xs" : "text-muted-foreground hover:text-foreground"
                     )}
                   >
-                    2. Melt
+                    2. Lebur
                   </button>
                   <button
                     type="button"
@@ -451,11 +451,11 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
                       setTempCelsius(215);
                     }}
                     className={cn(
-                      "py-1.5 text-xs font-bold rounded-lg transition-all",
+                      "py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer",
                       activeCycle === "PRESS" ? "bg-card text-foreground shadow-xs" : "text-muted-foreground hover:text-foreground"
                     )}
                   >
-                    3. Press
+                    3. Kempa
                   </button>
                 </div>
               </div>
@@ -464,13 +464,14 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
               <div className="space-y-3 pt-1">
                 <div>
                   <div className="flex justify-between text-xs font-medium mb-1">
-                    <span className="text-muted-foreground">Shredded PET Feed</span>
-                    <span className="font-mono font-bold">{shreddedFlakesKg} kg</span>
+                    <span className="text-muted-foreground">Umpan Cacahan PET</span>
+                    <span className="font-mono font-bold tabular-nums">{shreddedFlakesKg} kg</span>
                   </div>
                   <input
                     type="range"
                     min={10}
                     max={100}
+                    aria-label="Umpan Cacahan PET dalam kilogram"
                     value={shreddedFlakesKg}
                     onChange={(e) => setShreddedFlakesKg(Number(e.target.value))}
                     className="w-full accent-primary h-1.5 bg-muted rounded-lg cursor-pointer"
@@ -479,13 +480,14 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
 
                 <div>
                   <div className="flex justify-between text-xs font-medium mb-1">
-                    <span className="text-muted-foreground">Hydraulic Pressure</span>
-                    <span className="font-mono font-bold text-primary">{pressureBar} Bar</span>
+                    <span className="text-muted-foreground">Tekanan Hidrolik</span>
+                    <span className="font-mono font-bold text-primary tabular-nums">{pressureBar} Bar</span>
                   </div>
                   <input
                     type="range"
                     min={20}
                     max={220}
+                    aria-label="Tekanan Hidrolik dalam Bar"
                     value={pressureBar}
                     onChange={(e) => setPressureBar(Number(e.target.value))}
                     className="w-full accent-primary h-1.5 bg-muted rounded-lg cursor-pointer"
@@ -496,18 +498,18 @@ export function WasteMachineAnatomy({ className }: WasteMachineAnatomyProps) {
               {/* Physical Output Readout Box */}
               <div className="rounded-xl border border-primary/20 bg-primary/5 p-3 space-y-2">
                 <div className="text-[11px] font-mono uppercase text-muted-foreground font-bold">
-                  Yield & Metric Outcome
+                  Estimasi Hasil &amp; Dampak
                 </div>
                 <div className="grid grid-cols-2 gap-2 text-xs">
                   <div>
-                    <span className="text-muted-foreground block text-[10px]">Paving Blocks</span>
-                    <span className="font-bold text-foreground text-sm font-mono">
+                    <span className="text-muted-foreground block text-[10px]">Balok Paving</span>
+                    <span className="font-bold text-foreground text-sm font-mono tabular-nums">
                       {estimatedPavingUnits} Buah
                     </span>
                   </div>
                   <div>
-                    <span className="text-muted-foreground block text-[10px]">Compress Force</span>
-                    <span className="font-bold text-foreground text-sm font-mono">
+                    <span className="text-muted-foreground block text-[10px]">Gaya Tekan</span>
+                    <span className="font-bold text-foreground text-sm font-mono tabular-nums">
                       {compressionRatio}x Std
                     </span>
                   </div>

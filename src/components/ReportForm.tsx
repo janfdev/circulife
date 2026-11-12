@@ -299,11 +299,12 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
               onChange={(e) => setFormData({ ...formData, reporterName: e.target.value })}
               placeholder="Contoh: Ahmad Dahlan (Pendaki)"
               aria-invalid={!!errors.reporterName}
+              aria-describedby={errors.reporterName ? "reporterName-error" : undefined}
               className={`h-11 ${errors.reporterName ? "border-destructive focus-visible:ring-destructive" : ""}`}
             />
             {errors.reporterName && (
-              <p className="mt-1 text-xs text-destructive flex items-center gap-1">
-                <AlertCircle className="h-3.5 w-3.5 shrink-0" />
+              <p id="reporterName-error" className="mt-1 text-xs text-destructive flex items-center gap-1" role="alert">
+                <AlertCircle className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                 <span>{errors.reporterName}</span>
               </p>
             )}
@@ -320,11 +321,12 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
               onChange={(e) => setFormData({ ...formData, reporterContact: e.target.value })}
               placeholder="081234567890"
               aria-invalid={!!errors.reporterContact}
+              aria-describedby={errors.reporterContact ? "reporterContact-error" : undefined}
               className={`h-11 tabular-nums ${errors.reporterContact ? "border-destructive focus-visible:ring-destructive" : ""}`}
             />
             {errors.reporterContact && (
-              <p className="mt-1 text-xs text-destructive flex items-center gap-1">
-                <AlertCircle className="h-3.5 w-3.5 shrink-0" />
+              <p id="reporterContact-error" className="mt-1 text-xs text-destructive flex items-center gap-1" role="alert">
+                <AlertCircle className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                 <span>{errors.reporterContact}</span>
               </p>
             )}
@@ -476,11 +478,12 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
               onChange={(e) => setFormData({ ...formData, locationDetail: e.target.value })}
               placeholder="Contoh: Shelter Pos 3 Arban / Pos 4"
               aria-invalid={!!errors.locationDetail}
+              aria-describedby={errors.locationDetail ? "locationDetail-error" : undefined}
               className={`h-11 ${errors.locationDetail ? "border-destructive focus-visible:ring-destructive" : ""}`}
             />
             {errors.locationDetail && (
-              <p className="mt-1 text-xs text-destructive flex items-center gap-1">
-                <AlertCircle className="h-3.5 w-3.5 shrink-0" />
+              <p id="locationDetail-error" className="mt-1 text-xs text-destructive flex items-center gap-1" role="alert">
+                <AlertCircle className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                 <span>{errors.locationDetail}</span>
               </p>
             )}
@@ -537,6 +540,8 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
             <Input
               type="number"
               step="any"
+              id="report-lat"
+              aria-label="Garis Lintang (Latitude)"
               value={formData.lat}
               onChange={(e) => setFormData({ ...formData, lat: e.target.value })}
               placeholder="Latitude (cth: -6.8921)"
@@ -545,6 +550,8 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
             <Input
               type="number"
               step="any"
+              id="report-lng"
+              aria-label="Garis Bujur (Longitude)"
               value={formData.lng}
               onChange={(e) => setFormData({ ...formData, lng: e.target.value })}
               placeholder="Longitude (cth: 108.4012)"
@@ -552,14 +559,16 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
             />
           </div>
           {errors.coordinates && (
-            <p className="mt-1.5 text-xs text-destructive">{errors.coordinates}</p>
+            <p id="coordinates-error" className="mt-1.5 text-xs text-destructive" role="alert">
+              {errors.coordinates}
+            </p>
           )}
         </Card>
 
         {/* Row 5: Description */}
         <div>
           <label htmlFor="description" className="block text-xs font-bold uppercase tracking-wider text-foreground mb-1.5">
-            Deskripsi Kejadian / Rincian Sampah Terpilah <span className="text-destructive">*</span>
+            Rincian Sampah Terpilah <span className="text-destructive">*</span>
           </label>
           <Textarea
             id="description"
@@ -568,11 +577,12 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
             onChange={(e) => setFormData({ ...formData, description: e.target.value })}
             placeholder="Jelaskan jenis sampah yang disetorkan (cth: 15 botol PET 600ml, 2 kaleng gas kompor kosong, sampah bersih tanpa sisa cairan)..."
             aria-invalid={!!errors.description}
+            aria-describedby={errors.description ? "description-error" : undefined}
             className={`min-h-24 ${errors.description ? "border-destructive focus-visible:ring-destructive" : ""}`}
           />
           {errors.description && (
-            <p className="mt-1 text-xs text-destructive flex items-center gap-1">
-              <AlertCircle className="h-3.5 w-3.5 shrink-0" />
+            <p id="description-error" className="mt-1 text-xs text-destructive flex items-center gap-1" role="alert">
+              <AlertCircle className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
               <span>{errors.description}</span>
             </p>
           )}
@@ -583,7 +593,7 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
           <Button
             type="submit"
             disabled={isSubmitting}
-            className="w-full h-12 gap-2 text-sm font-bold shadow-sm bg-primary text-primary-foreground hover:bg-primary/90"
+            className="w-full h-12 gap-2 text-sm font-bold shadow-sm bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer"
           >
             {isSubmitting ? (
               <>
@@ -593,7 +603,7 @@ export default function ReportForm({ initialTrail = "PALUTUNGAN", onReportSubmit
             ) : (
               <>
                 <PackageCheck className="h-4 w-4" aria-hidden="true" />
-                <span>Kirim Laporan Darurat & Setor Sampah</span>
+                <span>Kirim Data Setoran & Dapatkan Tiket</span>
               </>
             )}
           </Button>

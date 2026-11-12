@@ -74,7 +74,7 @@ export default function InteractiveQuiz({ questions }: InteractiveQuizProps) {
             Hasil Uji Kesiapsiagaan
           </Badge>
           <CardTitle className="text-2xl sm:text-3xl font-black text-foreground">
-            {isPass ? "Lulus : Duta Lingkungan Sirkular CircuLife" : "Perlu Pendalaman Materi Konservasi"}
+            {isPass ? "Lulus: Duta Lingkungan Sirkular CircuLife" : "Perlu Pendalaman Materi Konservasi"}
           </CardTitle>
           <p className="text-sm text-muted-foreground leading-relaxed">
             {isPass
@@ -84,7 +84,7 @@ export default function InteractiveQuiz({ questions }: InteractiveQuizProps) {
         </div>
 
         <div className="inline-flex items-center gap-3 rounded-xl bg-muted/50 border border-border px-6 py-4">
-          <span className="text-sm font-medium text-muted-foreground">Skor Akhir :</span>
+          <span className="text-sm font-medium text-muted-foreground">Skor Akhir:</span>
           <span className="text-3xl font-black text-foreground tabular-nums">
             {score} / {questions.length}
           </span>

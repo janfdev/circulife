@@ -53,7 +53,7 @@ export default function CampaignActionSection() {
                   <Layers className="h-6 w-6" aria-hidden="true" />
                 </div>
                 <Badge variant="secondary" className="text-xs font-mono font-bold uppercase tracking-wider px-3 py-1 rounded-md">
-                  Alur Plastik : Eco-Paving
+                  Alur Plastik: Eco-Paving
                 </Badge>
               </div>
 
@@ -124,7 +124,7 @@ export default function CampaignActionSection() {
                   <Flame className="h-6 w-6" aria-hidden="true" />
                 </div>
                 <Badge variant="outline" className="text-xs font-mono font-bold uppercase tracking-wider px-3 py-1 rounded-md text-amber-700 dark:text-amber-400 border-amber-500/30">
-                  Alur Logam : Upcycling
+                  Alur Logam: Upcycling
                 </Badge>
               </div>
 
@@ -192,7 +192,7 @@ export default function CampaignActionSection() {
                     <div className="space-y-1.5">
                       <div className="flex flex-wrap items-center gap-2">
                         <Badge variant="outline" className="text-xs font-mono font-bold uppercase tracking-wider border-primary/30 text-primary">
-                          Alur Organik : Biokonversi
+                          Alur Organik: Biokonversi
                         </Badge>
                         <span className="text-xs font-mono text-muted-foreground">Siklus 14 Hari</span>
                       </div>

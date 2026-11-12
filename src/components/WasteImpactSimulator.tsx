@@ -201,7 +201,11 @@ export default function WasteImpactSimulator() {
         {/* Interactive Console Card */}
         <Card className="rounded-3xl border border-border/80 bg-card shadow-sm overflow-hidden">
           {/* Top Material Selector Tabs */}
-          <div className="grid grid-cols-2 md:grid-cols-4 border-b border-border/70 bg-muted/40 p-2 gap-2">
+          <div
+            role="tablist"
+            aria-label="Pilihan Jenis Material Sampah"
+            className="grid grid-cols-2 md:grid-cols-4 border-b border-border/70 bg-muted/40 p-2 gap-2"
+          >
             {MATERIALS.map((mat) => {
               const Icon = mat.icon;
               const isSelected = mat.id === selectedMaterial;
@@ -209,6 +213,8 @@ export default function WasteImpactSimulator() {
                 <button
                   key={mat.id}
                   type="button"
+                  role="tab"
+                  aria-selected={isSelected}
                   onClick={() => handleMaterialChange(mat.id)}
                   className={cn(
                     "flex items-center gap-2.5 p-3 rounded-2xl text-left transition-all cursor-pointer",
@@ -223,7 +229,7 @@ export default function WasteImpactSimulator() {
                       isSelected ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"
                     )}
                   >
-                    <Icon className="h-4 w-4" />
+                    <Icon className="h-4 w-4" aria-hidden="true" />
                   </div>
                   <div className="min-w-0">
                     <span className="block text-xs font-bold truncate">{mat.shortName}</span>
@@ -286,7 +292,7 @@ export default function WasteImpactSimulator() {
                 </div>
 
                 {/* Preset Fast Selection Pills */}
-                <div className="flex items-center gap-2 pt-2">
+                <div className="flex items-center gap-2 pt-2" role="group" aria-label="Pilihan Cepat Timbangan">
                   <span className="text-[11px] font-mono text-muted-foreground uppercase font-semibold">
                     Preset:
                   </span>
@@ -297,7 +303,7 @@ export default function WasteImpactSimulator() {
                         type="button"
                         onClick={() => setWasteAmountKg(val)}
                         className={cn(
-                          "px-2.5 py-1 rounded-md text-xs font-mono cursor-pointer transition-colors border",
+                          "min-h-9 px-3 py-1.5 rounded-lg text-xs font-mono cursor-pointer transition-colors border",
                           wasteAmountKg === val
                             ? "bg-primary text-primary-foreground border-primary font-bold shadow-xs"
                             : "border-border/80 hover:bg-muted text-muted-foreground"
@@ -335,7 +341,7 @@ export default function WasteImpactSimulator() {
 
                 {/* 2. Carbon Avoided Metric Card */}
                 <div className="p-5 sm:p-6 rounded-2xl border border-border/80 bg-card space-y-2">
-                  <div className="flex items-center justify-between text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400">
+                  <div className="flex items-center justify-between text-xs font-mono font-bold text-emerald-700 dark:text-emerald-400">
                     <span className="uppercase tracking-wider">Reduksi Karbon CO₂e</span>
                     <TrendingUp className="h-4 w-4" />
                   </div>

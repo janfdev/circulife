@@ -42,7 +42,7 @@ export const WASTE_FLOW_STAGES: WasteFlowStage[] = [
     title: "Pemilahan di Sumber",
     subtitle: "Pemisahan hulu berbasis 3 wadah warna",
     iconName: "Filter",
-    badgeText: "Tahap 1 : Hulu",
+    badgeText: "Tahap 1: Hulu",
     description: "Sampah dipilah langsung sejak dari rumah tangga, sekolah, warung, maupun kawasan wisata. Pemilahan memisahkan plastik bernilai tinggi (PET/HDPE), organik basah, kaleng logam bertekanan, dan residu tidak dapat didaur ulang.",
     inputMaterials: [
       "Botol Plastik PET & Tutup Botol HDPE",
@@ -64,7 +64,7 @@ export const WASTE_FLOW_STAGES: WasteFlowStage[] = [
     title: "Penyetoran & Logistik Pintar",
     subtitle: "Pencatatan presisi & reward poin instan",
     iconName: "Scale",
-    badgeText: "Tahap 2 : Logistik",
+    badgeText: "Tahap 2: Logistik",
     description: "Warga menyetorkan sampah terpilah ke drop point terdekat atau memesan penjemputan berkala. Timbangan digital terintegrasi mencatat berat presisi, menghasilkan tiket digital QR, dan langsung mengkreditkan poin reward ke akun warga.",
     inputMaterials: [
       "Sampah Terpilah per Kategori",
@@ -85,7 +85,7 @@ export const WASTE_FLOW_STAGES: WasteFlowStage[] = [
     title: "Transformasi Nilai Sirkular",
     subtitle: "Konversi limbah menjadi produk bernilai",
     iconName: "Factory",
-    badgeText: "Tahap 3 : Pabrikasi",
+    badgeText: "Tahap 3: Pabrikasi",
     description: "Sampah diolah di sentra produksi komunitas dengan teknologi ramah lingkungan: botol plastik dilelehkan menjadi paving block berkekuatan K-250, sampah organik difermentasi bersama maggot BSF menjadi kompos kasgot, dan kaleng logam disulap menjadi kompor biomassa.",
     inputMaterials: [
       "Cacahan Plastik PET & Pasir Silika",
@@ -107,7 +107,7 @@ export const WASTE_FLOW_STAGES: WasteFlowStage[] = [
     title: "Distribusi & Dampak Sirkular",
     subtitle: "Pemanfaatan kembali & ekonomi sirkular",
     iconName: "Trees",
-    badgeText: "Tahap 4 : Hilir",
+    badgeText: "Tahap 4: Hilir",
     description: "Produk olahan sirkular didistribusikan untuk pembangunan infrastruktur jalan lingkungan pedesaan, persemaian bibit reboisasi pohon, dan perlengkapan kegiatan luar ruangan. Siklus tertutup (closed-loop) mengembalikan manfaat ke alam dan warga.",
     inputMaterials: [
       "Eco-Paving Block Teruji Lab",

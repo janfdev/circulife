@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { CircularProduct, ProductCategory } from "@/types";
 import { CIRCULAR_PRODUCTS } from "@/lib/constants";
 import { filterCircularProducts } from "@/lib/reportUtils";
@@ -31,12 +31,26 @@ export default function CircularProductCatalog() {
   const [activeProduct, setActiveProduct] = useState<CircularProduct | null>(null);
   const filteredProducts = filterCircularProducts(CIRCULAR_PRODUCTS, selectedCategory, "");
 
+  useEffect(() => {
+    if (!activeProduct) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setActiveProduct(null);
+    };
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [activeProduct]);
+
   const getCategoryIcon = (cat: ProductCategory) => {
     switch (cat) {
       case "PAVING":
         return <Layers className="h-4 w-4 text-primary" />;
       case "COMPOST":
-        return <Sprout className="h-4 w-4 text-emerald-600" />;
+        return <Sprout className="h-4 w-4 text-emerald-700 dark:text-emerald-400" />;
       case "UPCYCLING":
         return <Flame className="h-4 w-4 text-amber-500" />;
       default:
@@ -48,42 +62,50 @@ export default function CircularProductCatalog() {
     <div className="space-y-8">
       {/* Category Pills Filter */}
       <div className="flex flex-wrap gap-2 items-center justify-between">
-        <div className="flex flex-wrap gap-1.5 p-1.5 rounded-xl bg-muted border border-border">
+        <div
+          role="group"
+          aria-label="Kategori Produk Sirkular"
+          className="flex flex-wrap gap-1.5 p-1.5 rounded-xl bg-muted border border-border"
+        >
           <Button
             type="button"
+            aria-pressed={selectedCategory === "ALL"}
             variant={selectedCategory === "ALL" ? "default" : "ghost"}
             size="sm"
             onClick={() => setSelectedCategory("ALL")}
-            className="h-9 px-3.5 text-xs font-bold uppercase tracking-wider rounded-lg"
+            className="h-9 px-3.5 text-xs font-bold uppercase tracking-wider rounded-lg cursor-pointer"
           >
             Semua Produk ({CIRCULAR_PRODUCTS.length})
           </Button>
           <Button
             type="button"
+            aria-pressed={selectedCategory === "PAVING"}
             variant={selectedCategory === "PAVING" ? "default" : "ghost"}
             size="sm"
             onClick={() => setSelectedCategory("PAVING")}
-            className="h-9 px-3.5 gap-2 text-xs font-bold uppercase tracking-wider rounded-lg"
+            className="h-9 px-3.5 gap-2 text-xs font-bold uppercase tracking-wider rounded-lg cursor-pointer"
           >
             <Layers className="h-4 w-4" aria-hidden="true" />
             <span>Paving Block PET</span>
           </Button>
           <Button
             type="button"
+            aria-pressed={selectedCategory === "COMPOST"}
             variant={selectedCategory === "COMPOST" ? "default" : "ghost"}
             size="sm"
             onClick={() => setSelectedCategory("COMPOST")}
-            className="h-9 px-3.5 gap-2 text-xs font-bold uppercase tracking-wider rounded-lg"
+            className="h-9 px-3.5 gap-2 text-xs font-bold uppercase tracking-wider rounded-lg cursor-pointer"
           >
             <Sprout className="h-4 w-4" aria-hidden="true" />
             <span>Kompos Bio-Kasgot</span>
           </Button>
           <Button
             type="button"
+            aria-pressed={selectedCategory === "UPCYCLING"}
             variant={selectedCategory === "UPCYCLING" ? "default" : "ghost"}
             size="sm"
             onClick={() => setSelectedCategory("UPCYCLING")}
-            className="h-9 px-3.5 gap-2 text-xs font-bold uppercase tracking-wider rounded-lg"
+            className="h-9 px-3.5 gap-2 text-xs font-bold uppercase tracking-wider rounded-lg cursor-pointer"
           >
             <Flame className="h-4 w-4" aria-hidden="true" />
             <span>Upcycle Logam</span>
@@ -145,7 +167,7 @@ export default function CircularProductCatalog() {
                 {/* Raw Material Formula */}
                 <div className="p-2 rounded-xl bg-muted/50 border border-border/60 font-mono">
                   <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground block mb-0.5">
-                    Bahan Baku Utama :
+                    Bahan Baku Utama:
                   </span>
                   <span className="font-bold text-foreground block text-[11px] leading-tight">
                     {p.rawMaterial}
@@ -155,7 +177,7 @@ export default function CircularProductCatalog() {
                 {/* Impact */}
                 <div className="p-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-950 dark:text-emerald-200">
                   <span className="text-[10px] font-mono font-bold uppercase tracking-wider block mb-0.5">
-                    Dampak Nyata :
+                    Dampak Nyata:
                   </span>
                   <span className="font-semibold block text-[11px] leading-tight">
                     {p.impactMetric}

@@ -120,7 +120,7 @@ export function NavbarDarkShadow({
       {mobileMenuOpen && mobileMenu && (
         <div
           data-testid="mobile-menu"
-          className="mx-auto mt-2 max-w-[calc(100vw-2rem)] sm:max-w-lg rounded-2xl border border-border/80 dark:border-white/15 bg-card/95 dark:bg-neutral-950/95 p-4 shadow-[0_0_0_1px_rgba(255,255,255,0.06),0_20px_40px_-10px_rgba(0,0,0,0.7),inset_0_1px_0_0_rgba(255,255,255,0.15),inset_0_-1px_0_0_rgba(0,0,0,0.6)] backdrop-blur-xl md:hidden animate-in slide-in-from-top-2 duration-200"
+          className="mx-auto mt-2 max-w-[calc(100vw-2rem)] sm:max-w-lg max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain rounded-2xl border border-border/80 dark:border-white/15 bg-card/95 dark:bg-neutral-950/95 p-4 shadow-[0_0_0_1px_rgba(255,255,255,0.06),0_20px_40px_-10px_rgba(0,0,0,0.7),inset_0_1px_0_0_rgba(255,255,255,0.15),inset_0_-1px_0_0_rgba(0,0,0,0.6)] backdrop-blur-xl md:hidden animate-in slide-in-from-top-2 duration-200"
         >
           {mobileMenu}
         </div>

@@ -11,13 +11,13 @@ describe("ReportForm Component", () => {
     expect(screen.getByLabelText(/nomor kontak/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/jalur pendakian/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/patokan lokasi/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/deskripsi kejadian/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/rincian sampah/i)).toBeInTheDocument();
   });
 
   it("should show validation errors when submitting empty form", async () => {
     render(<ReportForm onReportSubmitted={vi.fn()} />);
 
-    const submitBtn = screen.getByRole("button", { name: /kirim laporan darurat/i });
+    const submitBtn = screen.getByRole("button", { name: /kirim data setoran/i });
     fireEvent.click(submitBtn);
 
     expect(await screen.findByText(/nama pelapor wajib diisi/i)).toBeInTheDocument();
@@ -31,11 +31,11 @@ describe("ReportForm Component", () => {
     fireEvent.change(screen.getByLabelText(/nama pelapor/i), { target: { value: "Ahmad Dahlan" } });
     fireEvent.change(screen.getByLabelText(/nomor kontak/i), { target: { value: "081234567890" } });
     fireEvent.change(screen.getByLabelText(/patokan lokasi/i), { target: { value: "Pos 3 Arban" } });
-    fireEvent.change(screen.getByLabelText(/deskripsi kejadian/i), {
-      target: { value: "Terlihat kepulan asap tebal dari jurang barat jalur Apuy" },
+    fireEvent.change(screen.getByLabelText(/rincian sampah/i), {
+      target: { value: "15 botol plastik PET bersih dan 2 kaleng gas kompor kosong" },
     });
 
-    const submitBtn = screen.getByRole("button", { name: /kirim laporan darurat/i });
+    const submitBtn = screen.getByRole("button", { name: /kirim data setoran/i });
     fireEvent.click(submitBtn);
 
     expect(handleSubmitted).toHaveBeenCalledTimes(1);

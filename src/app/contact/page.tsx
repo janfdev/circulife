@@ -28,9 +28,11 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { cn } from "@/lib/utils";
 
 export default function ContactPage() {
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -42,7 +44,19 @@ export default function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) return;
+    const newErrors: Record<string, string> = {};
+    if (!formData.name.trim()) newErrors.name = "Nama lengkap wajib diisi.";
+    if (!formData.email.trim() || !formData.email.includes("@")) {
+      newErrors.email = "Email valid wajib diisi.";
+    }
+    if (!formData.message.trim()) newErrors.message = "Pesan atau kebutuhan kerjasama wajib diisi.";
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    setErrors({});
     setFormSubmitted(true);
   };
 
@@ -105,42 +119,65 @@ export default function ContactPage() {
                     </Button>
                   </Alert>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-4">
+                  <form onSubmit={handleSubmit} className="space-y-4" noValidate>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-1.5">
-                        <label className="text-xs font-mono font-bold uppercase text-foreground">
+                        <label htmlFor="contact-name" className="text-xs font-bold uppercase tracking-wider text-foreground">
                           Nama Lengkap *
                         </label>
                         <Input
+                          id="contact-name"
                           required
                           value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          onChange={(e) => {
+                            setFormData({ ...formData, name: e.target.value });
+                            if (errors.name) setErrors({ ...errors, name: "" });
+                          }}
                           placeholder="e.g. Fauzan Aditama"
-                          className="rounded-xl h-11"
+                          aria-invalid={!!errors.name}
+                          aria-describedby={errors.name ? "contact-name-error" : undefined}
+                          className={cn("rounded-xl h-11", errors.name && "border-destructive focus-visible:ring-destructive")}
                         />
+                        {errors.name && (
+                          <p id="contact-name-error" className="text-xs text-destructive font-medium" role="alert">
+                            {errors.name}
+                          </p>
+                        )}
                       </div>
 
                       <div className="space-y-1.5">
-                        <label className="text-xs font-mono font-bold uppercase text-foreground">
+                        <label htmlFor="contact-email" className="text-xs font-bold uppercase tracking-wider text-foreground">
                           Email *
                         </label>
                         <Input
+                          id="contact-email"
                           required
                           type="email"
                           value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          onChange={(e) => {
+                            setFormData({ ...formData, email: e.target.value });
+                            if (errors.email) setErrors({ ...errors, email: "" });
+                          }}
                           placeholder="fauzan@instansi.id"
-                          className="rounded-xl h-11"
+                          aria-invalid={!!errors.email}
+                          aria-describedby={errors.email ? "contact-email-error" : undefined}
+                          className={cn("rounded-xl h-11", errors.email && "border-destructive focus-visible:ring-destructive")}
                         />
+                        {errors.email && (
+                          <p id="contact-email-error" className="text-xs text-destructive font-medium" role="alert">
+                            {errors.email}
+                          </p>
+                        )}
                       </div>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-1.5">
-                        <label className="text-xs font-mono font-bold uppercase text-foreground">
+                        <label htmlFor="contact-phone" className="text-xs font-bold uppercase tracking-wider text-foreground">
                           No. WhatsApp / Telepon
                         </label>
                         <Input
+                          id="contact-phone"
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                           placeholder="0812-XXXX-XXXX"
@@ -149,13 +186,14 @@ export default function ContactPage() {
                       </div>
 
                       <div className="space-y-1.5">
-                        <label className="text-xs font-mono font-bold uppercase text-foreground">
+                        <label htmlFor="contact-category" className="text-xs font-bold uppercase tracking-wider text-foreground">
                           Kategori Inisiatif
                         </label>
                         <select
+                          id="contact-category"
                           value={formData.category}
                           onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                          className="w-full h-11 rounded-xl border border-input bg-background px-3 text-xs font-mono font-bold text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                          className="w-full h-11 rounded-xl border border-input bg-background px-3 text-xs font-medium text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
                         >
                           <option value="BANK_SAMPAH">Kemitraan Bank Sampah / KSM</option>
                           <option value="SEKOLAH">Program Sekolah Adiwiyata</option>
@@ -166,10 +204,11 @@ export default function ContactPage() {
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-xs font-mono font-bold uppercase text-foreground">
+                      <label htmlFor="contact-city" className="text-xs font-bold uppercase tracking-wider text-foreground">
                         Kota / Domisili
                       </label>
                       <Input
+                        id="contact-city"
                         value={formData.city}
                         onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                         placeholder="e.g. Cirebon, Kuningan, Majalengka, Jakarta"
@@ -178,24 +217,35 @@ export default function ContactPage() {
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-xs font-mono font-bold uppercase text-foreground">
+                      <label htmlFor="contact-message" className="text-xs font-bold uppercase tracking-wider text-foreground">
                         Pesan atau Kebutuhan Kerjasama *
                       </label>
                       <Textarea
+                        id="contact-message"
                         required
                         rows={4}
                         value={formData.message}
-                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        onChange={(e) => {
+                          setFormData({ ...formData, message: e.target.value });
+                          if (errors.message) setErrors({ ...errors, message: "" });
+                        }}
                         placeholder="Tuliskan gambaran rencana kolaborasi, perkiraan timbulan sampah per minggu, atau pertanyaan detail..."
-                        className="rounded-xl text-xs"
+                        aria-invalid={!!errors.message}
+                        aria-describedby={errors.message ? "contact-message-error" : undefined}
+                        className={cn("rounded-xl text-xs", errors.message && "border-destructive focus-visible:ring-destructive")}
                       />
+                      {errors.message && (
+                        <p id="contact-message-error" className="text-xs text-destructive font-medium" role="alert">
+                          {errors.message}
+                        </p>
+                      )}
                     </div>
 
                     <Button
                       type="submit"
-                      className="w-full sm:w-auto h-12 px-8 rounded-xl font-bold font-mono text-xs uppercase tracking-wider gap-2 shadow-md"
+                      className="w-full sm:w-auto h-12 px-8 rounded-xl font-bold text-xs uppercase tracking-wider gap-2 shadow-md cursor-pointer"
                     >
-                      <Send className="h-4 w-4" />
+                      <Send className="h-4 w-4" aria-hidden="true" />
                       <span>Kirimkan Formulir</span>
                     </Button>
                   </form>

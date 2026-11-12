@@ -79,7 +79,7 @@ export default function SopGuidelines() {
           Pedoman Sirkular Zero Waste
         </Badge>
         <h2 className="text-2xl sm:text-3xl font-black text-foreground tracking-tight">
-          SOP Ekosistem Bebas Sampah : Standar Operasional CircuLife
+          SOP Ekosistem Bebas Sampah: Standar Operasional CircuLife
         </h2>
         <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
           Kompilasi protokol resmi pemilahan logistik, penukaran sampah, dan tata kelola ekonomi sirkular ramah lingkungan.

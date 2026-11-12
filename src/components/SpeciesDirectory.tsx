@@ -75,32 +75,39 @@ export default function SpeciesDirectory({ speciesList }: SpeciesDirectoryProps)
     <div className="space-y-8">
       {/* Search & Category Filter with generous margin */}
       <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center justify-between mb-8">
-        <div className="flex flex-wrap gap-1.5 p-1.5 rounded-xl bg-muted border border-border">
+        <div
+          role="group"
+          aria-label="Filter Kategori Spesies"
+          className="flex flex-wrap gap-1.5 p-1.5 rounded-xl bg-muted border border-border"
+        >
           <Button
             type="button"
+            aria-pressed={categoryFilter === "ALL"}
             variant={categoryFilter === "ALL" ? "default" : "ghost"}
             size="sm"
             onClick={() => setCategoryFilter("ALL")}
-            className="h-9 px-3.5 text-xs font-bold uppercase tracking-wider rounded-lg"
+            className="h-9 px-3.5 text-xs font-bold uppercase tracking-wider rounded-lg cursor-pointer"
           >
             Semua Spesies ({speciesList.length})
           </Button>
           <Button
             type="button"
+            aria-pressed={categoryFilter === "FAUNA"}
             variant={categoryFilter === "FAUNA" ? "default" : "ghost"}
             size="sm"
             onClick={() => setCategoryFilter("FAUNA")}
-            className="h-9 px-3.5 gap-2 text-xs font-bold uppercase tracking-wider rounded-lg"
+            className="h-9 px-3.5 gap-2 text-xs font-bold uppercase tracking-wider rounded-lg cursor-pointer"
           >
             <Bird className="h-4 w-4" aria-hidden="true" />
             <span>Fauna</span>
           </Button>
           <Button
             type="button"
+            aria-pressed={categoryFilter === "FLORA"}
             variant={categoryFilter === "FLORA" ? "default" : "ghost"}
             size="sm"
             onClick={() => setCategoryFilter("FLORA")}
-            className="h-9 px-3.5 gap-2 text-xs font-bold uppercase tracking-wider rounded-lg"
+            className="h-9 px-3.5 gap-2 text-xs font-bold uppercase tracking-wider rounded-lg cursor-pointer"
           >
             <Leaf className="h-4 w-4" aria-hidden="true" />
             <span>Flora</span>
@@ -114,6 +121,7 @@ export default function SpeciesDirectory({ speciesList }: SpeciesDirectoryProps)
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Cari nama satwa atau tumbuhan..."
+            aria-label="Cari nama satwa atau tumbuhan"
             className="h-11 pl-10 pr-4 text-xs rounded-xl"
           />
         </div>
@@ -176,7 +184,7 @@ export default function SpeciesDirectory({ speciesList }: SpeciesDirectoryProps)
                     {/* Habitat Elevation */}
                     <div className="flex items-center gap-2 text-xs text-muted-foreground bg-muted/40 rounded-xl px-3 py-2 border border-border/60 font-mono">
                       <Mountain className="h-4 w-4 text-primary shrink-0" aria-hidden="true" />
-                      <span>Zona Ketinggian :</span>
+                      <span>Zona Ketinggian:</span>
                       <span className="font-bold text-foreground tabular-nums">{item.habitatElevation}</span>
                     </div>
 
@@ -190,7 +198,7 @@ export default function SpeciesDirectory({ speciesList }: SpeciesDirectoryProps)
                 <CardFooter className="p-6 pt-4 border-t border-border/60 bg-muted/20 flex flex-col items-start gap-3 text-xs">
                   <div className="w-full rounded-xl bg-background/80 p-3 border border-border/60">
                     <span className="font-bold text-foreground block text-[11px] font-mono uppercase tracking-wider mb-0.5">
-                      Faktor Ancaman :
+                      Faktor Ancaman:
                     </span>
                     <p className="text-muted-foreground text-xs leading-relaxed">
                       {item.threats}
@@ -199,7 +207,7 @@ export default function SpeciesDirectory({ speciesList }: SpeciesDirectoryProps)
 
                   <div className="w-full bg-primary/5 rounded-xl p-3 border border-primary/15">
                     <span className="font-bold text-primary block text-[11px] font-mono uppercase tracking-wider mb-0.5">
-                      Peran Ekosistem :
+                      Peran Ekosistem:
                     </span>
                     <p className="text-muted-foreground text-xs leading-relaxed">
                       {item.roleInEcosystem}

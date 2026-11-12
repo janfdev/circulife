@@ -357,11 +357,11 @@ export function BioDigesterAnatomy({ className }: BioDigesterAnatomyProps) {
             <div className="rounded-2xl border border-border/80 bg-background/80 p-4 space-y-4 shadow-xs">
               <div className="flex items-center justify-between border-b border-border/60 pb-2.5">
                 <span className="text-xs font-mono font-bold uppercase text-muted-foreground">
-                  Digester Console
+                  Konsol Reaktor Biogas
                 </span>
-                <span className="inline-flex items-center gap-1.5 text-xs font-mono text-emerald-600 font-bold">
+                <span className="inline-flex items-center gap-1.5 text-xs font-mono text-emerald-700 dark:text-emerald-400 font-bold">
                   <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                  METHANOGENESIS OK
+                  METANOGENESIS OPTIMAL
                 </span>
               </div>
 
@@ -413,7 +413,7 @@ export function BioDigesterAnatomy({ className }: BioDigesterAnatomyProps) {
                 </div>
                 <div className="rounded-xl border border-border/60 bg-muted/30 p-2.5">
                   <span className="text-[10px] text-muted-foreground block font-sans">Suhu Inti Mesofilik</span>
-                  <span className="text-sm font-bold text-emerald-600 tabular-nums">
+                  <span className="text-sm font-bold text-emerald-700 dark:text-emerald-400 tabular-nums">
                     {metrics.temperatureC}°C
                   </span>
                 </div>

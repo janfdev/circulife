@@ -72,7 +72,7 @@ export default function Navbar({ currentPath }: NavbarProps) {
       brand={
         <Link
           href="/"
-          className="flex items-center gap-3 transition-opacity hover:opacity-90 focus:outline-none group"
+          className="flex items-center gap-3 transition-opacity hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-xl group"
         >
           <div className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-card border border-border/80 shadow-[0_1px_2px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.15)] ring-1 ring-primary/20 transition-transform group-hover:scale-105">
             <CircuLifeMark className="h-5 w-5 sm:h-6 sm:w-6" />

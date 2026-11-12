@@ -48,7 +48,7 @@ export function validateReportInput(input: Partial<WasteDropReport>): ReportVali
   }
 
   if (!input.description || input.description.trim().length === 0) {
-    errors.description = "Deskripsi kejadian indikasi kebakaran atau ancaman wajib diisi";
+    errors.description = "Rincian sampah yang disetorkan wajib diisi";
   }
 
   if (input.coordinates) {

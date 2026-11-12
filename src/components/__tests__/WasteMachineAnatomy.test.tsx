@@ -9,18 +9,18 @@ describe("WasteMachineAnatomy Component", () => {
     expect(
       screen.getByText(/The Circular Extruder & Hex-Paving Hydraulic Press Rig/i)
     ).toBeInTheDocument();
-    expect(screen.getByText(/1. Flakes Inflow/i)).toBeInTheDocument();
-    expect(screen.getByText(/2. 220°C Thermal Matrix/i)).toBeInTheDocument();
-    expect(screen.getByText(/3. Paving Block K-250/i)).toBeInTheDocument();
+    expect(screen.getByText(/1. Masukan Cacahan/i)).toBeInTheDocument();
+    expect(screen.getByText(/2. Pemanas Termal 220°C/i)).toBeInTheDocument();
+    expect(screen.getByText(/3. Balok Paving K-250/i)).toBeInTheDocument();
   });
 
   it("should update pressure and cycle state upon interacting with cycle buttons", () => {
     render(<WasteMachineAnatomy />);
-    const feedBtn = screen.getByRole("button", { name: /1. Feed/i });
+    const feedBtn = screen.getByRole("button", { name: /1. Masuk/i });
     fireEvent.click(feedBtn);
     expect(screen.getByText(/40 Bar/i)).toBeInTheDocument();
 
-    const meltBtn = screen.getByRole("button", { name: /2. Melt/i });
+    const meltBtn = screen.getByRole("button", { name: /2. Lebur/i });
     fireEvent.click(meltBtn);
     expect(screen.getByText(/110 Bar/i)).toBeInTheDocument();
   });
