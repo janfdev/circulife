@@ -1,10 +1,8 @@
 import React from "react";
 import WasteImpactSimulator from "@/components/WasteImpactSimulator";
-import TrailStatusBoard from "@/components/TrailStatusBoard";
 import RestorationTracker from "@/components/RestorationTracker";
 import HotlineDirectory from "@/components/HotlineDirectory";
-import { TRAIL_SEEDS } from "@/lib/constants";
-import { Activity, Recycle, PackageCheck } from "lucide-react";
+import { Recycle, PackageCheck } from "lucide-react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -13,7 +11,7 @@ import { cn } from "@/lib/utils";
 
 export const metadata = {
   title: "Pantau Status & Kalkulator Sirkularitas | CircuLife",
-  description: "Pantau kesiapan posko drop-point, kapasitas penyimpanan sampah, dan hitung estimasi reduksi emisi karbon secara live.",
+  description: "Hitung estimasi konversi sampah, reduksi emisi karbon secara live, dan pantau tracker restorasi ekosistem.",
 };
 
 export default function PantauPage() {
@@ -30,7 +28,7 @@ export default function PantauPage() {
             Hitung Nilai Sampah, Reduksi Emisi &amp; Pantau Kesiapan Sentra
           </h1>
           <p className="text-sm sm:text-base text-muted-foreground max-w-3xl leading-relaxed">
-            Hitung potensi konversi sampah botol plastik dan sisa makanan menjadi paving block serta pupuk kompos, sekaligus pantau indikator kapasitas dan cuaca di seluruh sentra mitra CircuLife.
+            Hitung potensi konversi sampah botol plastik dan sisa makanan menjadi paving block serta pupuk kompos, sekaligus pantau indikator restorasi dan direktori hotline CircuLife.
           </p>
         </div>
 
@@ -39,17 +37,12 @@ export default function PantauPage() {
           <WasteImpactSimulator />
         </section>
 
-        {/* 2. Status Kapasitas Drop-Point Terintegrasi */}
-        <section aria-labelledby="drop-point-heading">
-          <TrailStatusBoard trails={TRAIL_SEEDS} />
-        </section>
-
-        {/* 3. Tracker Restorasi Ekosistem & Pemanfaatan Pupuk Kasgot */}
+        {/* 2. Tracker Restorasi Ekosistem & Pemanfaatan Pupuk Kasgot */}
         <section aria-labelledby="restoration-heading">
           <RestorationTracker />
         </section>
 
-        {/* 4. Direktori Posko Resmi & Hotline */}
+        {/* 3. Direktori Posko Resmi & Hotline */}
         <section className="pt-10 border-t border-border" aria-labelledby="hotline-heading">
           <HotlineDirectory />
         </section>
